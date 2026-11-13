@@ -1,0 +1,52 @@
+{
+  "name": "styleprobe",
+  "version": "1.0.0",
+  "description": "Probe and extract design systems, colors, typography, and visual rules from any URL for AI coding agents",
+  "main": "dist/cli.js",
+  "bin": {
+    "styleprobe": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "prepublishOnly": "npm run build",
+    "build": "tsc && chmod +x dist/cli.js",
+    "start": "node dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spidervirus/styleprobe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spidervirus/styleprobe/issues"
+  },
+  "homepage": "https://github.com/spidervirus/styleprobe#readme",
+  "keywords": [
+    "styleprobe",
+    "design-tokens",
+    "ai-agent",
+    "design-system",
+    "playwright",
+    "tailwind",
+    "shadcn",
+    "cursorrules",
+    "css"
+  ],
+  "author": "spidervirus",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "colord": "^2.9.3",
+    "commander": "^14.0.3",
+    "ora": "^8.2.0",
+    "playwright": "^1.58.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
