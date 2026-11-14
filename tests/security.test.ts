@@ -124,4 +124,48 @@ test('Security Suite: SSRF, Redirects, DNS Rebinding & Resource Bounds', async (
       delete process.env.STYLEPROBE_TEST_ALLOW_LOCAL;
     }
   });
+
+  await t.test('10. Security test bypass cannot be activated in production (NODE_ENV=production)', async () => {
+    const originalNodeEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+    process.env.STYLEPROBE_TEST_ALLOW_LOCAL = '1';
+
+    try {
+      // In production, even if STYLEPROBE_TEST_ALLOW_LOCAL is set, loopback MUST be blocked
+      const localRes = await validateAndResolveUrl('http://127.0.0.1');
+      assert.equal(localRes.safe, false, '127.0.0.1 must be rejected in production');
+
+      const localhostRes = await validateAndResolveUrl('http://localhost');
+      assert.equal(localhostRes.safe, false, 'localhost must be rejected in production');
+
+      const metaRes = await validateAndResolveUrl('http://169.254.169.254/latest/meta-data');
+      assert.equal(metaRes.safe, false, 'Cloud metadata must always be rejected');
+    } finally {
+      process.env.NODE_ENV = originalNodeEnv;
+      delete process.env.STYLEPROBE_TEST_ALLOW_LOCAL;
+    }
+  });
+
+  await t.test('11. Security test bypass never permits cloud metadata or non-loopback private ranges', async () => {
+    // When test bypass is enabled in test environment, only 127.0.0.1 is permitted for the test fixture server
+    process.env.STYLEPROBE_TEST_ALLOW_LOCAL = '1';
+
+    try {
+      // Cloud metadata MUST remain blocked
+      const metaRes = await validateAndResolveUrl('http://169.254.169.254');
+      assert.equal(metaRes.safe, false, '169.254.169.254 must remain blocked even with bypass flag');
+
+      // Private RFC 1918 subnets MUST remain blocked
+      const p10Res = await validateAndResolveUrl('http://10.0.0.1');
+      assert.equal(p10Res.safe, false, '10.0.0.1 must remain blocked');
+
+      const p192Res = await validateAndResolveUrl('http://192.168.1.1');
+      assert.equal(p192Res.safe, false, '192.168.1.1 must remain blocked');
+
+      const p172Res = await validateAndResolveUrl('http://172.16.0.1');
+      assert.equal(p172Res.safe, false, '172.16.0.1 must remain blocked');
+    } finally {
+      delete process.env.STYLEPROBE_TEST_ALLOW_LOCAL;
+    }
+  });
 });

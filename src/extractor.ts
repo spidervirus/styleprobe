@@ -368,9 +368,9 @@ const HIGH_VALUE_PATHS = /\/(components|design|docs|documentation|ui|elements|bu
 const MID_VALUE_PATHS  = /\/(features|product|pricing|about|showcase|templates|examples|overview)\b/i;
 
 // Known analytics and marketing tracking query parameters to safely strip
-// Functional parameters (e.g. ?page=2, ?category=ui, ?tab=tokens, ?lang=en) are preserved
-const TRACKING_PARAMS = new Set([
-  'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+// Functional parameters (e.g. ?page=2, ?category=ui, ?tab=tokens, ?lang=en, ?filter=active) are preserved
+export const TRACKING_PARAMS = new Set([
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id', 'utm_reader',
   'ref', 'source', 'fbclid', 'gclid', 'msclkid', 'mc_cid', 'mc_eid',
   '_ga', '_gl', 'yclid', '_hsenc', '_hsmi'
 ]);
@@ -383,19 +383,20 @@ function scoreLinkForDesign(path: string): number {
 
 /**
  * Normalizes a URL for the crawler while strictly preserving path casing
- * (RFC 3986: paths and queries can be case-sensitive).
+ * (RFC 3986 Section 3.2.2: path and query components are case-sensitive).
  * Only scheme and hostname are lowercased; known tracking params are removed.
  */
-function normalizeCrawlUrl(rawUrl: string): string {
+export function normalizeCrawlUrl(rawUrl: string): string {
   try {
     const u = new URL(rawUrl);
     u.protocol = u.protocol.toLowerCase();
     u.hostname = u.hostname.toLowerCase();
     u.hash = '';
 
-    // Strip only known tracking params
+    // Strip only known analytics / marketing tracking parameters
     for (const key of Array.from(u.searchParams.keys())) {
-      if (TRACKING_PARAMS.has(key.toLowerCase())) {
+      const lowerKey = key.toLowerCase();
+      if (lowerKey.startsWith('utm_') || TRACKING_PARAMS.has(lowerKey)) {
         u.searchParams.delete(key);
       }
     }
@@ -461,9 +462,21 @@ export interface CrawlGraphOptions {
   sitemap?: boolean;
 }
 
-// ─────────────────────────────────────────────────────────────────
-// True BFS graph crawler with security bounds, robots.txt & sitemap
-// ─────────────────────────────────────────────────────────────────
+/**
+ * True Breadth-First-Search (BFS) crawler with security bounds, robots.txt compliance & XML sitemaps.
+ *
+ * Depth Semantics:
+ * - Depth 0: The target root entry-point URL.
+ * - Depth 1: Immediate children linked directly from the root page, OR entry points discovered
+ *            from XML sitemaps (/sitemap.xml). Sitemap-seeded URLs are primary landing pages
+ *            at the same hierarchical tier as top-level navigation, and are therefore strictly
+ *            assigned and reported at depth 1.
+ * - Depth 2: Secondary pages discovered from depth 1 subpages.
+ *
+ * Strict BFS Invariant:
+ * The FIFO traversal queue guarantees that all depth d nodes are inspected and processed
+ * strictly before any depth d + 1 nodes are visited.
+ */
 async function crawlGraphBFS(
   page: Page,
   rootUrl: string,
@@ -482,9 +495,10 @@ async function crawlGraphBFS(
   const visited = new Set<string>();
   visited.add(normalizedRoot);
 
-  // 2. Optional Sitemap Discovery (seeds queue at depth 1)
+  // 2. Optional Sitemap Discovery: seeds queue at depth 1
+  // If boundedDepth === 1, sitemap seeding is skipped because depth 1 crawl is restricted to root only.
   if (options.sitemap && boundedDepth > 1) {
-    const sitemapLinks = await discoverSitemapUrls(rootOrigin, maxPages);
+    const sitemapLinks = await discoverSitemapUrls(rootOrigin, maxPages, robotsRules);
     for (const smLink of sitemapLinks) {
       const normSm = normalizeCrawlUrl(smLink);
       if (!visited.has(normSm) && isAllowedByRobots(new URL(normSm).pathname, robotsRules)) {
@@ -700,8 +714,12 @@ export async function extractDesignTokens(
         }
 
         for (const c of (pageData.components || []) as ComponentSample[]) {
-          const sameType = allComponents.filter(x => x.type === c.type);
-          if (sameType.length < 2) {
+          const isDuplicate = allComponents.some(
+            x => x.type === c.type &&
+                 x.styles.backgroundColor === c.styles.backgroundColor &&
+                 x.styles.borderRadius === c.styles.borderRadius
+          );
+          if (!isDuplicate && allComponents.filter(x => x.type === c.type).length < 4) {
             allComponents.push(c);
           }
         }

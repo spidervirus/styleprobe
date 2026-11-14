@@ -59,7 +59,25 @@ export interface CssVariableMeta {
 
 export interface CrawledPageDetail {
   url: string;
+  /**
+   * Crawl depth level:
+   * - 0: Root target page
+   * - 1: Immediate child pages and XML sitemap-seeded entry points
+   * - 2+: Secondary pages linked from depth 1 subpages
+   */
   depth: number;
+}
+
+export interface ExtractOptions {
+  /** Maximum crawl depth (1 = root page only, 2 = root + immediate subpages, capped at 3) */
+  depth?: number;
+  /** Maximum number of unique pages to crawl (default: 6) */
+  maxPages?: number;
+  /**
+   * Discover and seed crawl queue from XML sitemaps (/sitemap.xml, /sitemap_index.xml).
+   * Sitemap pages are seeded at depth 1. Only active when depth > 1.
+   */
+  sitemap?: boolean;
 }
 
 export interface DesignTokens {

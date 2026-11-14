@@ -41,16 +41,20 @@ test('Crawler Suite: Graph Traversal, Depth, Normalization & Filtering', async (
     assert.equal(depth2Items?.length, 0, 'Depth 2 limit must not crawl depth >= 2 grandchildren');
   });
 
-  await t.test('3. Strict BFS ordering: all depth 0 processed before any depth 1', async () => {
-    const tokens = await extractDesignTokens(server.baseUrl, 2);
+  await t.test('3. Strict BFS ordering: monotonic depth sequence (all depth d precede depth d+1)', async () => {
+    // Crawl up to depth 3 to test full 3-tier BFS traversal
+    const tokens = await extractDesignTokens(server.baseUrl, 3);
     const details = tokens.crawledDetails || [];
 
-    // The first item in crawledDetails must be depth 0
-    assert.equal(details[0].depth, 0, 'First crawled page must be depth 0');
+    assert.ok(details.length >= 2, 'Should crawl multiple pages at depth 3');
+    assert.equal(details[0].depth, 0, 'First crawled page must be root depth 0');
 
-    // All subsequent items must have depth >= 1
-    for (let i = 1; i < details.length; i++) {
-      assert.ok(details[i].depth >= 1, `Item ${i} must have depth >= 1`);
+    // Mathematical monotonicity verification: depth must be non-decreasing throughout the crawl
+    for (let i = 0; i < details.length - 1; i++) {
+      assert.ok(
+        details[i].depth <= details[i + 1].depth,
+        `Strict BFS violation: page at index ${i} (depth ${details[i].depth}) must precede or match page at index ${i + 1} (depth ${details[i + 1].depth})`
+      );
     }
   });
 
@@ -98,5 +102,42 @@ test('Crawler Suite: Graph Traversal, Depth, Normalization & Filtering', async (
     assert.ok((tokens.crawledPages?.length || 0) >= 2, 'Sitemap discovery should crawl pages');
     const hasComponents = tokens.crawledPages?.some(u => u.includes('components.html'));
     assert.ok(hasComponents, 'Sitemap-seeded queue should crawl components.html');
+  });
+
+  await t.test('9. Sitemap-seeded pages are consistently assigned and reported at depth 1', async () => {
+    const tokens = await extractDesignTokens(server.baseUrl, {
+      depth: 2,
+      sitemap: true
+    });
+
+    const details = tokens.crawledDetails || [];
+    assert.ok(details.length >= 2, 'Should have multiple crawled details');
+
+    // Root is depth 0
+    assert.equal(details[0].depth, 0, 'Homepage root must be depth 0');
+
+    // Any page seeded from sitemap (e.g. /components.html) must strictly be reported at depth 1
+    const sitemapDiscovered = details.find(d => d.url.includes('components.html'));
+    assert.ok(sitemapDiscovered, 'components.html should be crawled');
+    assert.equal(
+      sitemapDiscovered.depth,
+      1,
+      'Sitemap-seeded pages must consistently be reported at depth 1'
+    );
+  });
+
+  await t.test('10. Case-sensitive path preservation during graph crawling', async () => {
+    // /Wiki/Case_Sensitive.html exists with exact casing; /wiki/case_sensitive.html would 404
+    const tokens = await extractDesignTokens(server.baseUrl, 2);
+    const visitedUrls = tokens.crawledPages || [];
+
+    const hasCaseSensitive = visitedUrls.some(u => u.includes('/Wiki/Case_Sensitive.html'));
+    assert.ok(hasCaseSensitive, 'Crawler must preserve exact path casing and crawl /Wiki/Case_Sensitive.html');
+
+    // Verify token extraction from the case-sensitive subpage
+    const hasRedButton = tokens.components.some(
+      c => c.type === 'button' && (c.styles.backgroundColor.includes('225, 29, 72') || c.sampleHtml?.includes('Red Button'))
+    );
+    assert.ok(hasRedButton, 'Component tokens from case-sensitive page must be extracted');
   });
 });

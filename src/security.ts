@@ -50,6 +50,21 @@ const BLOCKED_HOST_SUFFIXES = [
 ];
 
 /**
+ * Test-only bypass validator.
+ * Strictly guarantees that test bypass CANNOT be activated:
+ * 1. In production environments (NODE_ENV === 'production' strictly disallows bypass)
+ * 2. Unless STYLEPROBE_TEST_ALLOW_LOCAL is explicitly set to '1' in the process environment
+ * 3. Never affects cloud metadata (169.254.x), private corporate networks (10.x, 172.x, 192.x), or foreign IPs.
+ * 4. User-controlled input (URLs, headers, query params) can NEVER toggle this setting.
+ */
+export function isTestLocalBypassAllowed(): boolean {
+  if (process.env.NODE_ENV === 'production') {
+    return false;
+  }
+  return process.env.STYLEPROBE_TEST_ALLOW_LOCAL === '1';
+}
+
+/**
  * Checks if a string represents an IPv4 address in private, loopback, link-local,
  * CGNAT, multicast, or reserved ranges (RFC 1918, RFC 1122, RFC 3927, RFC 6598).
  */
@@ -61,8 +76,8 @@ export function isPrivateIPv4(ip: string): boolean {
 
   const [b0, b1, b2] = parts;
 
-  // Allow 127.0.0.1 only when explicit test environment variable is active
-  if (process.env.STYLEPROBE_TEST_ALLOW_LOCAL === '1' && b0 === 127) {
+  // Allow 127.0.0.1 only when explicit test environment bypass is permitted
+  if (isTestLocalBypassAllowed() && b0 === 127) {
     return false;
   }
 
@@ -159,7 +174,7 @@ export function isBlockedHostname(hostname: string): boolean {
   // Strip brackets if IPv6
   const clean = lower.startsWith('[') && lower.endsWith(']') ? lower.slice(1, -1) : lower;
 
-  if (process.env.STYLEPROBE_TEST_ALLOW_LOCAL === '1' && (clean === 'localhost' || clean === '127.0.0.1')) {
+  if (isTestLocalBypassAllowed() && (clean === 'localhost' || clean === '127.0.0.1')) {
     return false;
   }
 
