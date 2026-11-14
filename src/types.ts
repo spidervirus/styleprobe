@@ -50,6 +50,13 @@ export interface ThemePalette {
   palette: ColorToken[];
 }
 
+export interface CssVariableMeta {
+  light?: string;
+  dark?: string;
+  selectors?: string[];
+  usedIn?: string[];
+}
+
 export interface DesignTokens {
   url: string;
   title: string;
@@ -80,5 +87,5 @@ export interface DesignTokens {
   };
   components: ComponentSample[];
   assets: ExtractedAsset[];
-  cssVariables: Record<string, string>;
+  cssVariables: Record<string, string | CssVariableMeta>;
 }

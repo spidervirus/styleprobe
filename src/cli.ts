@@ -6,6 +6,7 @@ import ora from 'ora';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { extractDesignTokens } from './extractor.js';
+import { validateAndResolveUrl } from './security.js';
 import { 
   formatToMarkdown, 
   formatToTailwind, 
@@ -27,12 +28,15 @@ program
   .option('-d, --depth <number>', 'Number of internal pages to crawl (1 to 5)', '1')
   .option('--assets [dir]', 'Harvest SVGs & brand logos into a local directory', false)
   .action(async (targetUrl: string, options: { output?: string; format: string; depth: string; assets: boolean | string }) => {
-    let normalizedUrl = targetUrl;
-    if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
-      normalizedUrl = `https://${normalizedUrl}`;
+    // 1. Input validation & SSRF pre-check
+    const precheck = await validateAndResolveUrl(targetUrl);
+    if (!precheck.safe) {
+      console.error(chalk.red(`\n✖ Security Rejection: ${precheck.reason || 'Invalid or prohibited URL'}\n`));
+      process.exit(1);
     }
 
-    const crawlDepth = Math.max(1, Math.min(parseInt(options.depth, 10) || 1, 5));
+    const normalizedUrl = precheck.normalizedUrl!;
+    const crawlDepth = Math.max(1, Math.min(parseInt(options.depth, 10) || 1, 3));
 
     console.log(chalk.bold.magenta('\n🔍 styleprobe') + chalk.gray(' — Visual DNA Extractor for AI Coding Agents\n'));
     const spinner = ora(`Probing ${chalk.cyan(normalizedUrl)} (depth: ${crawlDepth})...`).start();
