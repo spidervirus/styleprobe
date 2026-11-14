@@ -57,10 +57,16 @@ export interface CssVariableMeta {
   usedIn?: string[];
 }
 
+export interface CrawledPageDetail {
+  url: string;
+  depth: number;
+}
+
 export interface DesignTokens {
   url: string;
   title: string;
   crawledPages?: string[];
+  crawledDetails?: CrawledPageDetail[];
   extractedAt: string;
   themeMode: 'dark' | 'light' | 'mixed';
   colors: {

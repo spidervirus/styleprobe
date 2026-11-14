@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /disallowed/
+Disallow: /secret
+Allow: /disallowed/allowed-subpage
+
+User-agent: styleprobe
+Disallow: /disallowed/

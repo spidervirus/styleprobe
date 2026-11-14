@@ -1,7 +1,9 @@
 import { chromium, BrowserContext, Page } from 'playwright';
 import { cleanColor, normalizeCssVarValue, dedupeColors } from './analyzer.js';
-import { DesignTokens, TypographyToken, ComponentSample, ExtractedAsset, ThemePalette } from './types.js';
+import { DesignTokens, TypographyToken, ComponentSample, ExtractedAsset, ThemePalette, CrawledPageDetail } from './types.js';
 import { validateAndResolveUrl, resolveAndVerifyHostname } from './security.js';
+import { fetchRobotsTxt, isAllowedByRobots, RobotsRules } from './robots.js';
+import { discoverSitemapUrls } from './sitemap.js';
 
 // ─────────────────────────────────────────────────────────────────
 // EVAL_SCRIPT: everything that runs inside the browser page.
@@ -169,7 +171,7 @@ const EVAL_SCRIPT = `
   var fontFamilies = [];
   var fontSet = {};
 
-  var interactiveEls = document.querySelectorAll('button, input, [class*="card"], [class*="btn"], nav, header, [class*="modal"], [class*="dialog"], [class*="tooltip"]');
+  var interactiveEls = document.querySelectorAll('button, input, [class*="card"], [class*="btn"], nav, header, [class*="modal"], [class*="dialog"], [class*="tooltip"], body, p, h1, h2, h3, code, pre');
   for (var i = 0; i < interactiveEls.length; i++) {
     var iStyle = window.getComputedStyle(interactiveEls[i]);
     if (iStyle.borderRadius && iStyle.borderRadius !== '0px' && !radiiSet[iStyle.borderRadius]) {
@@ -275,13 +277,22 @@ const EVAL_SCRIPT = `
   var internalLinks = [];
   var seenLinks = {};
   var origin = window.location.origin;
-  var allA = document.querySelectorAll('a[href]');
-  for (var a = 0; a < allA.length; a++) {
-    var href = allA[a].getAttribute('href');
-    if (href && href.indexOf('#') !== 0 && href.indexOf('mailto:') !== 0 && href.indexOf('javascript:') !== 0) {
+
+  // Respect meta robots nofollow
+  var robotsMeta = document.querySelector('meta[name="robots"], meta[name="googlebot"]');
+  var robotsContent = robotsMeta ? (robotsMeta.getAttribute('content') || '').toLowerCase() : '';
+  if (robotsContent.indexOf('nofollow') === -1) {
+    var allA = document.querySelectorAll('a[href]');
+    for (var a = 0; a < allA.length; a++) {
+      var aEl = allA[a];
+      var href = aEl.getAttribute('href');
+      var rel = (aEl.getAttribute('rel') || '').toLowerCase();
+      if (!href || href.indexOf('#') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 || href.indexOf('javascript:') === 0 || rel.indexOf('nofollow') !== -1) {
+        continue;
+      }
       try {
         var resolved = new URL(href, window.location.href);
-        if (resolved.origin === origin && resolved.pathname !== window.location.pathname && !seenLinks[resolved.pathname]) {
+        if (resolved.origin === origin && !seenLinks[resolved.pathname]) {
           seenLinks[resolved.pathname] = true;
           internalLinks.push(resolved.href);
         }
@@ -346,62 +357,182 @@ async function extractThemeWithColorScheme(
   }
 }
 
+// Non-HTML asset extensions to reject immediately during crawl
+const EXCLUDED_EXTENSIONS = /\.(pdf|zip|tar|gz|exe|dmg|iso|png|jpe?g|gif|svg|webp|ico|mp4|webm|mp3|wav|csv|docx?|xlsx?|pptx?|css|js|json|xml|rss|woff2?|ttf|eot)$/i;
+
+// Low-value / auth / policy routes to filter out
+const EXCLUDED_PATHS = /\/(login|signin|logout|signout|signup|register|auth|cart|checkout|privacy|terms|legal|cookie-policy|cookies|gdpr|wp-admin|wp-content|api|cdn-cgi)\b/i;
+
+// Design-rich path patterns to prioritize in BFS queue
+const HIGH_VALUE_PATHS = /\/(components|design|docs|documentation|ui|elements|buttons|theme|tokens|styles|patterns)\b/i;
+const MID_VALUE_PATHS  = /\/(features|product|pricing|about|showcase|templates|examples|overview)\b/i;
+
+// Known analytics and marketing tracking query parameters to safely strip
+// Functional parameters (e.g. ?page=2, ?category=ui, ?tab=tokens, ?lang=en) are preserved
+const TRACKING_PARAMS = new Set([
+  'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+  'ref', 'source', 'fbclid', 'gclid', 'msclkid', 'mc_cid', 'mc_eid',
+  '_ga', '_gl', 'yclid', '_hsenc', '_hsmi'
+]);
+
+function scoreLinkForDesign(path: string): number {
+  if (HIGH_VALUE_PATHS.test(path)) return 10;
+  if (MID_VALUE_PATHS.test(path)) return 5;
+  return 1;
+}
+
+/**
+ * Normalizes a URL for the crawler while strictly preserving path casing
+ * (RFC 3986: paths and queries can be case-sensitive).
+ * Only scheme and hostname are lowercased; known tracking params are removed.
+ */
+function normalizeCrawlUrl(rawUrl: string): string {
+  try {
+    const u = new URL(rawUrl);
+    u.protocol = u.protocol.toLowerCase();
+    u.hostname = u.hostname.toLowerCase();
+    u.hash = '';
+
+    // Strip only known tracking params
+    for (const key of Array.from(u.searchParams.keys())) {
+      if (TRACKING_PARAMS.has(key.toLowerCase())) {
+        u.searchParams.delete(key);
+      }
+    }
+
+    // Collapse duplicate slashes and strip trailing slash while preserving path casing
+    let path = u.pathname.replace(/\/+/g, '/');
+    if (path.length > 1 && path.endsWith('/')) {
+      path = path.slice(0, -1);
+    }
+    u.pathname = path;
+
+    return u.toString();
+  } catch {
+    return rawUrl;
+  }
+}
+
+function filterAndPrioritizeLinks(rawLinks: string[], origin: string, robotsRules: RobotsRules): string[] {
+  const scored: Array<{ url: string; score: number }> = [];
+
+  for (const raw of rawLinks) {
+    try {
+      const u = new URL(raw);
+      if (u.origin !== origin) continue;
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') continue;
+
+      const path = u.pathname;
+      if (EXCLUDED_EXTENSIONS.test(path) || EXCLUDED_PATHS.test(path)) continue;
+
+      // Robots.txt check
+      if (!isAllowedByRobots(path, robotsRules)) continue;
+
+      const normalized = normalizeCrawlUrl(raw);
+      scored.push({ url: normalized, score: scoreLinkForDesign(path) });
+    } catch {}
+  }
+
+  // Sort descending by design score within this link set
+  return scored.sort((a, b) => b.score - a.score).map(s => s.url);
+}
+
 // ─────────────────────────────────────────────────────────────────
 // Single-page inspector (used by BFS crawler)
 // ─────────────────────────────────────────────────────────────────
-async function inspectPage(page: Page, targetUrl: string): Promise<any> {
+async function inspectPage(page: Page, targetUrl: string): Promise<{ data: any; landedUrl: string } | null> {
   try {
-    await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 25000 });
-    await page.waitForTimeout(1000);
-    return await page.evaluate(EVAL_SCRIPT);
+    const response = await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    // Skip failed HTTP status codes (4xx, 5xx)
+    if (response && response.status() >= 400) {
+      return null;
+    }
+    await page.waitForTimeout(800);
+    const data = await page.evaluate(EVAL_SCRIPT);
+    return { data, landedUrl: page.url() };
   } catch {
     return null;
   }
 }
 
+export interface CrawlGraphOptions {
+  depth: number;
+  maxPages?: number;
+  sitemap?: boolean;
+}
+
 // ─────────────────────────────────────────────────────────────────
-// True BFS graph crawler with security bounds
+// True BFS graph crawler with security bounds, robots.txt & sitemap
 // ─────────────────────────────────────────────────────────────────
 async function crawlGraphBFS(
   page: Page,
   rootUrl: string,
-  maxDepth: number,
-  maxPages = 6
-): Promise<{ crawledPages: string[]; pageDataList: any[] }> {
+  options: CrawlGraphOptions
+): Promise<{ crawledPages: string[]; pageDataList: any[]; crawledDetails: CrawledPageDetail[] }> {
   interface QueueItem { url: string; depth: number; }
-  const queue: QueueItem[] = [{ url: rootUrl, depth: 0 }];
+  const normalizedRoot = normalizeCrawlUrl(rootUrl);
+  const rootOrigin = new URL(normalizedRoot).origin;
+  const maxPages = options.maxPages || 6;
+  const boundedDepth = Math.max(1, Math.min(options.depth, 3)); // Hard cap at depth 3
+
+  // 1. Fetch robots.txt rules for origin
+  const robotsRules = await fetchRobotsTxt(rootOrigin);
+
+  const queue: QueueItem[] = [{ url: normalizedRoot, depth: 0 }];
   const visited = new Set<string>();
-  visited.add(rootUrl);
+  visited.add(normalizedRoot);
+
+  // 2. Optional Sitemap Discovery (seeds queue at depth 1)
+  if (options.sitemap && boundedDepth > 1) {
+    const sitemapLinks = await discoverSitemapUrls(rootOrigin, maxPages);
+    for (const smLink of sitemapLinks) {
+      const normSm = normalizeCrawlUrl(smLink);
+      if (!visited.has(normSm) && isAllowedByRobots(new URL(normSm).pathname, robotsRules)) {
+        visited.add(normSm);
+        queue.push({ url: normSm, depth: 1 });
+      }
+    }
+  }
 
   const crawledPages: string[] = [];
+  const crawledDetails: CrawledPageDetail[] = [];
   const pageDataList: any[] = [];
-  const boundedDepth = Math.max(1, Math.min(maxDepth, 3)); // Hard cap at depth 3
 
   while (queue.length > 0 && crawledPages.length < maxPages) {
     const current = queue.shift()!;
-    const data = await inspectPage(page, current.url);
-    if (!data) continue;
 
-    crawledPages.push(current.url);
-    pageDataList.push(data);
+    // Politeness delay on subpage requests to avoid triggering WAF rate limits
+    if (current.depth > 0) {
+      await page.waitForTimeout(300);
+    }
 
+    const result = await inspectPage(page, current.url);
+    if (!result || !result.data) continue;
+
+    // Track landed redirected URL in visited set to prevent redundant crawls
+    const normalizedLanded = normalizeCrawlUrl(result.landedUrl);
+    visited.add(normalizedLanded);
+
+    const recordedUrl = result.landedUrl || current.url;
+    crawledPages.push(recordedUrl);
+    crawledDetails.push({ url: recordedUrl, depth: current.depth });
+    pageDataList.push(result.data);
+
+    // If within bounded depth, queue discovered child nodes in order of design relevance.
+    // Pushing newly discovered children (at depth: current.depth + 1) to the back of the FIFO
+    // queue guarantees that ALL depth d nodes are visited before ANY depth d + 1 nodes (strict BFS).
     if (current.depth < boundedDepth - 1) {
-      for (const link of data.internalLinks || []) {
+      const prioritizedLinks = filterAndPrioritizeLinks(result.data.internalLinks || [], rootOrigin, robotsRules);
+      for (const link of prioritizedLinks) {
         if (!visited.has(link) && visited.size < maxPages * 2) {
           visited.add(link);
-          // Verify discovered link syntax before enqueuing
-          try {
-            const parsedLink = new URL(link);
-            if (parsedLink.protocol === 'http:' || parsedLink.protocol === 'https:') {
-              queue.push({ url: link, depth: current.depth + 1 });
-            }
-          } catch {}
+          queue.push({ url: link, depth: current.depth + 1 });
         }
       }
     }
   }
 
-  return { crawledPages, pageDataList };
+  return { crawledPages, pageDataList, crawledDetails };
 }
 
 // Maximum overall execution time for the entire extraction session (60 seconds)
@@ -410,17 +541,31 @@ const OVERALL_TIMEOUT_MS = 60000;
 // Maximum size allowed for individual HTTP network responses (10 MB)
 const MAX_RESOURCE_BYTES = 10 * 1024 * 1024;
 
+export interface ExtractOptions {
+  depth?: number;
+  sitemap?: boolean;
+}
+
 // ─────────────────────────────────────────────────────────────────
 // Main export
 // ─────────────────────────────────────────────────────────────────
-export async function extractDesignTokens(targetUrl: string, depth = 1): Promise<DesignTokens> {
+export async function extractDesignTokens(
+  targetUrl: string,
+  depthOrOptions: number | ExtractOptions = 1
+): Promise<DesignTokens> {
+  const options: ExtractOptions = typeof depthOrOptions === 'number'
+    ? { depth: depthOrOptions }
+    : depthOrOptions;
+
+  const targetDepth = options.depth ?? 1;
+  const boundedDepth = Math.max(1, Math.min(targetDepth, 3));
+
   // ── 1. Input validation & SSRF / DNS rebinding pre-check ────────
   const precheck = await validateAndResolveUrl(targetUrl);
   if (!precheck.safe) {
     throw new Error(`SSRF / Security Rejection: ${precheck.reason || 'Invalid or prohibited destination'}`);
   }
   const verifiedUrl = precheck.normalizedUrl!;
-  const boundedDepth = Math.max(1, Math.min(depth, 3));
 
   const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
   const browser = await chromium.launch({ headless: true });
@@ -483,8 +628,15 @@ export async function extractDesignTokens(targetUrl: string, depth = 1): Promise
       // ── BFS crawl first (gets page data + components + typography) ──
       const crawlPage = await sharedContext.newPage();
       crawlPage.setDefaultNavigationTimeout(20000);
-      const { crawledPages, pageDataList } = await crawlGraphBFS(crawlPage, verifiedUrl, boundedDepth);
+      const { crawledPages, pageDataList, crawledDetails } = await crawlGraphBFS(crawlPage, verifiedUrl, {
+        depth: boundedDepth,
+        sitemap: !!options.sitemap
+      });
       await crawlPage.close();
+
+      if (pageDataList.length === 0) {
+        throw new Error(`Failed to extract data from ${verifiedUrl}`);
+      }
 
       // ── Light theme extraction (reuse same context, sequential) ─────
       const lightData = await extractThemeWithColorScheme(sharedContext, verifiedUrl, 'light');
@@ -492,16 +644,11 @@ export async function extractDesignTokens(targetUrl: string, depth = 1): Promise
       // ── Dark theme extraction ───────────────────────────────────────
       const darkData = await extractThemeWithColorScheme(sharedContext, verifiedUrl, 'dark');
 
-      if (pageDataList.length === 0) {
-        throw new Error(`Failed to extract data from ${verifiedUrl}`);
-      }
-
       const rootData = pageDataList[0];
 
       // ── Merge vars: light from lightContext, dark from darkContext ──
       const resolvedLightVars: Record<string, string> = {
-        ...lightData.lightVars,
-        ...lightData.darkVars
+        ...lightData.lightVars
       };
       const resolvedDarkVars: Record<string, string> = {
         ...darkData.lightVars,
@@ -577,10 +724,27 @@ export async function extractDesignTokens(targetUrl: string, depth = 1): Promise
       const finalHeadings = typSorted.filter(t => hTags.has(t.tag)).slice(0, 6);
       const finalBody     = typSorted.filter(t => !hTags.has(t.tag)).slice(0, 6);
 
-      // ── Build merged cssVariables with source/usage metadata ───────
-      const cssVarsMeta = rootData.cssVarsMeta || {};
+      // ── Build merged cssVariables with source/usage metadata across all crawled pages ─
+      const combinedCssVarsMeta: Record<string, any> = {};
+      for (const pageData of pageDataList) {
+        for (const [name, meta] of Object.entries(pageData.cssVarsMeta || {})) {
+          if (!combinedCssVarsMeta[name]) {
+            combinedCssVarsMeta[name] = { ...(meta as any) };
+          } else {
+            const existing = combinedCssVarsMeta[name];
+            const incoming = meta as any;
+            (incoming.selectors || []).forEach((s: string) => {
+              if (existing.selectors.indexOf(s) === -1) existing.selectors.push(s);
+            });
+            (incoming.usedIn || []).forEach((u: string) => {
+              if (existing.usedIn.indexOf(u) === -1) existing.usedIn.push(u);
+            });
+          }
+        }
+      }
+
       const cssVariables: Record<string, any> = {};
-      for (const [name, meta] of Object.entries(cssVarsMeta)) {
+      for (const [name, meta] of Object.entries(combinedCssVarsMeta)) {
         const m = meta as any;
         cssVariables[name] = {
           light: resolvedLightVars[name] || m.value,
@@ -594,6 +758,7 @@ export async function extractDesignTokens(targetUrl: string, depth = 1): Promise
         url: verifiedUrl,
         title: verifiedUrl,
         crawledPages,
+        crawledDetails,
         extractedAt: new Date().toISOString(),
         themeMode,
         colors: {

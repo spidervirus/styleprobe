@@ -26,8 +26,9 @@ program
   .option('-o, --output <path>', 'Output file path (default adjusts based on format)')
   .option('-f, --format <format>', 'Output format: markdown, tailwind, tailwind-v4, shadcn, figma-tokens, cursorrules, or json', 'markdown')
   .option('-d, --depth <number>', 'Number of internal pages to crawl (1 to 5)', '1')
+  .option('--sitemap', 'Discover pages from /sitemap.xml and /sitemap_index.xml', false)
   .option('--assets [dir]', 'Harvest SVGs & brand logos into a local directory', false)
-  .action(async (targetUrl: string, options: { output?: string; format: string; depth: string; assets: boolean | string }) => {
+  .action(async (targetUrl: string, options: { output?: string; format: string; depth: string; sitemap: boolean; assets: boolean | string }) => {
     // 1. Input validation & SSRF pre-check
     const precheck = await validateAndResolveUrl(targetUrl);
     if (!precheck.safe) {
@@ -39,14 +40,16 @@ program
     const crawlDepth = Math.max(1, Math.min(parseInt(options.depth, 10) || 1, 3));
 
     console.log(chalk.bold.magenta('\n🔍 styleprobe') + chalk.gray(' — Visual DNA Extractor for AI Coding Agents\n'));
-    const spinner = ora(`Probing ${chalk.cyan(normalizedUrl)} (depth: ${crawlDepth})...`).start();
+    const spinnerText = crawlDepth > 1 || options.sitemap
+      ? `Launching crawler & discovering pages (depth: ${crawlDepth}${options.sitemap ? ', sitemap: true' : ''})...`
+      : `Probing ${chalk.cyan(normalizedUrl)}...`;
+    const spinner = ora(spinnerText).start();
 
     try {
-      spinner.text = crawlDepth > 1 
-        ? `Launching crawler & discovering up to ${crawlDepth} internal subpages...`
-        : 'Launching headless browser & parsing computed styles...';
-
-      const tokens = await extractDesignTokens(normalizedUrl, crawlDepth);
+      const tokens = await extractDesignTokens(normalizedUrl, {
+        depth: crawlDepth,
+        sitemap: !!options.sitemap
+      });
 
       spinner.text = `Analyzing design tokens & formatting as ${chalk.yellow(options.format)}...`;
       
@@ -112,9 +115,21 @@ program
 
       console.log(chalk.gray('\nExtracted System:'));
       console.log(` • Title:       ${tokens.title}`);
-      console.log(` • Pages:       ${tokens.crawledPages?.length || 1} crawled (${tokens.crawledPages?.map(u => {
-        try { return new URL(u).pathname; } catch { return u; }
-      }).join(', ')})`);
+      if (tokens.crawledDetails && tokens.crawledDetails.length > 0) {
+        const pagesSummary = tokens.crawledDetails.map(d => {
+          try {
+            const p = new URL(d.url).pathname;
+            return `${p} (depth: ${d.depth})`;
+          } catch {
+            return `${d.url} (depth: ${d.depth})`;
+          }
+        }).join(', ');
+        console.log(` • Pages:       ${tokens.crawledDetails.length} crawled [${pagesSummary}]`);
+      } else {
+        console.log(` • Pages:       ${tokens.crawledPages?.length || 1} crawled (${tokens.crawledPages?.map(u => {
+          try { return new URL(u).pathname; } catch { return u; }
+        }).join(', ')})`);
+      }
       console.log(` • Theme:       ${tokens.themeMode.toUpperCase()}`);
       console.log(` • Primary:     ${chalk.hex(tokens.colors.primary)('■')} ${tokens.colors.primary}`);
       console.log(` • Background:  ${chalk.hex(tokens.colors.background)('■')} ${tokens.colors.background}`);

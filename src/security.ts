@@ -61,6 +61,11 @@ export function isPrivateIPv4(ip: string): boolean {
 
   const [b0, b1, b2] = parts;
 
+  // Allow 127.0.0.1 only when explicit test environment variable is active
+  if (process.env.STYLEPROBE_TEST_ALLOW_LOCAL === '1' && b0 === 127) {
+    return false;
+  }
+
   // 0.0.0.0/8 (Current network)
   if (b0 === 0) return true;
   // 10.0.0.0/8 (RFC 1918 Private)
@@ -153,6 +158,10 @@ export function isBlockedHostname(hostname: string): boolean {
 
   // Strip brackets if IPv6
   const clean = lower.startsWith('[') && lower.endsWith(']') ? lower.slice(1, -1) : lower;
+
+  if (process.env.STYLEPROBE_TEST_ALLOW_LOCAL === '1' && (clean === 'localhost' || clean === '127.0.0.1')) {
+    return false;
+  }
 
   if (clean === 'localhost' || clean.endsWith('.localhost')) return true;
   for (const suffix of BLOCKED_HOST_SUFFIXES) {

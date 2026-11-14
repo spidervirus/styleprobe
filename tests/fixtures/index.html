@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fixture Design System - Test Suite</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --background: #ffffff;
+      --surface: #f8fafc;
+      --foreground: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    .dark, [data-theme="dark"] {
+      --primary: #818cf8;
+      --background: #0f172a;
+      --surface: #1e293b;
+      --foreground: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not(.light) {
+        --primary: #818cf8;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --foreground: #f8fafc;
+        --muted: #94a3b8;
+        --border: #334155;
+      }
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      margin: 0;
+      padding: 0;
+    }
+
+    header.navbar {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 44px;
+      color: var(--foreground);
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+      color: var(--foreground);
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+      color: var(--foreground);
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--foreground);
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .text-input {
+      background-color: var(--background);
+      color: var(--foreground);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .badge {
+      background-color: rgba(79, 70, 229, 0.1);
+      color: var(--primary);
+      border: 1px solid transparent;
+      border-radius: 9999px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <nav>
+      <a href="/" class="brand-link">
+        <svg viewBox="0 0 100 100" width="32" height="32" aria-label="BrandLogo">
+          <circle cx="50" cy="50" r="40" fill="#4f46e5" />
+        </svg>
+      </a>
+      <a href="/components.html">Components</a>
+      <a href="/about.html">About</a>
+      <a href="/disallowed/secret.html">Secret</a>
+      <a href="/assets/manual.pdf">User Manual (PDF)</a>
+      <a href="/login">Sign In</a>
+    </nav>
+  </header>
+
+  <main style="padding: 40px; max-width: 900px; margin: 0 auto;">
+    <span class="badge">v1.0 Design Tokens</span>
+    <h1>Design System Specification</h1>
+    <p class="subtitle">Deterministic HTML test fixture with verified tokens</p>
+
+    <div class="card">
+      <h2>Interactive Buttons</h2>
+      <p>Testing semantic component extraction and computed styles.</p>
+      <button type="submit" class="btn-primary">Get Started Now</button>
+      <input type="text" class="text-input" placeholder="Search tokens..." />
+    </div>
+
+    <div class="card">
+      <h3>Typography & Code</h3>
+      <p>Continuous testing for heading hierarchies and font family discovery.</p>
+      <code>const theme = 'styleprobe';</code>
+    </div>
+  </main>
+</body>
+</html>
