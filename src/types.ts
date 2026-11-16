@@ -78,6 +78,77 @@ export interface ExtractOptions {
    * Sitemap pages are seeded at depth 1. Only active when depth > 1.
    */
   sitemap?: boolean;
+  /**
+   * Whether to extract responsive design behavior across desktop, tablet, and mobile viewports.
+   * Defaults to true.
+   */
+  responsive?: boolean;
+}
+
+export interface BreakpointToken {
+  name?: string;
+  value: number;
+  unit: string;
+  query: string;
+  raw: string;
+}
+
+export interface ViewportSnapshot {
+  viewport: 'desktop' | 'tablet' | 'mobile';
+  width: number;
+  height: number;
+  h1FontSize: string;
+  h1LineHeight: string;
+  h2FontSize?: string;
+  bodyFontSize: string;
+  sectionPadding: string;
+  containerMaxWidth: string;
+  gridColumns: string;
+  cardGap: string;
+  buttonWidth: string;
+  buttonPadding: string;
+  cardPadding?: string;
+  navigationMode: 'Full' | 'Compact' | 'Menu' | 'Hidden';
+  navSummary: string;
+}
+
+export interface ResponsivePropertyComparison {
+  property: string;
+  category: 'typography' | 'spacing' | 'layout' | 'navigation' | 'component';
+  desktop: string;
+  tablet: string;
+  mobile: string;
+  isFluid?: boolean;
+  fluidFormula?: string;
+  breakpointRule?: string;
+}
+
+export interface ResponsiveRule {
+  selector?: string;
+  property: string;
+  behavior: string;
+  query?: string;
+  isFluid?: boolean;
+}
+
+export interface ResponsiveDesignSystem {
+  detectedBreakpoints: BreakpointToken[];
+  viewports: {
+    desktop: ViewportSnapshot;
+    tablet: ViewportSnapshot;
+    mobile: ViewportSnapshot;
+  };
+  comparison: ResponsivePropertyComparison[];
+  rules: ResponsiveRule[];
+  fluidFormulas?: string[];
+}
+
+export interface ExtractionTimingBreakdown {
+  crawlingMs: number;
+  themeExtractionMs: number;
+  responsiveExtractionMs?: number;
+  formattingMs: number;
+  totalMs: number;
 }
 
 export interface DesignTokens {
@@ -87,6 +158,7 @@ export interface DesignTokens {
   crawledDetails?: CrawledPageDetail[];
   extractedAt: string;
   themeMode: 'dark' | 'light' | 'mixed';
+  timing?: ExtractionTimingBreakdown;
   colors: {
     background: string;
     surface: string;
@@ -112,4 +184,6 @@ export interface DesignTokens {
   components: ComponentSample[];
   assets: ExtractedAsset[];
   cssVariables: Record<string, string | CssVariableMeta>;
+  breakpoints?: BreakpointToken[];
+  responsive?: ResponsiveDesignSystem;
 }

@@ -1,9 +1,10 @@
 import { chromium, BrowserContext, Page } from 'playwright';
 import { cleanColor, normalizeCssVarValue, dedupeColors } from './analyzer.js';
-import { DesignTokens, TypographyToken, ComponentSample, ExtractedAsset, ThemePalette, CrawledPageDetail } from './types.js';
+import { DesignTokens, TypographyToken, ComponentSample, ExtractedAsset, ThemePalette, CrawledPageDetail, ResponsiveDesignSystem } from './types.js';
 import { validateAndResolveUrl, resolveAndVerifyHostname } from './security.js';
 import { fetchRobotsTxt, isAllowedByRobots, RobotsRules } from './robots.js';
 import { discoverSitemapUrls } from './sitemap.js';
+import { extractResponsiveDesignSystem } from './responsive.js';
 
 // ─────────────────────────────────────────────────────────────────
 // EVAL_SCRIPT: everything that runs inside the browser page.
@@ -26,6 +27,71 @@ const EVAL_SCRIPT = `
     return r.width > 0 && r.height > 0;
   }
 
+  // Fast color resolution with memoized Canvas 2D fallback for modern CSS color spaces
+  var colorCache = {};
+  var cvs = null;
+  var cvsCtx = null;
+
+  function toHex(colorStr) {
+    if (!colorStr || colorStr === 'transparent' || colorStr === 'rgba(0, 0, 0, 0)' || colorStr === 'none' || colorStr === 'currentColor') {
+      return null;
+    }
+    if (colorCache[colorStr] !== undefined) {
+      return colorCache[colorStr];
+    }
+    // Fast path 1: Hex strings (#fff, #ffffff)
+    if (colorStr.charCodeAt(0) === 35) {
+      var hex = colorStr;
+      if (hex.length === 4) {
+        hex = '#' + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
+      }
+      colorCache[colorStr] = hex.toLowerCase();
+      return colorCache[colorStr];
+    }
+    // Fast path 2: Standard rgb(...) / rgba(...) (avoids GPU readbacks for 99% of DOM queries)
+    if (colorStr.indexOf('rgb') === 0) {
+      var m = colorStr.match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\s/]+([\d.]+%?))?\s*\)$/i);
+      if (m) {
+        if (m[4]) {
+          var a = m[4].indexOf('%') !== -1 ? parseFloat(m[4]) / 100 : parseFloat(m[4]);
+          if (a < 0.1) {
+            colorCache[colorStr] = null;
+            return null;
+          }
+        }
+        var r = Math.round(parseFloat(m[1]));
+        var g = Math.round(parseFloat(m[2]));
+        var b = Math.round(parseFloat(m[3]));
+        var hx = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        colorCache[colorStr] = hx;
+        return hx;
+      }
+    }
+    // Fallback path: Modern CSS Level 4/5 formats (oklch, oklab, lab, lch, display-p3) via Canvas 2D
+    try {
+      if (!cvs) {
+        cvs = document.createElement('canvas');
+        cvs.width = 1;
+        cvs.height = 1;
+        cvsCtx = cvs.getContext('2d');
+      }
+      cvsCtx.clearRect(0, 0, 1, 1);
+      cvsCtx.fillStyle = colorStr;
+      cvsCtx.fillRect(0, 0, 1, 1);
+      var d = cvsCtx.getImageData(0, 0, 1, 1).data;
+      if (d[3] < 25) { // alpha < 0.1
+        colorCache[colorStr] = null;
+        return null;
+      }
+      var res = '#' + ((1 << 24) + (d[0] << 16) + (d[1] << 8) + d[2]).toString(16).slice(1);
+      colorCache[colorStr] = res;
+      return res;
+    } catch(e) {
+      colorCache[colorStr] = null;
+      return null;
+    }
+  }
+
   // Most-frequent non-transparent value from a NodeList for a given CSS prop
   function dominantValue(els, prop) {
     var freq = {};
@@ -33,8 +99,9 @@ const EVAL_SCRIPT = `
     for (var i = 0; i < els.length; i++) {
       var v = gc(els[i], prop);
       if (!v || v === 'rgba(0, 0, 0, 0)' || v === 'transparent' || v === 'none') continue;
-      freq[v] = (freq[v] || 0) + 1;
-      if (freq[v] > bestN) { bestN = freq[v]; best = v; }
+      var norm = (prop.indexOf('color') !== -1 || prop === 'background') ? (toHex(v) || v) : v;
+      freq[norm] = (freq[norm] || 0) + 1;
+      if (freq[norm] > bestN) { bestN = freq[norm]; best = norm; }
     }
     return best;
   }
@@ -93,31 +160,223 @@ const EVAL_SCRIPT = `
   }
 
   // ── 2. SEMANTIC ROLES via multi-element DOM sampling ──────────
-  // Background
-  var bgEls = document.querySelectorAll('body, main, #__next, #root, #app, [id*="layout"]');
-  var computedBg = dominantValue(bgEls, 'background-color') || gc(document.body, 'background-color') || 'rgb(255,255,255)';
+  // Background: multi-tier resolution checking body, html, containers & legacy bgcolor
+  var bgCandidates = document.querySelectorAll('body, html, main, #__next, #root, #app, [id*="layout"], table#hnmain');
+  var computedBg = null;
+  for (var bi = 0; bi < bgCandidates.length; bi++) {
+    var rawBg = gc(bgCandidates[bi], 'background-color');
+    var hexBg = toHex(rawBg);
+    if (hexBg) { computedBg = hexBg; break; }
+    var attrBg = bgCandidates[bi].getAttribute && bgCandidates[bi].getAttribute('bgcolor');
+    if (attrBg) { var aHex = toHex(attrBg); if (aHex) { computedBg = aHex; break; } }
+  }
+  if (!computedBg) computedBg = '#ffffff';
 
   // Surface: panels/cards that differ from bg
-  var surfaceEls = document.querySelectorAll('[class*="card"], [class*="surface"], [class*="panel"], [class*="box"], article, aside, section');
+  var surfaceEls = document.querySelectorAll('[class*="card"], [class*="surface"], [class*="panel"], [class*="box"], [class*="tile"], article, aside, section');
   var computedSurface = null;
   for (var c = 0; c < surfaceEls.length; c++) {
-    var sBg = gc(surfaceEls[c], 'background-color');
-    if (sBg && sBg !== 'rgba(0, 0, 0, 0)' && sBg !== 'transparent' && sBg !== computedBg && isVisible(surfaceEls[c])) {
+    if (!isVisible(surfaceEls[c])) continue;
+    var sBg = toHex(gc(surfaceEls[c], 'background-color'));
+    if (sBg && sBg !== computedBg) {
       computedSurface = sBg; break;
     }
   }
 
-  // Primary accent: sample all CTAs, pick dominant background
-  var primaryEls = document.querySelectorAll('button[type="submit"], button[class*="primary"], a[class*="primary"], [class*="cta"], [class*="btn-primary"], button');
-  var computedPrimary = dominantValue(primaryEls, 'background-color') || dominantValue(primaryEls, 'color');
+  // ── Semantic CTA Scoring ──────────────────────────────────────
+  function scoreCtaButton(el, canvasBgHex) {
+    if (!isVisible(el)) return -9999;
+    var r = el.getBoundingClientRect();
+    if (r.width < 10 || r.height < 10 || r.top < -100 || r.left < -100) return -9999;
+
+    var score = 0;
+    var cs = window.getComputedStyle(el);
+    var text = (el.textContent || '').trim().toLowerCase();
+    var aria = (el.getAttribute('aria-label') || '').toLowerCase();
+    var title = (el.getAttribute('title') || '').toLowerCase();
+    var cls = (el.className || '').toString().toLowerCase();
+    var id = (el.id || '').toLowerCase();
+    var meta = text + ' ' + aria + ' ' + title + ' ' + cls + ' ' + id;
+
+    // 1. Hero Section Context (+30)
+    var inHero = el.closest('[class*="hero"], [id*="hero"], [class*="banner"], [id*="banner"], main > section:first-of-type, main > div:first-of-type, header + section, header + div, header + main');
+    if (inHero) {
+      score += 30;
+    } else if (el.closest('main, article, [role="main"]')) {
+      score += 10;
+    }
+
+    // 2. Viewport Position (+25 max)
+    if (r.top >= 0 && r.top < 400) {
+      score += 25;
+    } else if (r.top >= 400 && r.top < 700) {
+      score += 15;
+    } else if (r.top >= 700 && r.top < 1200) {
+      score += 5;
+    } else if (r.top >= 1200) {
+      score -= 20;
+    } else if (r.top < 0) {
+      score -= 30;
+    }
+
+    // 3. Element Dimensions (+20 max)
+    var area = r.width * r.height;
+    if (area >= 3500) {
+      score += 20;
+    } else if (area >= 1800) {
+      score += 10;
+    } else if (area < 900) {
+      score -= 25; // small icon or utility control
+    }
+
+    // 4. Utility / Search / Toggle Penalties
+    if (/search|docsearch|algolia|find/i.test(meta)) {
+      score -= 60;
+    }
+    if (/theme|dark|light|mode|toggle|switch|appearance/i.test(meta)) {
+      score -= 60;
+    }
+    if (/menu|hamburger|close|dismiss|cookie|accept|decline|consent/i.test(meta)) {
+      score -= 50;
+    }
+    if (text.length === 0 || (text.length <= 2 && el.querySelector('svg'))) {
+      score -= 25; // pure icon button
+    }
+
+    // 5. Button Text & Semantic Purpose (+35 max)
+    if (/^(get started|sign up|start free|try now|try free|try |buy now|buy |download|request demo|book demo|contact sales|subscribe|join|explore|get styleprobe|see pricing)/i.test(text)) {
+      score += 35;
+    } else if (/^(learn more|read docs|documentation|view on github|read more|overview|see more|discover|view demo|browse)/i.test(text)) {
+      score += 15;
+    } else if (el.type === 'submit' || /btn-primary|button-primary|primary/i.test(cls)) {
+      score += 20;
+    } else if (/cta|action/i.test(cls)) {
+      score += 15;
+    }
+
+    // 6. Navbar Utility Penalty (-50)
+    var inNav = el.closest('header, nav, [role="navigation"], [class*="navbar"], [class*="header"]');
+    if (inNav) {
+      var isExplicitNavCta = (/btn-primary|primary|cta/i.test(cls) || /^(get started|sign up|start|try)/i.test(text));
+      if (isExplicitNavCta) {
+        score -= 10;
+      } else {
+        score -= 50;
+      }
+    }
+
+    // 7. Color Prominence & Contrast (+25 max)
+    var bgHex = toHex(cs.backgroundColor);
+    var isSolidBg = bgHex && canvasBgHex && bgHex !== canvasBgHex && bgHex !== 'transparent';
+    var borderHex = toHex(cs.borderTopColor);
+    var isOutline = !isSolidBg && borderHex && canvasBgHex && borderHex !== canvasBgHex && borderHex !== 'transparent' && cs.borderTopStyle !== 'none' && (parseFloat(cs.borderTopWidth) || 0) > 0;
+
+    if (isSolidBg) {
+      score += 10; // solid button fill container bonus
+      var r1 = parseInt(bgHex.slice(1,3), 16), g1 = parseInt(bgHex.slice(3,5), 16), b1 = parseInt(bgHex.slice(5,7), 16);
+      var r2 = parseInt(canvasBgHex.slice(1,3), 16), g2 = parseInt(canvasBgHex.slice(3,5), 16), b2 = parseInt(canvasBgHex.slice(5,7), 16);
+      var dist = Math.sqrt(Math.pow((r1-r2)/255, 2) + Math.pow((g1-g2)/255, 2) + Math.pow((b1-b2)/255, 2));
+      if (dist > 0.2) score += 10;
+      var maxDiff = Math.max(Math.abs(r1 - g1), Math.abs(g1 - b1), Math.abs(r1 - b1));
+      if (maxDiff > 30) {
+        score += 10;
+      } else if (dist < 0.08) {
+        score -= 15;
+      }
+    } else if (isOutline) {
+      score += 5; // visible outline button container bonus
+      var r1 = parseInt(borderHex.slice(1,3), 16), g1 = parseInt(borderHex.slice(3,5), 16), b1 = parseInt(borderHex.slice(5,7), 16);
+      var r2 = parseInt(canvasBgHex.slice(1,3), 16), g2 = parseInt(canvasBgHex.slice(3,5), 16), b2 = parseInt(canvasBgHex.slice(5,7), 16);
+      var dist = Math.sqrt(Math.pow((r1-r2)/255, 2) + Math.pow((g1-g2)/255, 2) + Math.pow((b1-b2)/255, 2));
+      if (dist > 0.2) score += 10;
+      var maxDiff = Math.max(Math.abs(r1 - g1), Math.abs(g1 - b1), Math.abs(r1 - b1));
+      if (maxDiff > 30) score += 10;
+    } else {
+      // Borderless ghost element / text-only link with no visible container
+      score -= 20;
+    }
+
+    return score;
+  }
+
+  // Only evaluate genuine interactive button/action elements (never labels, spans, form containers)
+  var candidateEls = Array.prototype.slice.call(document.querySelectorAll(
+    'button, a[role="button"], a[class*="btn"], a[class*="button"], a[class*="cta"], input[type="submit"], input[type="button"], [role="button"]:not(input):not(label):not(span):not(form)'
+  )).filter(function(el) {
+    if (!isVisible(el)) return false;
+    var tag = el.tagName.toUpperCase();
+    if (tag === 'LABEL' || tag === 'SPAN' || tag === 'FORM') return false;
+    if (tag === 'DIV' && el.getAttribute('role') !== 'button') return false;
+    return true;
+  });
+
+  var scoredCandidates = [];
+  for (var ci = 0; ci < candidateEls.length; ci++) {
+    var cEl = candidateEls[ci];
+    var s = scoreCtaButton(cEl, computedBg);
+    if (s > -500) {
+      scoredCandidates.push({ el: cEl, score: s });
+    }
+  }
+
+  scoredCandidates.sort(function(a, b) { return b.score - a.score; });
+
+  function getCandidateActionColor(el, bgCanvas) {
+    var cs = window.getComputedStyle(el);
+    var cBg = toHex(cs.backgroundColor);
+    if (cBg && cBg !== 'transparent' && cBg !== bgCanvas) {
+      return { color: cBg, type: 'solid' };
+    }
+    var cBorder = toHex(cs.borderTopColor);
+    var bStyle = cs.borderTopStyle;
+    var bWidth = parseFloat(cs.borderTopWidth) || 0;
+    if (cBorder && cBorder !== 'transparent' && cBorder !== bgCanvas && bStyle !== 'none' && bWidth > 0) {
+      return { color: cBorder, type: 'outline' };
+    }
+    var cText = toHex(cs.color);
+    if (cText && cText !== 'transparent' && cText !== bgCanvas) {
+      return { color: cText, type: 'ghost' };
+    }
+    return null;
+  }
+
+  var computedPrimary = null;
+  // Step 1: Prioritize highest-scoring candidate with a defined visual container (solid fill or outline border)
+  for (var si = 0; si < scoredCandidates.length; si++) {
+    var cand = scoredCandidates[si];
+    var action = getCandidateActionColor(cand.el, computedBg);
+    if (action && (action.type === 'solid' || action.type === 'outline')) {
+      computedPrimary = action.color;
+      break;
+    }
+  }
+
+  // Step 2: Fall back to ghost text color only if no candidate has a solid background or outline border
+  if (!computedPrimary) {
+    for (var si = 0; si < scoredCandidates.length; si++) {
+      var cand = scoredCandidates[si];
+      var action = getCandidateActionColor(cand.el, computedBg);
+      if (action && action.color) {
+        computedPrimary = action.color;
+        break;
+      }
+    }
+  }
+
+  // Step 3: Generic fallback to dominant button if scoring found no valid candidates
+  if (!computedPrimary) {
+    var primaryEls = document.querySelectorAll('button[type="submit"], button[class*="primary"], a[class*="primary"], a[class*="cta"], [class*="btn-primary"], button');
+    var rawDominant = dominantValue(primaryEls, 'background-color') || dominantValue(primaryEls, 'color');
+    computedPrimary = toHex(rawDominant) || rawDominant;
+  }
 
   // Text primary: sample all headings for dominant color
   var headingColorEls = document.querySelectorAll('h1, h2, h3');
-  var computedTextPrimary = dominantValue(headingColorEls, 'color') || gc(document.body, 'color') || 'rgb(0,0,0)';
+  var computedTextPrimary = dominantValue(headingColorEls, 'color') || toHex(gc(document.body, 'color')) || '#000000';
 
   // Text secondary: muted/subtitle/p elements
   var mutedEls = document.querySelectorAll('[class*="muted"], [class*="secondary"], [class*="subtitle"], small, figcaption');
-  var computedTextSecondary = dominantValue(mutedEls, 'color') || gc(document.querySelector('p'), 'color');
+  var computedTextSecondary = dominantValue(mutedEls, 'color') || toHex(gc(document.querySelector('p'), 'color'));
 
   // Border: dominant border color across interactive/structural elements
   var borderEls = document.querySelectorAll('input, button, [class*="border"], [class*="card"], header, nav, table, hr');
@@ -216,8 +475,11 @@ const EVAL_SCRIPT = `
     return out;
   }
 
-  // Buttons
-  var btnEls = pickTopK(document.querySelectorAll('button, a[role="button"], [class*="btn"], [class*="button"], input[type="submit"], input[type="button"]'), 4);
+  // Buttons (prioritize highest scored CTAs)
+  var btnSource = scoredCandidates.length > 0
+    ? scoredCandidates.map(function(s){ return s.el; })
+    : Array.prototype.slice.call(document.querySelectorAll('button, a[role="button"], [class*="btn"], [class*="button"], input[type="submit"], input[type="button"]'));
+  var btnEls = pickTopK(btnSource, 6);
   for (var b = 0; b < btnEls.length; b++) {
     var bs = extractComponentStyles(btnEls[b]);
     // Skip invisible/ghost buttons with transparent bg and no border
@@ -237,11 +499,14 @@ const EVAL_SCRIPT = `
     if (components.filter(function(x){ return x.type === 'input'; }).length >= 1) break;
   }
 
-  // Cards
+  // Cards (supports surface background, shadows, and minimalist border-only cards)
   var cardEls = pickTopK(document.querySelectorAll('[class*="card"], [class*="tile"], article, [class*="item"], [class*="post"]'), 5);
   for (var cd = 0; cd < cardEls.length; cd++) {
     var cds = extractComponentStyles(cardEls[cd]);
-    if (cds.backgroundColor === 'rgba(0, 0, 0, 0)' && cds.boxShadow === 'none') continue;
+    var hasBg = cds.backgroundColor !== 'rgba(0, 0, 0, 0)' && cds.backgroundColor !== 'transparent';
+    var hasShadow = cds.boxShadow !== 'none';
+    var hasBorder = cds.borderColor !== 'rgba(0, 0, 0, 0)' && cds.borderColor !== 'transparent' && cds.border.indexOf('0px') === -1;
+    if (!hasBg && !hasShadow && !hasBorder) continue;
     components.push({ type: 'card', sampleHtml: '', styles: cds });
     if (components.filter(function(x){ return x.type === 'card'; }).length >= 1) break;
   }
@@ -324,12 +589,13 @@ async function extractThemeWithColorScheme(
   context: BrowserContext,
   url: string,
   scheme: 'light' | 'dark'
-): Promise<{ rawRoles: any; lightVars: Record<string,string>; darkVars: Record<string,string>; cssVarsMeta: any }> {
+): Promise<{ rawRoles: any; lightVars: Record<string, string>; darkVars: Record<string, string>; cssVarsMeta: any }> {
   const page = await context.newPage();
   await page.emulateMedia({ colorScheme: scheme });
   try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
-    await page.waitForTimeout(1200);
+    await page.goto(url, { waitUntil: 'commit', timeout: 15000 });
+    await page.waitForLoadState('domcontentloaded', { timeout: 10000 }).catch(() => { });
+    await page.waitForTimeout(500);
 
     // Also force the .dark class if the site uses class-based dark mode
     if (scheme === 'dark') {
@@ -338,14 +604,14 @@ async function extractThemeWithColorScheme(
         document.documentElement.setAttribute('data-theme', 'dark');
         document.documentElement.setAttribute('data-mode', 'dark');
       `);
-      await page.waitForTimeout(400);
+      await page.waitForTimeout(200);
     } else {
       await page.evaluate(`
         document.documentElement.classList.remove('dark');
         document.documentElement.setAttribute('data-theme', 'light');
         document.documentElement.setAttribute('data-mode', 'light');
       `);
-      await page.waitForTimeout(400);
+      await page.waitForTimeout(200);
     }
 
     const data = await page.evaluate(EVAL_SCRIPT);
@@ -365,7 +631,7 @@ const EXCLUDED_PATHS = /\/(login|signin|logout|signout|signup|register|auth|cart
 
 // Design-rich path patterns to prioritize in BFS queue
 const HIGH_VALUE_PATHS = /\/(components|design|docs|documentation|ui|elements|buttons|theme|tokens|styles|patterns)\b/i;
-const MID_VALUE_PATHS  = /\/(features|product|pricing|about|showcase|templates|examples|overview)\b/i;
+const MID_VALUE_PATHS = /\/(features|product|pricing|about|showcase|templates|examples|overview)\b/i;
 
 // Known analytics and marketing tracking query parameters to safely strip
 // Functional parameters (e.g. ?page=2, ?category=ui, ?tab=tokens, ?lang=en, ?filter=active) are preserved
@@ -431,7 +697,7 @@ function filterAndPrioritizeLinks(rawLinks: string[], origin: string, robotsRule
 
       const normalized = normalizeCrawlUrl(raw);
       scored.push({ url: normalized, score: scoreLinkForDesign(path) });
-    } catch {}
+    } catch { }
   }
 
   // Sort descending by design score within this link set
@@ -443,12 +709,13 @@ function filterAndPrioritizeLinks(rawLinks: string[], origin: string, robotsRule
 // ─────────────────────────────────────────────────────────────────
 async function inspectPage(page: Page, targetUrl: string): Promise<{ data: any; landedUrl: string } | null> {
   try {
-    const response = await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    const response = await page.goto(targetUrl, { waitUntil: 'commit', timeout: 15000 });
     // Skip failed HTTP status codes (4xx, 5xx)
     if (response && response.status() >= 400) {
       return null;
     }
-    await page.waitForTimeout(800);
+    await page.waitForLoadState('domcontentloaded', { timeout: 10000 }).catch(() => { });
+    await page.waitForTimeout(400);
     const data = await page.evaluate(EVAL_SCRIPT);
     return { data, landedUrl: page.url() };
   } catch {
@@ -517,7 +784,7 @@ async function crawlGraphBFS(
 
     // Politeness delay on subpage requests to avoid triggering WAF rate limits
     if (current.depth > 0) {
-      await page.waitForTimeout(300);
+      await page.waitForTimeout(150);
     }
 
     const result = await inspectPage(page, current.url);
@@ -558,6 +825,7 @@ const MAX_RESOURCE_BYTES = 10 * 1024 * 1024;
 export interface ExtractOptions {
   depth?: number;
   sitemap?: boolean;
+  responsive?: boolean;
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -634,11 +902,12 @@ export async function extractDesignTokens(
       const cl = response.headers()['content-length'];
       if (cl && parseInt(cl, 10) > MAX_RESOURCE_BYTES) {
         // Abort large payloads
-        response.body().catch(() => {});
+        response.body().catch(() => { });
       }
     });
 
     try {
+      const tStartExtraction = Date.now();
       // ── BFS crawl first (gets page data + components + typography) ──
       const crawlPage = await sharedContext.newPage();
       crawlPage.setDefaultNavigationTimeout(20000);
@@ -646,17 +915,37 @@ export async function extractDesignTokens(
         depth: boundedDepth,
         sitemap: !!options.sitemap
       });
+
+      // ── Multi-Viewport Responsive Design Extraction ─────────────────
+      let responsiveData: ResponsiveDesignSystem | undefined;
+      let responsiveExtractionMs = 0;
+      if (options.responsive !== false) {
+        const tStartResponsive = Date.now();
+        try {
+          if (crawlPage.url() !== verifiedUrl) {
+            await crawlPage.goto(verifiedUrl, { waitUntil: 'domcontentloaded', timeout: 15000 }).catch(() => { });
+          }
+          responsiveData = await extractResponsiveDesignSystem(crawlPage, verifiedUrl);
+        } catch {
+          // Graceful fallback if responsive extraction encounters edge cases
+        }
+        responsiveExtractionMs = Date.now() - tStartResponsive;
+      }
+
       await crawlPage.close();
+      const crawlingMs = Date.now() - tStartExtraction;
 
       if (pageDataList.length === 0) {
         throw new Error(`Failed to extract data from ${verifiedUrl}`);
       }
 
-      // ── Light theme extraction (reuse same context, sequential) ─────
+      // ── Theme extraction (light & dark) ─────────────────────────────
+      const tStartTheme = Date.now();
       const lightData = await extractThemeWithColorScheme(sharedContext, verifiedUrl, 'light');
-
-      // ── Dark theme extraction ───────────────────────────────────────
       const darkData = await extractThemeWithColorScheme(sharedContext, verifiedUrl, 'dark');
+      const themeExtractionMs = Date.now() - tStartTheme;
+
+      const tStartFormat = Date.now();
 
       const rootData = pageDataList[0];
 
@@ -671,27 +960,27 @@ export async function extractDesignTokens(
 
       // ── Build ThemePalette from each scheme's actual DOM ───────────
       const buildPalette = (vars: Record<string, string>, roles: any, mode: 'light' | 'dark'): ThemePalette => {
-        const bg   = normalizeCssVarValue(vars['--background']  || vars['--color-background'] || '') || cleanColor(roles.background) || (mode === 'dark' ? '#09090b' : '#ffffff');
-        const surf = normalizeCssVarValue(vars['--card']        || vars['--surface']           || vars['--popover'] || '') || cleanColor(roles.surface) || (mode === 'dark' ? '#18181b' : '#f4f4f5');
-        const prim = normalizeCssVarValue(vars['--primary']     || vars['--color-primary']     || '') || cleanColor(roles.primary) || (mode === 'dark' ? '#6366f1' : '#4f46e5');
-        const txtP = normalizeCssVarValue(vars['--foreground']  || vars['--text-primary']      || '') || cleanColor(roles.textPrimary)   || (mode === 'dark' ? '#f4f4f5' : '#09090b');
+        const bg = normalizeCssVarValue(vars['--background'] || vars['--color-background'] || '') || cleanColor(roles.background) || (mode === 'dark' ? '#09090b' : '#ffffff');
+        const surf = normalizeCssVarValue(vars['--card'] || vars['--surface'] || vars['--popover'] || '') || cleanColor(roles.surface) || (mode === 'dark' ? '#18181b' : '#f4f4f5');
+        const prim = normalizeCssVarValue(vars['--primary'] || vars['--color-primary'] || vars['--brand'] || vars['--vp-c-brand'] || '') || cleanColor(roles.primary) || (mode === 'dark' ? '#6366f1' : '#4f46e5');
+        const txtP = normalizeCssVarValue(vars['--foreground'] || vars['--text-primary'] || '') || cleanColor(roles.textPrimary) || (mode === 'dark' ? '#f4f4f5' : '#09090b');
         const txtS = normalizeCssVarValue(vars['--muted-foreground'] || vars['--text-secondary'] || '') || cleanColor(roles.textSecondary) || (mode === 'dark' ? '#a1a1aa' : '#71717a');
-        const brd  = normalizeCssVarValue(vars['--border']      || vars['--color-border']      || '') || cleanColor(roles.border) || (mode === 'dark' ? '#27272a' : '#e4e4e7');
+        const brd = normalizeCssVarValue(vars['--border'] || vars['--color-border'] || '') || cleanColor(roles.border) || (mode === 'dark' ? '#27272a' : '#e4e4e7');
 
         return {
           mode, background: bg, surface: surf, primary: prim,
           textPrimary: txtP, textSecondary: txtS, border: brd,
           palette: [
-            { hex: bg,   count: 10, luminance: 0 },
-            { hex: surf, count: 8,  luminance: 0 },
-            { hex: prim, count: 6,  luminance: 0 },
-            { hex: txtP, count: 5,  luminance: 0 }
+            { hex: bg, count: 10, luminance: 0 },
+            { hex: surf, count: 8, luminance: 0 },
+            { hex: prim, count: 6, luminance: 0 },
+            { hex: txtP, count: 5, luminance: 0 }
           ]
         };
       };
 
       const lightTheme = buildPalette(resolvedLightVars, lightData.rawRoles, 'light');
-      const darkTheme  = buildPalette(resolvedDarkVars,  darkData.rawRoles,  'dark');
+      const darkTheme = buildPalette(resolvedDarkVars, darkData.rawRoles, 'dark');
 
       const rawBg = cleanColor(rootData.rawRoles?.background || '');
       const themeMode: 'dark' | 'light' = (rawBg && (rawBg.startsWith('#0') || rawBg.startsWith('#1') || rawBg.startsWith('#2'))) ? 'dark' : 'light';
@@ -699,15 +988,15 @@ export async function extractDesignTokens(
 
       // ── Aggregate across BFS pages ─────────────────────────────────
       const fontFamiliesSet = new Set<string>();
-      const borderRadiiSet  = new Set<string>();
-      const shadowsSet      = new Set<string>();
+      const borderRadiiSet = new Set<string>();
+      const shadowsSet = new Set<string>();
       const allAssets: ExtractedAsset[] = [];
       const allComponents: ComponentSample[] = [];
 
       for (const pageData of pageDataList) {
-        (pageData.fontFamilies  || []).forEach((f: string) => fontFamiliesSet.add(f));
-        (pageData.borderRadii   || []).forEach((r: string) => borderRadiiSet.add(r));
-        (pageData.shadows       || []).forEach((s: string) => shadowsSet.add(s));
+        (pageData.fontFamilies || []).forEach((f: string) => fontFamiliesSet.add(f));
+        (pageData.borderRadii || []).forEach((r: string) => borderRadiiSet.add(r));
+        (pageData.shadows || []).forEach((s: string) => shadowsSet.add(s));
 
         for (const a of (pageData.assets || []) as ExtractedAsset[]) {
           if (!allAssets.some(x => x.svgContent === a.svgContent)) allAssets.push(a);
@@ -716,8 +1005,8 @@ export async function extractDesignTokens(
         for (const c of (pageData.components || []) as ComponentSample[]) {
           const isDuplicate = allComponents.some(
             x => x.type === c.type &&
-                 x.styles.backgroundColor === c.styles.backgroundColor &&
-                 x.styles.borderRadius === c.styles.borderRadius
+              x.styles.backgroundColor === c.styles.backgroundColor &&
+              x.styles.borderRadius === c.styles.borderRadius
           );
           if (!isDuplicate && allComponents.filter(x => x.type === c.type).length < 4) {
             allComponents.push(c);
@@ -738,9 +1027,9 @@ export async function extractDesignTokens(
       }
 
       const typSorted = Object.values(typGroups).sort((a, b) => b.count - a.count);
-      const hTags = new Set(['h1','h2','h3','h4','h5','h6']);
+      const hTags = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
       const finalHeadings = typSorted.filter(t => hTags.has(t.tag)).slice(0, 6);
-      const finalBody     = typSorted.filter(t => !hTags.has(t.tag)).slice(0, 6);
+      const finalBody = typSorted.filter(t => !hTags.has(t.tag)).slice(0, 6);
 
       // ── Build merged cssVariables with source/usage metadata across all crawled pages ─
       const combinedCssVarsMeta: Record<string, any> = {};
@@ -766,11 +1055,14 @@ export async function extractDesignTokens(
         const m = meta as any;
         cssVariables[name] = {
           light: resolvedLightVars[name] || m.value,
-          dark:  resolvedDarkVars[name]  || m.value,
+          dark: resolvedDarkVars[name] || m.value,
           selectors: m.selectors || [],
-          usedIn:    m.usedIn    || []
+          usedIn: m.usedIn || []
         };
       }
+
+      const formattingMs = Date.now() - tStartFormat;
+      const totalMs = Date.now() - tStartExtraction;
 
       return {
         url: verifiedUrl,
@@ -779,31 +1071,40 @@ export async function extractDesignTokens(
         crawledDetails,
         extractedAt: new Date().toISOString(),
         themeMode,
+        timing: {
+          crawlingMs,
+          themeExtractionMs,
+          responsiveExtractionMs,
+          formattingMs,
+          totalMs
+        },
         colors: {
-          background:    activePalette.background,
-          surface:       activePalette.surface,
-          primary:       activePalette.primary,
-          textPrimary:   activePalette.textPrimary,
+          background: activePalette.background,
+          surface: activePalette.surface,
+          primary: activePalette.primary,
+          textPrimary: activePalette.textPrimary,
           textSecondary: activePalette.textSecondary,
-          border:        activePalette.border,
-          palette:       activePalette.palette
+          border: activePalette.border,
+          palette: activePalette.palette
         },
         themes: { light: lightTheme, dark: darkTheme },
         typography: {
           fontFamilies: Array.from(fontFamiliesSet).slice(0, 6),
-          headings:     finalHeadings,
-          body:         finalBody
+          headings: finalHeadings,
+          body: finalBody
         },
         spacingAndRadii: {
           borderRadii: Array.from(borderRadiiSet).slice(0, 6),
-          shadows:     Array.from(shadowsSet).slice(0, 5)
+          shadows: Array.from(shadowsSet).slice(0, 5)
         },
         components: allComponents,
-        assets:     allAssets.slice(0, 10),
-        cssVariables
+        assets: allAssets.slice(0, 10),
+        cssVariables,
+        breakpoints: responsiveData?.detectedBreakpoints,
+        responsive: responsiveData
       };
     } finally {
-      await sharedContext.close().catch(() => {});
+      await sharedContext.close().catch(() => { });
     }
   };
 
@@ -811,6 +1112,6 @@ export async function extractDesignTokens(
     return await Promise.race([extractionTask(), timeoutPromise]);
   } finally {
     if (timeoutHandle) clearTimeout(timeoutHandle);
-    await browser.close().catch(() => {});
+    await browser.close().catch(() => { });
   }
 }

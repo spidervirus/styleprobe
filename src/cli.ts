@@ -13,7 +13,11 @@ import {
   formatToTailwindV4, 
   formatToShadcn, 
   formatToFigmaTokens,
-  formatToAgentRules 
+  formatToAgentRules,
+  formatToClaudeMd,
+  formatToAgentsMd,
+  formatToCursorrules,
+  formatToCssVariables
 } from './formatter.js';
 
 const program = new Command();
@@ -24,7 +28,7 @@ program
   .version('1.0.0')
   .argument('<url>', 'Target website URL (e.g., https://github.com or stripe.com)')
   .option('-o, --output <path>', 'Output file path (default adjusts based on format)')
-  .option('-f, --format <format>', 'Output format: markdown, tailwind, tailwind-v4, shadcn, figma-tokens, cursorrules, or json', 'markdown')
+  .option('-f, --format <format>', 'Output format: markdown, claude, agents, cursorrules, all-agents, tailwind, tailwind-v4, shadcn, figma-tokens, css-variables, or json', 'markdown')
   .option('-d, --depth <number>', 'Number of internal pages to crawl (1 to 5)', '1')
   .option('--sitemap', 'Discover pages from /sitemap.xml and /sitemap_index.xml', false)
   .option('--assets [dir]', 'Harvest SVGs & brand logos into a local directory', false)
@@ -57,6 +61,29 @@ program
       let defaultFilename = 'design.md';
 
       switch (options.format.toLowerCase()) {
+        case 'claude':
+        case 'claude.md':
+          outputContent = formatToClaudeMd(tokens);
+          defaultFilename = 'CLAUDE.md';
+          break;
+        case 'agents':
+        case 'agents.md':
+          outputContent = formatToAgentsMd(tokens);
+          defaultFilename = 'AGENTS.md';
+          break;
+        case 'cursorrules':
+        case '.cursorrules':
+        case 'agent':
+          outputContent = formatToCursorrules(tokens);
+          defaultFilename = '.cursorrules';
+          break;
+        case 'all-agents':
+          await fs.writeFile(path.resolve(process.cwd(), 'CLAUDE.md'), formatToClaudeMd(tokens), 'utf-8');
+          await fs.writeFile(path.resolve(process.cwd(), 'AGENTS.md'), formatToAgentsMd(tokens), 'utf-8');
+          await fs.writeFile(path.resolve(process.cwd(), '.cursorrules'), formatToCursorrules(tokens), 'utf-8');
+          outputContent = formatToClaudeMd(tokens);
+          defaultFilename = 'CLAUDE.md';
+          break;
         case 'tailwind':
           outputContent = formatToTailwind(tokens);
           defaultFilename = 'tailwind.config.js';
@@ -74,10 +101,10 @@ program
           outputContent = formatToFigmaTokens(tokens);
           defaultFilename = 'tokens.json';
           break;
-        case 'cursorrules':
-        case 'agent':
-          outputContent = formatToAgentRules(tokens);
-          defaultFilename = '.cursorrules';
+        case 'css-variables':
+        case 'variables':
+          outputContent = formatToCssVariables(tokens);
+          defaultFilename = 'variables.css';
           break;
         case 'json':
           outputContent = JSON.stringify(tokens, null, 2);
@@ -135,6 +162,17 @@ program
       console.log(` • Background:  ${chalk.hex(tokens.colors.background)('■')} ${tokens.colors.background}`);
       console.log(` • Text:        ${chalk.hex(tokens.colors.textPrimary)('■')} ${tokens.colors.textPrimary}`);
       console.log(` • Fonts:       ${tokens.typography.fontFamilies.join(', ') || 'System default'}`);
+      if (tokens.breakpoints && tokens.breakpoints.length > 0) {
+        const bpStr = tokens.breakpoints.map(b => `${b.value}px`).join(', ');
+        console.log(` • Breakpoints: ${bpStr}`);
+      }
+      if (tokens.responsive) {
+        const dNav = tokens.responsive.viewports.desktop.navigationMode;
+        const mNav = tokens.responsive.viewports.mobile.navigationMode;
+        const dCols = tokens.responsive.viewports.desktop.gridColumns;
+        const mCols = tokens.responsive.viewports.mobile.gridColumns;
+        console.log(` • Responsive:  Nav: ${dNav} → ${mNav} | Grid: ${dCols} cols → ${mCols} col | Section: ${tokens.responsive.viewports.desktop.sectionPadding} → ${tokens.responsive.viewports.mobile.sectionPadding}`);
+      }
       console.log(` • SVGs:        ${tokens.assets.length} extracted${savedAssetsCount > 0 ? ` (saved to ${options.assets})` : ''}`);
       console.log(` • File:        ${resolvedPath}\n`);
 
