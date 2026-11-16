@@ -1,0 +1,121 @@
+{
+  "target": {
+    "slug": "vite",
+    "name": "Vite Docs",
+    "url": "https://vite.dev",
+    "category": "Documentation",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 9.6,
+  "timing": {
+    "crawlingMs": 7203,
+    "themeExtractionMs": 2249,
+    "formattingMs": 5,
+    "totalMs": 9457
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://vite.dev/",
+      "https://vite.dev/guide/",
+      "https://vite.dev/config/",
+      "https://vite.dev/plugins/",
+      "https://vite.dev/team",
+      "https://vite.dev/blog"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#16171d",
+      "surface": "#18181b",
+      "primary": "#ffffff",
+      "textPrimary": "#ffffff",
+      "textSecondary": "#ffffff",
+      "border": "#3b3440"
+    },
+    "groundTruth": {
+      "background": "#16171d",
+      "surface": null,
+      "textPrimary": "#ffffff",
+      "textSecondary": null,
+      "border": "#ffffff",
+      "brandToken": "#ffffff"
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 100,
+      "textPrimary": 100,
+      "textSecondary": 85,
+      "border": 0,
+      "overallColorAccuracy": 78
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "Inter",
+      "APK Protocol",
+      "KH Teka Mono"
+    ],
+    "groundTruthFonts": [
+      "Inter, sans-serif",
+      "\"APK Protocol\", sans-serif"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 40,
+    "bodyScaleMatch": 85,
+    "overallTypographyAccuracy": 73,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"APK Protocol\", sans-serif",
+      "fontSize": "32px",
+      "fontWeight": "600",
+      "lineHeight": "40px",
+      "letterSpacing": "-0.64px",
+      "color": "rgb(0, 0, 0)",
+      "sampleText": "Configuring Vite ​",
+      "count": 3
+    },
+    "h1GroundTruth": {
+      "fontFamily": "\"APK Protocol\", sans-serif",
+      "fontSize": "60px",
+      "fontWeight": "500",
+      "lineHeight": "67.2px",
+      "color": "#ffffff",
+      "text": "The Build Tool for the Web"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "card",
+      "nav"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "nav"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "nav": true
+    }
+  },
+  "themes": {
+    "extractedMode": "dark",
+    "groundTruthMode": "dark",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": true,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 88
+}

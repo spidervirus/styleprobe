@@ -14,7 +14,7 @@
     "dev": "tsx src/cli.ts",
     "prepublishOnly": "npm run build",
     "build": "tsc && chmod +x dist/cli.js",
-    "test": "tsx --test tests/extraction.test.ts tests/crawler.test.ts tests/security.test.ts tests/consistency.test.ts tests/robots.test.ts tests/sitemap.test.ts tests/normalization.test.ts tests/color-cta.test.ts tests/responsive-agents.test.ts",
+    "test": "tsx --test tests/extraction.test.ts tests/crawler.test.ts tests/security.test.ts tests/consistency.test.ts tests/robots.test.ts tests/sitemap.test.ts tests/normalization.test.ts tests/color-cta.test.ts tests/responsive-agents.test.ts tests/confidence-validation.test.ts",
     "start": "node dist/cli.js"
   },
   "repository": {

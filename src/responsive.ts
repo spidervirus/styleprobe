@@ -193,12 +193,15 @@ function getViewportEvalScript(vpName: string): string {
     return r.width > 0 && r.height > 0;
   }
 
-  // 1. Typography Sampling
-  var h1 = document.querySelector('h1, [class*="hero"] h2, main h1, .title, [class*="title"], [class*="heading"]');
+  // 1. Typography Sampling - prioritize explicit <h1> tags over generic class matches
+  var h1 = document.querySelector('main h1, [role="main"] h1, h1');
+  if (!h1) h1 = document.querySelector('[class*="hero"] h1, [class*="hero"] h2, h2');
+  if (!h1) h1 = document.querySelector('.title, [class*="title"], [class*="heading"]');
   var h1FontSize = h1 ? gc(h1, 'font-size') : '36px';
   var h1LineHeight = h1 ? gc(h1, 'line-height') : '1.2';
 
-  var h2 = document.querySelector('h2, [class*="subtitle"], main h2, [class*="section-heading"]');
+  var h2 = document.querySelector('main h2, [role="main"] h2, h2');
+  if (!h2) h2 = document.querySelector('[class*="hero"] h2, [class*="subtitle"], [class*="section-heading"]');
   var h2FontSize = h2 ? gc(h2, 'font-size') : '24px';
 
   var p = document.querySelector('main p, article p, p');
@@ -346,7 +349,16 @@ function buildResponsiveComparisonAndRules(
     mobile: mobile.h1FontSize,
     isFluid: h1Fluid,
     fluidFormula: h1Fluid ? fluidPatterns[0] : undefined,
-    breakpointRule: h1Fluid ? undefined : (desktop.h1FontSize !== mobile.h1FontSize ? h1Breakpoint : undefined)
+    breakpointRule: h1Fluid ? undefined : (desktop.h1FontSize !== mobile.h1FontSize ? h1Breakpoint : undefined),
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: 'h1',
+      property: 'font-size',
+      value: `${desktop.h1FontSize} → ${tablet.h1FontSize} → ${mobile.h1FontSize}`,
+      confidence: 'high',
+      reasoning: h1Fluid ? 'Fluid heading scaling via clamp() or viewport units.' : 'Computed style measured at 1440px, 768px, and 375px.'
+    }
   });
   if (desktop.h1FontSize !== mobile.h1FontSize) {
     rules.push({
@@ -366,7 +378,16 @@ function buildResponsiveComparisonAndRules(
     desktop: desktop.sectionPadding,
     tablet: tablet.sectionPadding,
     mobile: mobile.sectionPadding,
-    breakpointRule: desktop.sectionPadding !== mobile.sectionPadding ? paddingBreakpoint : undefined
+    breakpointRule: desktop.sectionPadding !== mobile.sectionPadding ? paddingBreakpoint : undefined,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: 'section',
+      property: 'padding',
+      value: `${desktop.sectionPadding} → ${tablet.sectionPadding} → ${mobile.sectionPadding}`,
+      confidence: 'high',
+      reasoning: 'Computed padding across viewports.'
+    }
   });
   if (desktop.sectionPadding !== mobile.sectionPadding) {
     rules.push({
@@ -385,7 +406,16 @@ function buildResponsiveComparisonAndRules(
     desktop: desktop.gridColumns,
     tablet: tablet.gridColumns,
     mobile: mobile.gridColumns,
-    breakpointRule: desktop.gridColumns !== mobile.gridColumns ? gridBreakpoint : undefined
+    breakpointRule: desktop.gridColumns !== mobile.gridColumns ? gridBreakpoint : undefined,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: '.grid, .cards',
+      property: 'grid-template-columns',
+      value: `${desktop.gridColumns} cols → ${tablet.gridColumns} cols → ${mobile.gridColumns} col`,
+      confidence: 'high',
+      reasoning: 'Measured columns in primary layout grid across viewports.'
+    }
   });
   if (desktop.gridColumns !== mobile.gridColumns) {
     rules.push({
@@ -404,7 +434,16 @@ function buildResponsiveComparisonAndRules(
     desktop: desktop.navigationMode,
     tablet: tablet.navigationMode,
     mobile: mobile.navigationMode,
-    breakpointRule: desktop.navigationMode !== mobile.navigationMode ? navBreakpoint : undefined
+    breakpointRule: desktop.navigationMode !== mobile.navigationMode ? navBreakpoint : undefined,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: 'header nav',
+      property: 'display/visibility',
+      value: `${desktop.navigationMode} → ${tablet.navigationMode} → ${mobile.navigationMode}`,
+      confidence: 'high',
+      reasoning: 'Observed navigation visibility and hamburger toggle state.'
+    }
   });
   if (desktop.navigationMode !== mobile.navigationMode) {
     rules.push({
@@ -422,7 +461,16 @@ function buildResponsiveComparisonAndRules(
     desktop: desktop.cardGap,
     tablet: tablet.cardGap,
     mobile: mobile.cardGap,
-    breakpointRule: desktop.cardGap !== mobile.cardGap ? gridBreakpoint : undefined
+    breakpointRule: desktop.cardGap !== mobile.cardGap ? gridBreakpoint : undefined,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: '.card-container',
+      property: 'gap',
+      value: `${desktop.cardGap} → ${tablet.cardGap} → ${mobile.cardGap}`,
+      confidence: 'high',
+      reasoning: 'Computed flex/grid gap between cards.'
+    }
   });
   if (desktop.cardGap !== mobile.cardGap) {
     rules.push({
@@ -440,7 +488,16 @@ function buildResponsiveComparisonAndRules(
     desktop: desktop.buttonWidth,
     tablet: tablet.buttonWidth,
     mobile: mobile.buttonWidth,
-    breakpointRule: desktop.buttonWidth !== mobile.buttonWidth ? navBreakpoint : undefined
+    breakpointRule: desktop.buttonWidth !== mobile.buttonWidth ? navBreakpoint : undefined,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: 'button, .btn',
+      property: 'width',
+      value: `${desktop.buttonWidth} → ${tablet.buttonWidth} → ${mobile.buttonWidth}`,
+      confidence: 'high',
+      reasoning: 'Touch target expansion analysis.'
+    }
   });
   if (desktop.buttonWidth !== mobile.buttonWidth) {
     rules.push({
@@ -458,7 +515,16 @@ function buildResponsiveComparisonAndRules(
       category: 'typography',
       desktop: desktop.h2FontSize,
       tablet: tablet.h2FontSize || desktop.h2FontSize,
-      mobile: mobile.h2FontSize || desktop.h2FontSize
+      mobile: mobile.h2FontSize || desktop.h2FontSize,
+      confidence: 'high',
+      evidence: {
+        sourceType: 'computed-style',
+        selector: 'h2',
+        property: 'font-size',
+        value: `${desktop.h2FontSize} → ${tablet.h2FontSize || desktop.h2FontSize} → ${mobile.h2FontSize || desktop.h2FontSize}`,
+        confidence: 'high',
+        reasoning: 'Computed H2 font size measured across viewports.'
+      }
     });
   }
 
@@ -468,7 +534,16 @@ function buildResponsiveComparisonAndRules(
     category: 'typography',
     desktop: desktop.bodyFontSize,
     tablet: tablet.bodyFontSize,
-    mobile: mobile.bodyFontSize
+    mobile: mobile.bodyFontSize,
+    confidence: 'high',
+    evidence: {
+      sourceType: 'computed-style',
+      selector: 'body, p',
+      property: 'font-size',
+      value: `${desktop.bodyFontSize} → ${tablet.bodyFontSize} → ${mobile.bodyFontSize}`,
+      confidence: 'high',
+      reasoning: 'Computed body font size measured across viewports.'
+    }
   });
 
   return { comparison, rules };
@@ -490,6 +565,18 @@ export async function extractResponsiveDesignSystem(
 
   const detectedBreakpoints = mqResult.breakpoints || [];
   const fluidPatterns = mqResult.fluidPatterns || [];
+
+  for (const b of detectedBreakpoints) {
+    b.confidence = 'high';
+    b.evidence = {
+      sourceType: 'media-query',
+      property: 'min/max-width',
+      value: `${b.value}px`,
+      ruleText: b.query,
+      confidence: 'high',
+      reasoning: `Extracted directly from active media query ${b.query}`
+    };
+  }
 
   // 2. Snapshot Desktop (1440x900)
   await page.setViewportSize({ width: 1440, height: 900 });

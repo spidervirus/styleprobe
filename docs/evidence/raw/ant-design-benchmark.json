@@ -1,0 +1,131 @@
+{
+  "target": {
+    "slug": "ant-design",
+    "name": "Ant Design",
+    "url": "https://ant.design",
+    "category": "Design System",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 10.6,
+  "timing": {
+    "crawlingMs": 8240,
+    "themeExtractionMs": 2217,
+    "formattingMs": 11,
+    "totalMs": 10468
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://ant.design/",
+      "https://ant.design/docs/spec/introduce",
+      "https://ant.design/docs/react/introduce",
+      "https://ant.design/components/overview",
+      "https://ant.design/docs/blog/ai-open-source-contribution",
+      "https://ant.design/docs/resources"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#ffffff",
+      "surface": "#1677ff",
+      "primary": "#1677ff",
+      "textPrimary": "#000000",
+      "textSecondary": "#000000",
+      "border": "#000000"
+    },
+    "groundTruth": {
+      "background": "#ffffff",
+      "surface": "#1677ff",
+      "textPrimary": "#000000",
+      "textSecondary": "#000000",
+      "border": "#000000",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 100,
+      "primary": 100,
+      "textPrimary": 100,
+      "textSecondary": 100,
+      "border": 100,
+      "overallColorAccuracy": 100
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "-apple-system",
+      "AlibabaSans",
+      "sans-serif",
+      "Avenir",
+      "ui-monospace",
+      "Lucida Console"
+    ],
+    "groundTruthFonts": [
+      "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 100,
+    "bodyScaleMatch": 60,
+    "overallTypographyAccuracy": 92,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "22px",
+      "letterSpacing": "normal",
+      "color": "rgba(0, 0, 0, 0.88)",
+      "sampleText": "Ant Design",
+      "count": 6
+    },
+    "h1GroundTruth": {
+      "fontFamily": "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+      "fontSize": "14px",
+      "fontWeight": "400",
+      "lineHeight": "22px",
+      "color": "#000000",
+      "text": "Ant Design"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "card",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 80,
+    "detailMatches": {
+      "button": true,
+      "card": false,
+      "input": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": true,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 94
+}

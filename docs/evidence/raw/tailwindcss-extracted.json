@@ -1,0 +1,564 @@
+{
+  "url": "https://tailwindcss.com/",
+  "title": "https://tailwindcss.com/",
+  "crawledPages": [
+    "https://tailwindcss.com/",
+    "https://tailwindcss.com/docs/installation/using-vite",
+    "https://tailwindcss.com/docs/installation/using-vite",
+    "https://tailwindcss.com/showcase",
+    "https://tailwindcss.com/blog",
+    "https://tailwindcss.com/partners"
+  ],
+  "crawledDetails": [
+    {
+      "url": "https://tailwindcss.com/",
+      "depth": 0
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/using-vite",
+      "depth": 1
+    },
+    {
+      "url": "https://tailwindcss.com/docs/installation/using-vite",
+      "depth": 1
+    },
+    {
+      "url": "https://tailwindcss.com/showcase",
+      "depth": 1
+    },
+    {
+      "url": "https://tailwindcss.com/blog",
+      "depth": 1
+    },
+    {
+      "url": "https://tailwindcss.com/partners",
+      "depth": 1
+    }
+  ],
+  "extractedAt": "2026-11-14T11:20:12.030Z",
+  "themeMode": "light",
+  "timing": {
+    "crawlingMs": 10232,
+    "themeExtractionMs": 2448,
+    "formattingMs": 1,
+    "totalMs": 12681
+  },
+  "colors": {
+    "background": "#ffffff",
+    "surface": "#f4f4f5",
+    "primary": "#f6339a",
+    "textPrimary": "#030712",
+    "textSecondary": "#4a5565",
+    "border": "#e4e4e7",
+    "palette": [
+      {
+        "hex": "#ffffff",
+        "count": 10,
+        "luminance": 0
+      },
+      {
+        "hex": "#f4f4f5",
+        "count": 8,
+        "luminance": 0
+      },
+      {
+        "hex": "#f6339a",
+        "count": 6,
+        "luminance": 0
+      },
+      {
+        "hex": "#030712",
+        "count": 5,
+        "luminance": 0
+      }
+    ]
+  },
+  "themes": {
+    "light": {
+      "mode": "light",
+      "background": "#ffffff",
+      "surface": "#f4f4f5",
+      "primary": "#f6339a",
+      "textPrimary": "#030712",
+      "textSecondary": "#4a5565",
+      "border": "#e4e4e7",
+      "palette": [
+        {
+          "hex": "#ffffff",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#f4f4f5",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#f6339a",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#030712",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    },
+    "dark": {
+      "mode": "dark",
+      "background": "#030712",
+      "surface": "#18181b",
+      "primary": "#f6339a",
+      "textPrimary": "#ffffff",
+      "textSecondary": "#99a1af",
+      "border": "#ffffff",
+      "palette": [
+        {
+          "hex": "#030712",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#18181b",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#f6339a",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#ffffff",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      "inter",
+      "plexMono"
+    ],
+    "headings": [
+      {
+        "tag": "h1",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "letterSpacing": "-4.8px",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Rapidly build modern websites without ever leaving your HTML",
+        "count": 3
+      },
+      {
+        "tag": "h3",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "16px",
+        "fontWeight": "600",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Browse properties",
+        "count": 2
+      },
+      {
+        "tag": "h3",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "lineHeight": "28px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Tailwind CSS",
+        "count": 2
+      },
+      {
+        "tag": "h3",
+        "fontFamily": "plexMono, \"plexMono Fallback\", monospace",
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "lineHeight": "24px",
+        "letterSpacing": "1.2px",
+        "color": "lab(47.7841 -0.393182 -10.0268)",
+        "sampleText": "Getting started",
+        "count": 2
+      },
+      {
+        "tag": "h2",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "40px",
+        "fontWeight": "500",
+        "lineHeight": "40px",
+        "letterSpacing": "-2px",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Supported by the best.",
+        "count": 1
+      },
+      {
+        "tag": "h3",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "36px",
+        "fontWeight": "600",
+        "lineHeight": "48px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Redefining real-time performance",
+        "count": 1
+      }
+    ],
+    "body": [
+      {
+        "tag": "a",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "",
+        "count": 6
+      },
+      {
+        "tag": "a",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Docs",
+        "count": 6
+      },
+      {
+        "tag": "a",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "14px",
+        "fontWeight": "600",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Installation",
+        "count": 3
+      },
+      {
+        "tag": "p",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "28px",
+        "letterSpacing": "normal",
+        "color": "lab(35.6337 -1.58697 -10.8425)",
+        "sampleText": "Okay, it’s not exactly cutting edge, but just throw a screen",
+        "count": 1
+      },
+      {
+        "tag": "code",
+        "fontFamily": "plexMono, \"plexMono Fallback\", monospace",
+        "fontSize": "13px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "letterSpacing": "normal",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "<div class=\"flex flex-col items-center rounded-2xl\">  <div> ",
+        "count": 1
+      },
+      {
+        "tag": "p",
+        "fontFamily": "plexMono, \"plexMono Fallback\", monospace",
+        "fontSize": "12px",
+        "fontWeight": "600",
+        "lineHeight": "16px",
+        "letterSpacing": "1.2px",
+        "color": "lab(63.3038 -18.433 -51.0407)",
+        "sampleText": "Sponsors",
+        "count": 1
+      }
+    ]
+  },
+  "spacingAndRadii": {
+    "borderRadii": [
+      "16px",
+      "3.35544e+07px",
+      "6px",
+      "8px",
+      "4px",
+      "32px"
+    ],
+    "shadows": [
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129999 -0.00404751 -0.027702 / 0.08) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.999994 0.0000455678 0.0000200868 / 0.1) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129999 -0.00404751 -0.027702 / 0.1) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.999994 0.0000455678 0.0000200868 / 0.05) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129999 -0.00404751 -0.027702 / 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    ]
+  },
+  "components": [
+    {
+      "type": "button",
+      "sampleHtml": "<button class=\"isolate rounded-sm px-2 py-1 text-xs/5 text-white inset-ring-white/5 hover:bg-white/10 aria-selected:bg-white/10 aria-selected:inset-ring group-data-modified:italic\" role=\"presentation\" aria-selected=\"true\">index.html</button>",
+      "styles": {
+        "backgroundColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "border": "0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255)",
+        "borderColor": "rgb(255, 255, 255)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.999994 0.0000455678 0.0000200868 / 0.05) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+        "padding": "4px 8px",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "outline": "rgb(255, 255, 255) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<button class=\"isolate rounded-sm px-2 py-1 text-xs/5 text-white inset-ring-white/5 hover:bg-white/10 aria-selected:bg-white/10 aria-selected:inset-ring italic\" role=\"presentation\">package.json</button>",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "border": "0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255) 0px solid rgb(255, 255, 255)",
+        "borderColor": "rgb(255, 255, 255)",
+        "boxShadow": "none",
+        "padding": "4px 8px",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "outline": "rgb(255, 255, 255) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "input",
+      "sampleHtml": "<input type=\"text\" tabindex=\"-1\">",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "card",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "oklab(0.129999 -0.00404751 -0.027702 / 0.05)",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "borderRadius": "16px",
+        "border": "0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866)",
+        "borderColor": "lab(1.90334 0.278696 -5.48866)",
+        "boxShadow": "none",
+        "padding": "2px 6px 2px 10px",
+        "fontSize": "12px",
+        "fontWeight": "500",
+        "outline": "lab(1.90334 0.278696 -5.48866) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<button class=\"flex size-8 items-center justify-center absolute z-10 transition duration-150 group-hover/code-block:opacity-100 -top-1 right-0 text-white/50 hover:text-white/75\" title=\"Copy to clipboard\"><div class=\"grid size-4\"><svg viewBox=\"0 0 16 16\" stroke-width=\"1\" class=\"col-start-1 row-start-",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+        "borderRadius": "0px",
+        "border": "0px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.5) 0px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.5) 0px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.5) 0px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+        "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "outline": "oklab(0.999994 0.0000455678 0.0000200868 / 0.5) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "nav",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<button type=\"button\" class=\"inline-flex items-center gap-1 rounded-full bg-gray-950/2 px-2 py-1 inset-ring inset-ring-gray-950/8 dark:bg-white/5 dark:inset-ring-white/2\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" class=\"-ml-0.5 size-4 fill-gray-600 dark:fill-gray-500\"><path fill-ru",
+      "styles": {
+        "backgroundColor": "oklab(0.129999 -0.00404751 -0.027702 / 0.02)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "3.35544e+07px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129999 -0.00404751 -0.027702 / 0.08) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+        "padding": "4px 8px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "input",
+      "sampleHtml": "<input type=\"email\" required=\"\" autocomplete=\"email\" aria-label=\"Email address\" class=\"block w-full appearance-none rounded-4xl bg-white py-2 pr-3 pl-10 text-sm/6 text-gray-950 outline -outline-offset",
+      "styles": {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "borderRadius": "32px",
+        "border": "0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866) 0px solid lab(1.90334 0.278696 -5.48866)",
+        "borderColor": "lab(1.90334 0.278696 -5.48866)",
+        "boxShadow": "none",
+        "padding": "8px 12px 8px 40px",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "outline": "oklab(0.129999 -0.00404751 -0.027702 / 0.08) solid 1px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "type": "logo",
+      "name": "h-5_text-black_dark_text-white",
+      "svgContent": "<svg viewBox=\"0 0 167 21\" fill=\"none\" class=\"h-5 text-black dark:text-white\"><path class=\"fill-sky-400\" d=\"M17.183 0C12.6 0 9.737 2.291 8.59 6.873c1.719-2.29 3.723-3.15 6.014-2.577 1.307.326 2.242 1.274 3.275 2.324 1.685 1.71 3.635 3.689 7.894 3.689 4.582 0 7.445-2.291 8.591-6.872-1.718 2.29-3.723 3.15-6.013 2.576-1.308-.326-2.243-1.274-3.276-2.324C23.39 1.98 21.44 0 17.183 0ZM8.59 10.309C4.01 10.309 1.145 12.6 0 17.182c1.718-2.291 3.723-3.15 6.013-2.577 1.308.326 2.243 1.274 3.276 2.324 1.685 1.71 3.635 3.689 7.894 3.689 4.582 0 7.445-2.29 8.59-6.872-1.718 2.29-3.722 3.15-6.013 2.577-1.307-.327-2.242-1.276-3.276-2.325-1.684-1.71-3.634-3.689-7.893-3.689Z\"></path><path fill=\"currentColor\" d=\"M51.547 8.688h-3v5.803c0 1.548 1.016 1.524 3 1.427v2.346c-4.015.483-5.611-.629-5.611-3.773V8.688H43.71V6.172h2.225V2.925l2.612-.774v4.021h2.998v2.516Zm11.43-2.516h2.61v12.092h-2.61v-1.741c-.92 1.28-2.346 2.055-4.233 2.055-3.288 0-6.021-2.78-6.021-6.36 0-3.603 2.733-6.36 6.021-6.36 1.886 0 3.313.774 4.233 2.032V6.172Zm-3.821 9.915c2.176 0 3.82-1.62 3.82-3.87 0-2.248-1.644-3.868-3.82-3.868-2.177 0-3.821 1.62-3.821 3.869s1.644 3.87 3.82 3.87ZM69.94 4.36a1.687 1.687 0 0 1-1.668-1.669c.002-.443.179-.868.491-1.18a1.662 1.662 0 0 1 2.354 0c.312.312.49.737.491 1.18 0 .895-.75 1.669-1.668 1.669Zm-1.306 13.905V6.172h2.612v12.092h-2.612Zm5.635 0V.609h2.611v17.654H74.27ZM93.834 6.172h2.757l-3.797 12.092h-2.563l-2.516-8.15-2.539 8.15h-2.563L78.816 6.172h2.757l2.346 8.343 2.54-8.343h2.49l2.514 8.343 2.37-8.343ZM99.83 4.36c-.92 0-1.669-.774-1.669-1.669.002-.443.18-.868.492-1.18a1.661 1.661 0 0 1 2.354 0c.313.312.49.737.492 1.18 0 .895-.75 1.669-1.669 1.669Zm-1.306 13.905V6.172h2.612v12.092h-2.612ZM110.52 5.858c2.708 0 4.643 1.838 4.643 4.982v7.423h-2.612v-7.158c0-1.838-1.064-2.804-2.708-2.804-1.717 0-3.071 1.015-3.071 3.482v6.48h-2.612V6.174h2.612V7.72c.798-1.257 2.103-1.862 3.748-1.862Zm17.024-4.522h2.612v16.927h-2.612v-1.741c-.918 1.282-2.345 2.055-4.231 2.055-3.289 0-6.022-2.78-6.022-6.36 0-3.603 2.733-6.36 6.022-6.36 1.886 0 3.313.774 4.231 2.032V1.336Zm-3.821 14.751c2.177 0 3.821-1.62 3.821-3.87 0-2.248-1.644-3.868-3.821-3.868-2.176 0-3.82 1.62-3.82 3.869s1.644 3.87 3.82 3.87Zm15.187 2.49c-3.651 0-6.384-2.78-6.384-6.36 0-3.602 2.733-6.359 6.384-6.359 2.37 0 4.426 1.233 5.393 3.12l-2.249 1.306c-.532-1.137-1.717-1.863-3.168-1.863-2.128 0-3.748 1.62-3.748 3.797 0 2.176 1.62 3.797 3.748 3.797 1.451 0 2.636-.75 3.216-1.863l2.249 1.282c-1.015 1.91-3.071 3.144-5.441 3.144Zm9.746-9.068c0 2.201 6.505.87 6.505 5.345 0 2.419-2.104 3.724-4.716 3.724-2.418 0-4.159-1.089-4.933-2.83l2.249-1.305c.387 1.088 1.355 1.74 2.684 1.74 1.161 0 2.056-.386 2.056-1.354 0-2.151-6.505-.942-6.505-5.27 0-2.274 1.959-3.701 4.425-3.701 1.983 0 3.628.92 4.474 2.515l-2.2 1.233c-.436-.943-1.283-1.378-2.274-1.378-.943 0-1.765.41-1.765 1.281Zm11.148 0c0 2.201 6.505.87 6.505 5.345 0 2.419-2.104 3.724-4.716 3.724-2.418 0-4.158-1.089-4.933-2.83l2.249-1.305c.387 1.088 1.354 1.74 2.684 1.74 1.161 0 2.056-.386 2.056-1.354 0-2.151-6.505-.942-6.505-5.27 0-2.274 1.959-3.701 4.426-3.701 1.982 0 3.627.92 4.473 2.515l-2.2 1.233c-.435-.943-1.282-1.378-2.273-1.378-.944 0-1.766.41-1.766 1.281Z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "size-4_fill-gray-400",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"currentColor\" aria-hidden=\"true\" data-slot=\"icon\" class=\"size-4 fill-gray-400\"><path fill-rule=\"evenodd\" d=\"M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z\" clip-rule=\"evenodd\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "-ml-0_5_size-4_fill-gray-600_d",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" class=\"-ml-0.5 size-4 fill-gray-600 dark:fill-gray-500\"><path fill-rule=\"evenodd\" d=\"M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z\" clip-rule=\"evenodd\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "absolute_top-_-2px__left-_-2px",
+      "svgContent": "<svg width=\"5\" height=\"5\" viewBox=\"0 0 5 5\" class=\"absolute top-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50\"><path d=\"M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "absolute_top-_-2px__right-_-2p",
+      "svgContent": "<svg width=\"5\" height=\"5\" viewBox=\"0 0 5 5\" class=\"absolute top-[-2px] right-[-2px] fill-sky-300 dark:fill-sky-300/50\"><path d=\"M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "absolute_bottom-_-2px__left-_-",
+      "svgContent": "<svg width=\"5\" height=\"5\" viewBox=\"0 0 5 5\" class=\"absolute bottom-[-2px] left-[-2px] fill-sky-300 dark:fill-sky-300/50\"><path d=\"M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "absolute_right-_-2px__bottom-_",
+      "svgContent": "<svg width=\"5\" height=\"5\" viewBox=\"0 0 5 5\" class=\"absolute right-[-2px] bottom-[-2px] fill-sky-300 dark:fill-sky-300/50\"><path d=\"M2 0h1v2h2v1h-2v2h-1v-2h-2v-1h2z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "size-5_fill-black_40_dark_fill",
+      "svgContent": "<svg viewBox=\"0 0 20 20\" class=\"size-5 fill-black/40 dark:fill-gray-400\"><path d=\"M10 0C4.475 0 0 4.475 0 10a9.994 9.994 0 006.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.287-.6-1.175-1.025-1.412-.35-.188-.85-.65-.013-.663.788-.013 1.35.725 1.538 1.025.9 1.512 2.337 1.087 2.912.825.088-.65.35-1.088.638-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.274.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 012.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0020 10c0-5.525-4.475-10-10-10z\"></path></svg>"
+    }
+  ],
+  "cssVariables": {
+    "--tw-backdrop-blur": {
+      "light": "blur(var(--blur-sm))",
+      "dark": "blur(var(--blur-sm))",
+      "selectors": [
+        ".DocSearch-Container"
+      ],
+      "usedIn": []
+    },
+    "--tw-leading": {
+      "light": "calc(var(--spacing) * 6)",
+      "dark": "calc(var(--spacing) * 6)",
+      "selectors": [
+        ".DocSearch-Hit-title",
+        ".DocSearch-Title",
+        ".DocSearch-NoResults-Prefill-List .DocSearch-Help",
+        ".DocSearch-NoResults-Prefill-List + .DocSearch-Help"
+      ],
+      "usedIn": []
+    },
+    "--tw-font-weight": {
+      "light": "var(--font-weight-semibold)",
+      "dark": "var(--font-weight-semibold)",
+      "selectors": [
+        ".DocSearch-Hits mark",
+        ".DocSearch-Logo a",
+        ".DocSearch-Title strong",
+        ".DocSearch-NoResults-Prefill-List .DocSearch-Help",
+        ".DocSearch-NoResults-Prefill-List + .DocSearch-Help a"
+      ],
+      "usedIn": []
+    },
+    "--lightningcss-light": {
+      "light": "initial",
+      "dark": "initial",
+      "selectors": [
+        ":root",
+        ".dark",
+        ".light"
+      ],
+      "usedIn": []
+    },
+    "--lightningcss-dark": {
+      "light": "",
+      "dark": "initial",
+      "selectors": [
+        ":root",
+        ".dark",
+        ".light"
+      ],
+      "usedIn": []
+    },
+    "--font-inter": {
+      "light": "\"inter\", \"inter Fallback\"",
+      "dark": "\"inter\", \"inter Fallback\"",
+      "selectors": [
+        ".inter_6a166f28-module__775SPq__variable"
+      ],
+      "usedIn": []
+    },
+    "--font-source-sans-pro": {
+      "light": "\"source\", \"source Fallback\"",
+      "dark": "\"source\", \"source Fallback\"",
+      "selectors": [
+        ".source_91931b22-module__FtvGhG__variable"
+      ],
+      "usedIn": []
+    },
+    "--font-plex-mono": {
+      "light": "\"plexMono\", \"plexMono Fallback\"",
+      "dark": "\"plexMono\", \"plexMono Fallback\"",
+      "selectors": [
+        ".plexmono_ffb312b5-module__CmrMxG__variable"
+      ],
+      "usedIn": []
+    },
+    "--font-ubuntu-mono": {
+      "light": "\"ubuntuMono\", \"ubuntuMono Fallback\"",
+      "dark": "\"ubuntuMono\", \"ubuntuMono Fallback\"",
+      "selectors": [
+        ".ubuntumono_2a4826b0-module__yzkUma__variable"
+      ],
+      "usedIn": []
+    }
+  }
+}

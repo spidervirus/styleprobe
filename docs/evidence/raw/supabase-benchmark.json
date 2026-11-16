@@ -1,0 +1,128 @@
+{
+  "target": {
+    "slug": "supabase",
+    "name": "Supabase",
+    "url": "https://supabase.com",
+    "category": "SaaS",
+    "expectedTheme": "dark"
+  },
+  "success": true,
+  "executionTimeSec": 10.8,
+  "timing": {
+    "crawlingMs": 8044,
+    "themeExtractionMs": 2620,
+    "formattingMs": 4,
+    "totalMs": 10668
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://supabase.com/",
+      "https://supabase.com/docs",
+      "https://supabase.com/docs/guides/getting-started/quickstarts/reactjs",
+      "https://supabase.com/docs/guides/getting-started",
+      "https://supabase.com/pricing",
+      "https://supabase.com/features"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#fdfdfd",
+      "surface": "#ffffff",
+      "primary": "#0e7e4e",
+      "textPrimary": "#030303",
+      "textSecondary": "#696969",
+      "border": "#e4e4e7"
+    },
+    "groundTruth": {
+      "background": "#fdfdfd",
+      "surface": "#ffffff",
+      "primary": "#000000",
+      "textPrimary": "#030303",
+      "textSecondary": "#696969",
+      "border": "#000000",
+      "brandToken": "#000000"
+    },
+    "scores": {
+      "background": 100,
+      "surface": 100,
+      "primary": 0,
+      "textPrimary": 100,
+      "textSecondary": 100,
+      "border": 0,
+      "overallColorAccuracy": 67
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "Inter",
+      "Manrope",
+      "Source Code Pro",
+      "ui-sans-serif"
+    ],
+    "groundTruthFonts": [
+      "Inter, \"Inter Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif, Inter, \"Helvetica Neue\", Helvetica, ui-sans-serif, system-ui, sans-serif",
+      "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 55,
+    "bodyScaleMatch": 70,
+    "overallTypographyAccuracy": 76,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "34px",
+      "fontWeight": "500",
+      "lineHeight": "40.8px",
+      "letterSpacing": "normal",
+      "color": "oklch(0.1 0 337.5)",
+      "sampleText": "Predictable pricing, designed to scale",
+      "count": 2
+    },
+    "h1GroundTruth": {
+      "fontFamily": "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+      "fontSize": "46px",
+      "fontWeight": "500",
+      "lineHeight": "46px",
+      "color": "#030303",
+      "text": "Build in a weekendScale to millions"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "card",
+      "nav"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "card",
+      "input",
+      "nav"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "card": true,
+      "input": true,
+      "nav": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": true,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 86
+}

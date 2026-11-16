@@ -1,0 +1,1827 @@
+[
+  {
+    "target": {
+      "slug": "vite",
+      "name": "Vite Docs",
+      "url": "https://vite.dev",
+      "category": "Documentation",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 9.7,
+    "timing": {
+      "crawlingMs": 6812,
+      "themeExtractionMs": 2313,
+      "formattingMs": 7,
+      "totalMs": 9132
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://vite.dev/",
+        "https://vite.dev/guide/",
+        "https://vite.dev/config/",
+        "https://vite.dev/plugins/",
+        "https://vite.dev/team",
+        "https://vite.dev/blog"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#16171d",
+        "surface": "#18181b",
+        "primary": "#ffffff",
+        "textPrimary": "#ffffff",
+        "textSecondary": "#ffffff",
+        "border": "#3b3440"
+      },
+      "groundTruth": {
+        "background": "#16171d",
+        "surface": null,
+        "textPrimary": "#ffffff",
+        "textSecondary": null,
+        "border": "#ffffff",
+        "brandToken": "#ffffff"
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 100,
+        "textPrimary": 100,
+        "textSecondary": 85,
+        "border": 0,
+        "overallColorAccuracy": 78
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Inter",
+        "APK Protocol",
+        "KH Teka Mono"
+      ],
+      "groundTruthFonts": [
+        "Inter, sans-serif",
+        "\"APK Protocol\", sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 40,
+      "bodyScaleMatch": 85,
+      "overallTypographyAccuracy": 73,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"APK Protocol\", sans-serif",
+        "fontSize": "32px",
+        "fontWeight": "600",
+        "lineHeight": "40px",
+        "letterSpacing": "-0.64px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Configuring Vite ​",
+        "count": 3
+      },
+      "h1GroundTruth": {
+        "fontFamily": "\"APK Protocol\", sans-serif",
+        "fontSize": "60px",
+        "fontWeight": "500",
+        "lineHeight": "67.2px",
+        "color": "#ffffff",
+        "text": "The Build Tool for the Web"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "card",
+        "nav"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "nav"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "nav": true
+      }
+    },
+    "themes": {
+      "extractedMode": "dark",
+      "groundTruthMode": "dark",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 88
+  },
+  {
+    "target": {
+      "slug": "tailwindcss",
+      "name": "Tailwind CSS Docs",
+      "url": "https://tailwindcss.com",
+      "category": "Documentation",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 10.8,
+    "timing": {
+      "crawlingMs": 8112,
+      "themeExtractionMs": 2584,
+      "formattingMs": 1,
+      "totalMs": 10697
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 1,
+      "crawledUrls": [
+        "https://tailwindcss.com/",
+        "https://tailwindcss.com/docs/installation/using-vite",
+        "https://tailwindcss.com/docs/installation/using-vite",
+        "https://tailwindcss.com/showcase",
+        "https://tailwindcss.com/blog",
+        "https://tailwindcss.com/partners"
+      ],
+      "crawlSuccessRate": 80
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "primary": "#f6339a",
+        "textPrimary": "#030712",
+        "textSecondary": "#4a5565",
+        "border": "#e4e4e7"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": null,
+        "textPrimary": "#000000",
+        "textSecondary": "#4a5565",
+        "border": "#000000",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 0,
+        "textPrimary": 95,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 63
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "inter",
+        "plexMono"
+      ],
+      "groundTruthFonts": [
+        "inter, \"inter Fallback\", system-ui",
+        "inter, \"inter Fallback\", system-ui"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 100,
+      "bodyScaleMatch": 30,
+      "overallTypographyAccuracy": 86,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "letterSpacing": "-4.8px",
+        "color": "lab(1.90334 0.278696 -5.48866)",
+        "sampleText": "Rapidly build modern websites without ever leaving your HTML",
+        "count": 3
+      },
+      "h1GroundTruth": {
+        "fontFamily": "inter, \"inter Fallback\", system-ui",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "color": "#030712",
+        "text": "Rapidly build modern websites without ever leaving your HTML"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "card",
+        "nav"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "input"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "input": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 60,
+      "overallThemeAccuracy": 84
+    },
+    "overallScore": 82
+  },
+  {
+    "target": {
+      "slug": "hono",
+      "name": "Hono Docs",
+      "url": "https://hono.dev",
+      "category": "Documentation",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 6.9,
+    "timing": {
+      "crawlingMs": 4324,
+      "themeExtractionMs": 2287,
+      "formattingMs": 3,
+      "totalMs": 6614
+    },
+    "crawler": {
+      "pagesCrawled": 3,
+      "depthDistribution": {
+        "0": 1,
+        "1": 2
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://hono.dev/",
+        "https://hono.dev/docs/",
+        "https://hono.dev/examples/"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "primary": "#f6f6f7",
+        "textPrimary": "#1f2328",
+        "textSecondary": "#454545",
+        "border": "#1f2328"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": null,
+        "textPrimary": "#1f2328",
+        "textSecondary": null,
+        "border": "#3b3b41",
+        "brandToken": "#3b3b41"
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 100,
+        "textPrimary": 100,
+        "textSecondary": 85,
+        "border": 75,
+        "overallColorAccuracy": 91
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "-apple-system",
+        "ui-monospace",
+        "Arial"
+      ],
+      "groundTruthFonts": [
+        "-apple-system, \"system-ui\", \"segoe ui\", Helvetica, Arial, sans-serif, \"apple color emoji\", \"segoe ui emoji\"",
+        "-apple-system, \"system-ui\", \"segoe ui\", Helvetica, Arial, sans-serif, \"apple color emoji\", \"segoe ui emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 40,
+      "bodyScaleMatch": 85,
+      "overallTypographyAccuracy": 73,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "-apple-system, \"system-ui\", \"segoe ui\", Helvetica, Arial, sans-serif, \"apple color emoji\", \"segoe ui emoji\"",
+        "fontSize": "32px",
+        "fontWeight": "700",
+        "lineHeight": "40px",
+        "letterSpacing": "-0.64px",
+        "color": "rgb(31, 35, 40)",
+        "sampleText": "Examples ​",
+        "count": 1
+      },
+      "h1GroundTruth": {
+        "fontFamily": "-apple-system, \"system-ui\", \"segoe ui\", Helvetica, Arial, sans-serif, \"apple color emoji\", \"segoe ui emoji\"",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "24px",
+        "color": "#1f2328",
+        "text": "HonoWeb application framework"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 91
+  },
+  {
+    "target": {
+      "slug": "supabase",
+      "name": "Supabase",
+      "url": "https://supabase.com",
+      "category": "SaaS",
+      "expectedTheme": "dark"
+    },
+    "success": true,
+    "executionTimeSec": 10.1,
+    "timing": {
+      "crawlingMs": 7084,
+      "themeExtractionMs": 2833,
+      "formattingMs": 4,
+      "totalMs": 9921
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://supabase.com/",
+        "https://supabase.com/docs",
+        "https://supabase.com/docs/guides/getting-started/quickstarts/reactjs",
+        "https://supabase.com/docs/guides/getting-started",
+        "https://supabase.com/pricing",
+        "https://supabase.com/features"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#fdfdfd",
+        "surface": "#ffffff",
+        "primary": "#0e7e4e",
+        "textPrimary": "#030303",
+        "textSecondary": "#696969",
+        "border": "#e4e4e7"
+      },
+      "groundTruth": {
+        "background": "#fdfdfd",
+        "surface": "#ffffff",
+        "primary": "#000000",
+        "textPrimary": "#030303",
+        "textSecondary": "#696969",
+        "border": "#000000",
+        "brandToken": "#000000"
+      },
+      "scores": {
+        "background": 100,
+        "surface": 100,
+        "primary": 0,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 67
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Inter",
+        "Manrope",
+        "Source Code Pro",
+        "ui-sans-serif"
+      ],
+      "groundTruthFonts": [
+        "Inter, \"Inter Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif, Inter, \"Helvetica Neue\", Helvetica, ui-sans-serif, system-ui, sans-serif",
+        "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 55,
+      "bodyScaleMatch": 70,
+      "overallTypographyAccuracy": 76,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+        "fontSize": "34px",
+        "fontWeight": "500",
+        "lineHeight": "40.8px",
+        "letterSpacing": "normal",
+        "color": "oklch(0.1 0 337.5)",
+        "sampleText": "Predictable pricing, designed to scale",
+        "count": 2
+      },
+      "h1GroundTruth": {
+        "fontFamily": "Manrope, \"Manrope Fallback\", system-ui, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+        "fontSize": "46px",
+        "fontWeight": "500",
+        "lineHeight": "46px",
+        "color": "#030303",
+        "text": "Build in a weekendScale to millions"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "card",
+        "nav"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "card",
+        "input",
+        "nav"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "card": true,
+        "input": true,
+        "nav": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 86
+  },
+  {
+    "target": {
+      "slug": "resend",
+      "name": "Resend",
+      "url": "https://resend.com",
+      "category": "SaaS",
+      "expectedTheme": "dark"
+    },
+    "success": true,
+    "executionTimeSec": 18.3,
+    "timing": {
+      "crawlingMs": 14584,
+      "themeExtractionMs": 3608,
+      "formattingMs": 2,
+      "totalMs": 18194
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://resend.com/",
+        "https://resend.com/docs/introduction",
+        "https://resend.com/docs/dashboard/emails/send-test-emails",
+        "https://resend.com/docs/webhooks/introduction",
+        "https://resend.com/docs/send-with-nextjs",
+        "https://resend.com/docs/knowledge-base/introduction"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#000000",
+        "surface": "#18181b",
+        "primary": "#d3edf6",
+        "textPrimary": "#fcfdff",
+        "textSecondary": "#a1a4a5",
+        "border": "#d4eaff"
+      },
+      "groundTruth": {
+        "background": "#000000",
+        "surface": null,
+        "textPrimary": "#f0f0f0",
+        "textSecondary": "#a1a4a5",
+        "border": "#a1a4a5",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 100,
+        "textPrimary": 75,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 77
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Inter Website",
+        "domaine",
+        "aBCFavorit",
+        "Commit Mono Website",
+        "-apple-system",
+        "Helvetica"
+      ],
+      "groundTruthFonts": [
+        "\"Inter Website\", ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "domaine, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 40,
+      "bodyScaleMatch": 100,
+      "overallTypographyAccuracy": 76,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "Inter, -apple-system, \"system-ui\", \"Segoe UI\", system-ui, sans-serif, -apple-system, \"system-ui\", \"Segoe UI\", system-ui, sans-serif",
+        "fontSize": "36px",
+        "fontWeight": "600",
+        "lineHeight": "40px",
+        "letterSpacing": "-0.9px",
+        "color": "rgb(22, 22, 22)",
+        "sampleText": "Introduction",
+        "count": 5
+      },
+      "h1GroundTruth": {
+        "fontFamily": "domaine, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "color": "#f0f0f0",
+        "text": "Email fordevelopers"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "nav",
+        "badge",
+        "input",
+        "card"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "dark",
+      "groundTruthMode": "dark",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 88
+  },
+  {
+    "target": {
+      "slug": "linear",
+      "name": "Linear",
+      "url": "https://linear.app",
+      "category": "SaaS",
+      "expectedTheme": "dark"
+    },
+    "success": true,
+    "executionTimeSec": 16.6,
+    "timing": {
+      "crawlingMs": 12716,
+      "themeExtractionMs": 3639,
+      "formattingMs": 7,
+      "totalMs": 16362
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://linear.app/",
+        "https://linear.app/docs",
+        "https://linear.app/pricing",
+        "https://linear.app/about",
+        "https://linear.app/homepage",
+        "https://linear.app/customers"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#08090a",
+        "surface": "#0f1011",
+        "primary": "#2e2e32",
+        "textPrimary": "#f7f8f8",
+        "textSecondary": "#f7f8f8",
+        "border": "#ffffff"
+      },
+      "groundTruth": {
+        "background": "#08090a",
+        "surface": "#0f1011",
+        "primary": null,
+        "textPrimary": "#f7f8f8",
+        "textSecondary": "#f7f8f8",
+        "border": "#8a8f98",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 100,
+        "primary": 0,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 67
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Inter Variable",
+        "Berkeley Mono"
+      ],
+      "groundTruthFonts": [
+        "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 100,
+      "bodyScaleMatch": 100,
+      "overallTypographyAccuracy": 100,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "fontSize": "64px",
+        "fontWeight": "510",
+        "lineHeight": "64px",
+        "letterSpacing": "-1.408px",
+        "color": "rgb(247, 248, 248)",
+        "sampleText": "The product development system for teams and agentsThe produ",
+        "count": 3
+      },
+      "h1GroundTruth": {
+        "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+        "fontSize": "64px",
+        "fontWeight": "510",
+        "lineHeight": "64px",
+        "color": "#f7f8f8",
+        "text": "The product development system for teams and agentsThe produ"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "card",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 80,
+      "detailMatches": {
+        "button": true,
+        "card": false,
+        "input": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "dark",
+      "groundTruthMode": "dark",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 88
+  },
+  {
+    "target": {
+      "slug": "gumroad",
+      "name": "Gumroad",
+      "url": "https://gumroad.com",
+      "category": "E-commerce",
+      "expectedTheme": "light"
+    },
+    "success": true,
+    "executionTimeSec": 10.9,
+    "timing": {
+      "crawlingMs": 8491,
+      "themeExtractionMs": 2289,
+      "formattingMs": 1,
+      "totalMs": 10781
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://gumroad.com/",
+        "https://gumroad.com/design?tags=textures",
+        "https://gumroad.com/pricing",
+        "https://gumroad.com/features",
+        "https://gumroad.com/about",
+        "https://gumroad.com/discover"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#f4f4f0",
+        "surface": "#f4f4f5",
+        "primary": "#ff90e8",
+        "textPrimary": "#000000",
+        "textSecondary": "#242424",
+        "border": "#d1d5dc"
+      },
+      "groundTruth": {
+        "background": "#f4f4f0",
+        "surface": null,
+        "textPrimary": "#000000",
+        "textSecondary": "#242424",
+        "border": "#000000",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 0,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 64
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "ABC Favorit",
+        "Arial"
+      ],
+      "groundTruthFonts": [
+        "\"ABC Favorit\", Avenir, Montserrat, Corbel, \"URW Gothic\", source-sans-pro, sans-serif",
+        "\"ABC Favorit\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 100,
+      "bodyScaleMatch": 60,
+      "overallTypographyAccuracy": 92,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Go from 0 to $1",
+        "count": 2
+      },
+      "h1GroundTruth": {
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "color": "#000000",
+        "text": "Go from 0 to $1"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "card",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "input",
+        "nav"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "input": true,
+        "nav": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 60,
+      "overallThemeAccuracy": 84
+    },
+    "overallScore": 87
+  },
+  {
+    "target": {
+      "slug": "woocommerce",
+      "name": "WooCommerce",
+      "url": "https://woocommerce.com",
+      "category": "E-commerce",
+      "expectedTheme": "light"
+    },
+    "success": true,
+    "executionTimeSec": 15.5,
+    "timing": {
+      "crawlingMs": 12230,
+      "themeExtractionMs": 2922,
+      "formattingMs": 125,
+      "totalMs": 15277
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 1,
+      "crawledUrls": [
+        "https://woocommerce.com/",
+        "https://woocommerce.com/documentation/woocommerce/",
+        "https://woocommerce.com/documentation/woocommerce/",
+        "https://woocommerce.com/pricing/",
+        "https://woocommerce.com/product-category/woocommerce-extensions/?categoryIds=1021&collections=product&page=1",
+        "https://woocommerce.com/product-category/themes/?categoryIds=1033&collections=theme&page=1"
+      ],
+      "crawlSuccessRate": 80
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#000000",
+        "primary": "#873eff",
+        "textPrimary": "#101517",
+        "textSecondary": "#101517",
+        "border": "#101517"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": "#000000",
+        "primary": "#101517",
+        "textPrimary": "#101517",
+        "textSecondary": "#101517",
+        "border": "#101517",
+        "brandToken": "#101517"
+      },
+      "scores": {
+        "background": 100,
+        "surface": 100,
+        "primary": 0,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 100,
+        "overallColorAccuracy": 83
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Inter var",
+        "proxima-vara",
+        "Font Awesome 7 Pro"
+      ],
+      "groundTruthFonts": [
+        "\"Inter var\", \"Inter Fallback\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif",
+        "proxima-vara, \"Proxima Fallback\", \"Inter var\", \"Inter Fallback\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 0,
+      "bodyScaleMatch": 60,
+      "overallTypographyAccuracy": 52,
+      "h1GroundTruth": {
+        "fontFamily": "proxima-vara, \"Proxima Fallback\", \"Inter var\", \"Inter Fallback\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif",
+        "fontSize": "65px",
+        "fontWeight": "600",
+        "lineHeight": "58.5px",
+        "color": "#101517",
+        "text": "The most flexible ecommerce platform"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "card",
+        "nav",
+        "badge",
+        "input"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "card",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "card": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": false,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 81
+  },
+  {
+    "target": {
+      "slug": "steam",
+      "name": "Steam Store",
+      "url": "https://store.steampowered.com",
+      "category": "E-commerce",
+      "expectedTheme": "dark"
+    },
+    "success": true,
+    "executionTimeSec": 17,
+    "timing": {
+      "crawlingMs": 12403,
+      "themeExtractionMs": 4432,
+      "formattingMs": 0,
+      "totalMs": 16835
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 1,
+      "crawledUrls": [
+        "https://store.steampowered.com/",
+        "https://store.steampowered.com/about",
+        "https://store.steampowered.com/",
+        "https://store.steampowered.com/login/?redir=explore%3Fsnr%3D1_4_4__global-responsive-menu&redir_ssl=1",
+        "https://store.steampowered.com/wishlist?snr=1_4_4__global-responsive-menu",
+        "https://store.steampowered.com/points/shop"
+      ],
+      "crawlSuccessRate": 80
+    },
+    "colors": {
+      "extracted": {
+        "background": "#0f1924",
+        "surface": "#18181b",
+        "primary": "#1a9fff",
+        "textPrimary": "#c6d4df",
+        "textSecondary": "#ffffff",
+        "border": "#ffffff"
+      },
+      "groundTruth": {
+        "background": "#0f1924",
+        "surface": null,
+        "textPrimary": "#c6d4df",
+        "textSecondary": "#ffffff",
+        "border": "#ffffff",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 100,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 100,
+        "overallColorAccuracy": 98
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Motiva Sans",
+        "Arial"
+      ],
+      "groundTruthFonts": [
+        "\"Motiva Sans\", sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 85,
+      "bodyScaleMatch": 30,
+      "overallTypographyAccuracy": 80,
+      "h1Extracted": {
+        "tag": "h3",
+        "fontFamily": "\"Motiva Sans\", sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "color": "rgb(255, 255, 255)",
+        "sampleText": "Steam Chat",
+        "count": 1
+      },
+      "h1GroundTruth": null
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "input": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "dark",
+      "groundTruthMode": "dark",
+      "hasDualThemeSupport": false,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 92
+  },
+  {
+    "target": {
+      "slug": "radix-ui",
+      "name": "Radix UI",
+      "url": "https://www.radix-ui.com",
+      "category": "Design System",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 10.4,
+    "timing": {
+      "crawlingMs": 7652,
+      "themeExtractionMs": 2457,
+      "formattingMs": 7,
+      "totalMs": 10116
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://www.radix-ui.com/",
+        "https://www.radix-ui.com/themes/docs/overview/getting-started",
+        "https://www.radix-ui.com/primitives",
+        "https://www.radix-ui.com/icons",
+        "https://www.radix-ui.com/colors",
+        "https://www.radix-ui.com/themes/playground"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "primary": "#3e63dd",
+        "textPrimary": "#1c2024",
+        "textSecondary": "#000613",
+        "border": "#1c2024"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": null,
+        "primary": null,
+        "textPrimary": "#202020",
+        "textSecondary": "#000613",
+        "border": "#000613",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 0,
+        "textPrimary": 95,
+        "textSecondary": 100,
+        "border": 75,
+        "overallColorAccuracy": 76
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "untitledSans",
+        "adobeTextPro",
+        "soehneMono",
+        "-apple-system",
+        "Arial",
+        "Menlo"
+      ],
+      "groundTruthFonts": [
+        "untitledSans, \"untitledSans Fallback\", -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 85,
+      "bodyScaleMatch": 60,
+      "overallTypographyAccuracy": 86,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "adobeTextPro, \"adobeTextPro Fallback\", serif",
+        "fontSize": "66px",
+        "fontWeight": "400",
+        "lineHeight": "60px",
+        "letterSpacing": "-3.3px",
+        "color": "rgb(28, 32, 36)",
+        "sampleText": "Core building blocks for your design system",
+        "count": 3
+      },
+      "h1GroundTruth": null
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "nav",
+        "badge",
+        "input"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 91
+  },
+  {
+    "target": {
+      "slug": "primer",
+      "name": "Primer Design System",
+      "url": "https://primer.style",
+      "category": "Design System",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 21.7,
+    "timing": {
+      "crawlingMs": 17552,
+      "themeExtractionMs": 3542,
+      "formattingMs": 7,
+      "totalMs": 21101
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://primer.style/",
+        "https://primer.style/product/",
+        "https://primer.style/product/primitives/",
+        "https://primer.style/about/",
+        "https://primer.style/brand/",
+        "https://primer.style/octicons/"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "primary": "#f6f8fa",
+        "textPrimary": "#000000",
+        "textSecondary": "#58635b",
+        "border": "#1f2328"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": null,
+        "textPrimary": "#000000",
+        "textSecondary": "#58635b",
+        "border": "#d1d9e0",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 100,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 0,
+        "overallColorAccuracy": 81
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "-apple-system",
+        "Mona Sans VF",
+        "Mona Sans",
+        "monospace"
+      ],
+      "groundTruthFonts": [
+        "-apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 40,
+      "bodyScaleMatch": 85,
+      "overallTypographyAccuracy": 73,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "fontSize": "40px",
+        "fontWeight": "460",
+        "lineHeight": "48px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Primer Brand UI",
+        "count": 2
+      },
+      "h1GroundTruth": {
+        "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "fontSize": "56px",
+        "fontWeight": "440",
+        "lineHeight": "61.6px",
+        "color": "#000000",
+        "text": "Primer"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "nav",
+        "badge",
+        "input"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 60,
+      "overallThemeAccuracy": 84
+    },
+    "overallScore": 86
+  },
+  {
+    "target": {
+      "slug": "ant-design",
+      "name": "Ant Design",
+      "url": "https://ant.design",
+      "category": "Design System",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 11.9,
+    "timing": {
+      "crawlingMs": 9375,
+      "themeExtractionMs": 2361,
+      "formattingMs": 7,
+      "totalMs": 11743
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://ant.design/",
+        "https://ant.design/docs/spec/introduce",
+        "https://ant.design/docs/react/introduce",
+        "https://ant.design/components/overview",
+        "https://ant.design/docs/blog/ai-open-source-contribution",
+        "https://ant.design/docs/resources"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#1677ff",
+        "primary": "#1677ff",
+        "textPrimary": "#000000",
+        "textSecondary": "#000000",
+        "border": "#000000"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": "#1677ff",
+        "textPrimary": "#000000",
+        "textSecondary": "#000000",
+        "border": "#000000",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 100,
+        "primary": 100,
+        "textPrimary": 100,
+        "textSecondary": 100,
+        "border": 100,
+        "overallColorAccuracy": 100
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "-apple-system",
+        "AlibabaSans",
+        "sans-serif",
+        "Avenir",
+        "ui-monospace",
+        "Lucida Console"
+      ],
+      "groundTruthFonts": [
+        "-apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 100,
+      "bodyScaleMatch": 60,
+      "overallTypographyAccuracy": 92,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "22px",
+        "letterSpacing": "normal",
+        "color": "rgba(0, 0, 0, 0.88)",
+        "sampleText": "Ant Design",
+        "count": 6
+      },
+      "h1GroundTruth": {
+        "fontFamily": "AlibabaSans, -apple-system, \"system-ui\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "lineHeight": "22px",
+        "color": "#000000",
+        "text": "Ant Design"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "card",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 80,
+      "detailMatches": {
+        "button": true,
+        "card": false,
+        "input": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": true,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 94
+  },
+  {
+    "target": {
+      "slug": "github",
+      "name": "GitHub",
+      "url": "https://github.com",
+      "category": "Multi-Page App",
+      "expectedTheme": "dual"
+    },
+    "success": true,
+    "executionTimeSec": 25.8,
+    "timing": {
+      "crawlingMs": 17782,
+      "themeExtractionMs": 7877,
+      "formattingMs": 7,
+      "totalMs": 25666
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://github.com/",
+        "https://github.com/features/copilot",
+        "https://github.com/features/actions",
+        "https://github.com/features/code-quality",
+        "https://github.com/features/codespaces",
+        "https://github.com/features"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "primary": "#08872b",
+        "textPrimary": "#000000",
+        "textSecondary": "#58635b",
+        "border": "#000000"
+      },
+      "groundTruth": {
+        "background": "#ffffff",
+        "surface": null,
+        "primary": null,
+        "textPrimary": "#1f2328",
+        "textSecondary": "#58635b",
+        "border": "#000000",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 0,
+        "textPrimary": 40,
+        "textSecondary": 100,
+        "border": 100,
+        "overallColorAccuracy": 71
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Mona Sans VF",
+        "Mona Sans",
+        "Mona Sans Mono"
+      ],
+      "groundTruthFonts": [
+        "\"Mona Sans VF\", -apple-system, \"system-ui\", \"Segoe UI\", \"Noto Sans Backtick Fix\", \"Noto Sans\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 100,
+      "bodyScaleMatch": 100,
+      "overallTypographyAccuracy": 100,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "fontSize": "56px",
+        "fontWeight": "440",
+        "lineHeight": "61.6px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Software still starts with you",
+        "count": 6
+      },
+      "h1GroundTruth": {
+        "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+        "fontSize": "56px",
+        "fontWeight": "440",
+        "lineHeight": "61.6px",
+        "color": "#000000",
+        "text": "Software still starts with you"
+      }
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "button": true,
+        "input": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 60,
+      "overallThemeAccuracy": 84
+    },
+    "overallScore": 90
+  },
+  {
+    "target": {
+      "slug": "hackernews",
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com",
+      "category": "Multi-Page App",
+      "expectedTheme": "light"
+    },
+    "success": true,
+    "executionTimeSec": 10.7,
+    "timing": {
+      "crawlingMs": 7954,
+      "themeExtractionMs": 2616,
+      "formattingMs": 0,
+      "totalMs": 10570
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://news.ycombinator.com/",
+        "https://news.ycombinator.com/news",
+        "https://news.ycombinator.com/newest",
+        "https://news.ycombinator.com/front",
+        "https://news.ycombinator.com/newcomments",
+        "https://news.ycombinator.com/ask"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#f6f6ef",
+        "surface": "#f4f4f5",
+        "primary": "#4f46e5",
+        "textPrimary": "#828282",
+        "textSecondary": "#71717a",
+        "border": "#828282"
+      },
+      "groundTruth": {
+        "background": "#f6f6ef",
+        "surface": null,
+        "primary": null,
+        "textPrimary": "#828282",
+        "textSecondary": "#828282",
+        "border": "#767676",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 85,
+        "primary": 0,
+        "textPrimary": 100,
+        "textSecondary": 75,
+        "border": 75,
+        "overallColorAccuracy": 73
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "Verdana",
+        "monospace"
+      ],
+      "groundTruthFonts": [
+        "Verdana, Geneva, sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 85,
+      "bodyScaleMatch": 85,
+      "overallTypographyAccuracy": 91,
+      "h1GroundTruth": null
+    },
+    "components": {
+      "extractedTypes": [
+        "input"
+      ],
+      "groundTruthPresent": [
+        "input"
+      ],
+      "coverageScore": 100,
+      "detailMatches": {
+        "input": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": false,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 100,
+      "overallThemeAccuracy": 100
+    },
+    "overallScore": 91
+  },
+  {
+    "target": {
+      "slug": "wikipedia",
+      "name": "Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Main_Page",
+      "category": "Multi-Page App",
+      "expectedTheme": "light"
+    },
+    "success": true,
+    "executionTimeSec": 10.2,
+    "timing": {
+      "crawlingMs": 7256,
+      "themeExtractionMs": 2229,
+      "formattingMs": 1,
+      "totalMs": 9486
+    },
+    "crawler": {
+      "pagesCrawled": 6,
+      "depthDistribution": {
+        "0": 1,
+        "1": 5
+      },
+      "duplicatesFound": 0,
+      "crawledUrls": [
+        "https://en.wikipedia.org/wiki/Main_Page",
+        "https://en.wikipedia.org/wiki/Wikipedia:Contents",
+        "https://en.wikipedia.org/wiki/Portal:Current_events",
+        "https://en.wikipedia.org/wiki/Wikipedia:About",
+        "https://en.wikipedia.org/wiki/Wikipedia:Contact_us",
+        "https://en.wikipedia.org/wiki/Help:Contents"
+      ],
+      "crawlSuccessRate": 100
+    },
+    "colors": {
+      "extracted": {
+        "background": "#f8f9fa",
+        "surface": "#f9f9f9",
+        "primary": "#eaecf0",
+        "textPrimary": "#101418",
+        "textSecondary": "#202122",
+        "border": "#202122"
+      },
+      "groundTruth": {
+        "background": "#f8f9fa",
+        "surface": "#f9f9f9",
+        "textPrimary": "#202122",
+        "textSecondary": "#3366cc",
+        "border": "#000000",
+        "brandToken": null
+      },
+      "scores": {
+        "background": 100,
+        "surface": 100,
+        "primary": 100,
+        "textPrimary": 75,
+        "textSecondary": 0,
+        "border": 40,
+        "overallColorAccuracy": 69
+      }
+    },
+    "typography": {
+      "extractedFonts": [
+        "sans-serif",
+        "Arial",
+        "Linux Libertine"
+      ],
+      "groundTruthFonts": [
+        "sans-serif"
+      ],
+      "fontMatchScore": 100,
+      "headingScaleMatch": 85,
+      "bodyScaleMatch": 100,
+      "overallTypographyAccuracy": 94,
+      "h1Extracted": {
+        "tag": "h1",
+        "fontFamily": "\"Linux Libertine\", Georgia, Times, \"Source Serif 4\", serif",
+        "fontSize": "28.8px",
+        "fontWeight": "400",
+        "lineHeight": "39.6px",
+        "letterSpacing": "normal",
+        "color": "rgb(16, 20, 24)",
+        "sampleText": "Wikipedia:Contents",
+        "count": 5
+      },
+      "h1GroundTruth": null
+    },
+    "components": {
+      "extractedTypes": [
+        "button",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "groundTruthPresent": [
+        "button",
+        "card",
+        "input",
+        "nav",
+        "badge"
+      ],
+      "coverageScore": 80,
+      "detailMatches": {
+        "button": true,
+        "card": false,
+        "input": true,
+        "nav": true,
+        "badge": true
+      }
+    },
+    "themes": {
+      "extractedMode": "light",
+      "groundTruthMode": "light",
+      "hasDualThemeSupport": true,
+      "extractedHasDualVars": false,
+      "modeAccuracy": 100,
+      "themeSeparationScore": 60,
+      "overallThemeAccuracy": 84
+    },
+    "overallScore": 84
+  }
+]

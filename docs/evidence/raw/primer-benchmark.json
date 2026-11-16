@@ -1,0 +1,125 @@
+{
+  "target": {
+    "slug": "primer",
+    "name": "Primer Design System",
+    "url": "https://primer.style",
+    "category": "Design System",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 18,
+  "timing": {
+    "crawlingMs": 14253,
+    "themeExtractionMs": 3409,
+    "formattingMs": 12,
+    "totalMs": 17674
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://primer.style/",
+      "https://primer.style/product/",
+      "https://primer.style/product/primitives/",
+      "https://primer.style/about/",
+      "https://primer.style/brand/",
+      "https://primer.style/octicons/"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#ffffff",
+      "surface": "#f4f4f5",
+      "primary": "#f6f8fa",
+      "textPrimary": "#000000",
+      "textSecondary": "#58635b",
+      "border": "#1f2328"
+    },
+    "groundTruth": {
+      "background": "#ffffff",
+      "surface": null,
+      "textPrimary": "#000000",
+      "textSecondary": "#58635b",
+      "border": "#d1d9e0",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 100,
+      "textPrimary": 100,
+      "textSecondary": 100,
+      "border": 0,
+      "overallColorAccuracy": 81
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "-apple-system",
+      "Mona Sans VF",
+      "Mona Sans",
+      "monospace"
+    ],
+    "groundTruthFonts": [
+      "-apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 40,
+    "bodyScaleMatch": 85,
+    "overallTypographyAccuracy": 73,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "fontSize": "40px",
+      "fontWeight": "460",
+      "lineHeight": "48px",
+      "letterSpacing": "normal",
+      "color": "rgb(0, 0, 0)",
+      "sampleText": "Primer Brand UI",
+      "count": 2
+    },
+    "h1GroundTruth": {
+      "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "fontSize": "56px",
+      "fontWeight": "440",
+      "lineHeight": "61.6px",
+      "color": "#000000",
+      "text": "Primer"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "nav",
+      "badge",
+      "input"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 60,
+    "overallThemeAccuracy": 84
+  },
+  "overallScore": 86
+}

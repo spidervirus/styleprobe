@@ -1,0 +1,120 @@
+{
+  "target": {
+    "slug": "radix-ui",
+    "name": "Radix UI",
+    "url": "https://www.radix-ui.com",
+    "category": "Design System",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 14.1,
+  "timing": {
+    "crawlingMs": 9134,
+    "themeExtractionMs": 4838,
+    "formattingMs": 6,
+    "totalMs": 13978
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://www.radix-ui.com/",
+      "https://www.radix-ui.com/themes/docs/overview/getting-started",
+      "https://www.radix-ui.com/primitives",
+      "https://www.radix-ui.com/icons",
+      "https://www.radix-ui.com/colors",
+      "https://www.radix-ui.com/themes/playground"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#ffffff",
+      "surface": "#f4f4f5",
+      "primary": "#3e63dd",
+      "textPrimary": "#1c2024",
+      "textSecondary": "#000613",
+      "border": "#1c2024"
+    },
+    "groundTruth": {
+      "background": "#ffffff",
+      "surface": null,
+      "primary": null,
+      "textPrimary": "#202020",
+      "textSecondary": "#000613",
+      "border": "#000613",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 0,
+      "textPrimary": 95,
+      "textSecondary": 100,
+      "border": 75,
+      "overallColorAccuracy": 76
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "untitledSans",
+      "adobeTextPro",
+      "soehneMono",
+      "-apple-system",
+      "Arial",
+      "Menlo"
+    ],
+    "groundTruthFonts": [
+      "untitledSans, \"untitledSans Fallback\", -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 85,
+    "bodyScaleMatch": 60,
+    "overallTypographyAccuracy": 86,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "adobeTextPro, \"adobeTextPro Fallback\", serif",
+      "fontSize": "66px",
+      "fontWeight": "400",
+      "lineHeight": "60px",
+      "letterSpacing": "-3.3px",
+      "color": "rgb(28, 32, 36)",
+      "sampleText": "Core building blocks for your design system",
+      "count": 3
+    },
+    "h1GroundTruth": null
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "nav",
+      "badge",
+      "input"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": true,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 91
+}

@@ -1,0 +1,124 @@
+{
+  "target": {
+    "slug": "gumroad",
+    "name": "Gumroad",
+    "url": "https://gumroad.com",
+    "category": "E-commerce",
+    "expectedTheme": "light"
+  },
+  "success": true,
+  "executionTimeSec": 10.4,
+  "timing": {
+    "crawlingMs": 8024,
+    "themeExtractionMs": 2272,
+    "formattingMs": 1,
+    "totalMs": 10297
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://gumroad.com/",
+      "https://gumroad.com/design?tags=textures",
+      "https://gumroad.com/pricing",
+      "https://gumroad.com/features",
+      "https://gumroad.com/about",
+      "https://gumroad.com/discover"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#f4f4f0",
+      "surface": "#f4f4f5",
+      "primary": "#ff90e8",
+      "textPrimary": "#000000",
+      "textSecondary": "#242424",
+      "border": "#d1d5dc"
+    },
+    "groundTruth": {
+      "background": "#f4f4f0",
+      "surface": null,
+      "textPrimary": "#000000",
+      "textSecondary": "#242424",
+      "border": "#000000",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 0,
+      "textPrimary": 100,
+      "textSecondary": 100,
+      "border": 0,
+      "overallColorAccuracy": 64
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "ABC Favorit",
+      "Arial"
+    ],
+    "groundTruthFonts": [
+      "\"ABC Favorit\", Avenir, Montserrat, Corbel, \"URW Gothic\", source-sans-pro, sans-serif",
+      "\"ABC Favorit\""
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 100,
+    "bodyScaleMatch": 60,
+    "overallTypographyAccuracy": 92,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"ABC Favorit\"",
+      "fontSize": "96px",
+      "fontWeight": "400",
+      "lineHeight": "96px",
+      "letterSpacing": "-0.4px",
+      "color": "rgb(0, 0, 0)",
+      "sampleText": "Go from 0 to $1",
+      "count": 2
+    },
+    "h1GroundTruth": {
+      "fontFamily": "\"ABC Favorit\"",
+      "fontSize": "96px",
+      "fontWeight": "400",
+      "lineHeight": "96px",
+      "color": "#000000",
+      "text": "Go from 0 to $1"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "nav",
+      "card",
+      "badge"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "input",
+      "nav"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "input": true,
+      "nav": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 60,
+    "overallThemeAccuracy": 84
+  },
+  "overallScore": 87
+}

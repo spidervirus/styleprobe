@@ -1,0 +1,127 @@
+{
+  "target": {
+    "slug": "github",
+    "name": "GitHub",
+    "url": "https://github.com",
+    "category": "Multi-Page App",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 29.1,
+  "timing": {
+    "crawlingMs": 22532,
+    "themeExtractionMs": 6391,
+    "formattingMs": 15,
+    "totalMs": 28938
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://github.com/",
+      "https://github.com/features/copilot",
+      "https://github.com/features/actions",
+      "https://github.com/features/code-quality",
+      "https://github.com/features/codespaces",
+      "https://github.com/features"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#ffffff",
+      "surface": "#f4f4f5",
+      "primary": "#08872b",
+      "textPrimary": "#000000",
+      "textSecondary": "#58635b",
+      "border": "#000000"
+    },
+    "groundTruth": {
+      "background": "#ffffff",
+      "surface": null,
+      "primary": null,
+      "textPrimary": "#1f2328",
+      "textSecondary": "#58635b",
+      "border": "#000000",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 0,
+      "textPrimary": 40,
+      "textSecondary": 100,
+      "border": 100,
+      "overallColorAccuracy": 71
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "Mona Sans VF",
+      "Mona Sans",
+      "Mona Sans Mono"
+    ],
+    "groundTruthFonts": [
+      "\"Mona Sans VF\", -apple-system, \"system-ui\", \"Segoe UI\", \"Noto Sans Backtick Fix\", \"Noto Sans\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 100,
+    "bodyScaleMatch": 100,
+    "overallTypographyAccuracy": 100,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "fontSize": "56px",
+      "fontWeight": "440",
+      "lineHeight": "61.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(0, 0, 0)",
+      "sampleText": "Software still starts with you",
+      "count": 6
+    },
+    "h1GroundTruth": {
+      "fontFamily": "\"Mona Sans\", MonaSansFallback, -apple-system, \"system-ui\", \"Segoe UI\", Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+      "fontSize": "56px",
+      "fontWeight": "440",
+      "lineHeight": "61.6px",
+      "color": "#000000",
+      "text": "Software still starts with you"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "input": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 60,
+    "overallThemeAccuracy": 84
+  },
+  "overallScore": 90
+}

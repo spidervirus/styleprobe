@@ -1,9 +1,39 @@
+export type ConfidenceLevel = 'high' | 'medium' | 'low';
+
+export interface TokenEvidence {
+  sourceType: 'css-variable' | 'computed-style' | 'stylesheet-rule' | 'dom-sampling' | 'media-query';
+  selector?: string;
+  property?: string;
+  value: string;
+  ruleText?: string;
+  occurrenceCount?: number;
+  confidence: ConfidenceLevel;
+  reasoning: string;
+}
+
+export interface DesignSystemConfidenceReport {
+  overallScore: number; // 0 to 100
+  level: ConfidenceLevel;
+  colorConfidence: ConfidenceLevel;
+  typographyConfidence: ConfidenceLevel;
+  responsiveConfidence: ConfidenceLevel;
+  componentConfidence: ConfidenceLevel;
+  evidenceSummary: {
+    cssVariablesFound: number;
+    computedRolesMatched: number;
+    mediaQueriesDetected: number;
+    componentsSampled: number;
+  };
+}
+
 export interface ColorToken {
   hex: string;
   count: number;
   role?: string;
   luminance: number;
   contrastRatioWithBg?: number;
+  confidence?: ConfidenceLevel;
+  evidence?: TokenEvidence;
 }
 
 export interface TypographyToken {
@@ -15,6 +45,9 @@ export interface TypographyToken {
   letterSpacing?: string;
   color: string;
   sampleText?: string;
+  count?: number;
+  confidence?: ConfidenceLevel;
+  evidence?: TokenEvidence;
 }
 
 export interface ComponentSample {
@@ -30,6 +63,8 @@ export interface ComponentSample {
     fontWeight: string;
   };
   sampleHtml?: string;
+  confidence?: ConfidenceLevel;
+  evidence?: TokenEvidence;
 }
 
 export interface ExtractedAsset {
@@ -91,6 +126,8 @@ export interface BreakpointToken {
   unit: string;
   query: string;
   raw: string;
+  confidence?: ConfidenceLevel;
+  evidence?: TokenEvidence;
 }
 
 export interface ViewportSnapshot {
@@ -121,6 +158,8 @@ export interface ResponsivePropertyComparison {
   isFluid?: boolean;
   fluidFormula?: string;
   breakpointRule?: string;
+  confidence?: ConfidenceLevel;
+  evidence?: TokenEvidence;
 }
 
 export interface ResponsiveRule {
@@ -167,6 +206,7 @@ export interface DesignTokens {
     border: string;
     primary: string;
     palette: ColorToken[];
+    evidence?: Record<string, TokenEvidence>;
   };
   themes?: {
     light: ThemePalette;
@@ -186,4 +226,5 @@ export interface DesignTokens {
   cssVariables: Record<string, string | CssVariableMeta>;
   breakpoints?: BreakpointToken[];
   responsive?: ResponsiveDesignSystem;
+  confidence?: DesignSystemConfidenceReport;
 }

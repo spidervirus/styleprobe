@@ -1,0 +1,121 @@
+{
+  "target": {
+    "slug": "tailwindcss",
+    "name": "Tailwind CSS Docs",
+    "url": "https://tailwindcss.com",
+    "category": "Documentation",
+    "expectedTheme": "dual"
+  },
+  "success": true,
+  "executionTimeSec": 13.2,
+  "timing": {
+    "crawlingMs": 10232,
+    "themeExtractionMs": 2448,
+    "formattingMs": 1,
+    "totalMs": 12681
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 1,
+    "crawledUrls": [
+      "https://tailwindcss.com/",
+      "https://tailwindcss.com/docs/installation/using-vite",
+      "https://tailwindcss.com/docs/installation/using-vite",
+      "https://tailwindcss.com/showcase",
+      "https://tailwindcss.com/blog",
+      "https://tailwindcss.com/partners"
+    ],
+    "crawlSuccessRate": 80
+  },
+  "colors": {
+    "extracted": {
+      "background": "#ffffff",
+      "surface": "#f4f4f5",
+      "primary": "#f6339a",
+      "textPrimary": "#030712",
+      "textSecondary": "#4a5565",
+      "border": "#e4e4e7"
+    },
+    "groundTruth": {
+      "background": "#ffffff",
+      "surface": null,
+      "textPrimary": "#000000",
+      "textSecondary": "#4a5565",
+      "border": "#000000",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 0,
+      "textPrimary": 95,
+      "textSecondary": 100,
+      "border": 0,
+      "overallColorAccuracy": 63
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "inter",
+      "plexMono"
+    ],
+    "groundTruthFonts": [
+      "inter, \"inter Fallback\", system-ui",
+      "inter, \"inter Fallback\", system-ui"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 100,
+    "bodyScaleMatch": 30,
+    "overallTypographyAccuracy": 86,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "inter, \"inter Fallback\", system-ui",
+      "fontSize": "96px",
+      "fontWeight": "400",
+      "lineHeight": "96px",
+      "letterSpacing": "-4.8px",
+      "color": "lab(1.90334 0.278696 -5.48866)",
+      "sampleText": "Rapidly build modern websites without ever leaving your HTML",
+      "count": 3
+    },
+    "h1GroundTruth": {
+      "fontFamily": "inter, \"inter Fallback\", system-ui",
+      "fontSize": "96px",
+      "fontWeight": "400",
+      "lineHeight": "96px",
+      "color": "#030712",
+      "text": "Rapidly build modern websites without ever leaving your HTML"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "card",
+      "nav"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "input"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "button": true,
+      "input": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 60,
+    "overallThemeAccuracy": 84
+  },
+  "overallScore": 82
+}

@@ -15,7 +15,7 @@ Extracts colors, typography scales, SVG brand assets, multi-page design tokens, 
 npx styleprobe https://example.com -f claude
 ```
 
-[Live Web Playground](web/) · [Quick Start](#-quick-start) · [Responsive Extraction](#-responsive-design-extraction) · [AI Agent Integration](#-ai-coding-agent-integration) · [Export Formats](#-supported-export-formats) · [CLI Options](#-cli-reference)
+[Live Web Playground](web/) · [Quick Start](#-quick-start) · [Usage Examples](docs/USAGE_EXAMPLES.md) · [Architecture](docs/ARCHITECTURE.md) · [Benchmark Report](docs/REAL_WORLD_BENCHMARK.md) · [Phase 3 Validation](docs/PHASE_3_VALIDATION.md) · [Export Formats](#-supported-export-formats)
 
 </div>
 
@@ -216,6 +216,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to interact 
 
 ```text
 styleprobe/
+├── docs/
+│   ├── ARCHITECTURE.md       # Technical architecture & pipeline specification
+│   ├── USAGE_EXAMPLES.md     # CLI, SDK, and AI agent integration examples
+│   ├── REAL_WORLD_BENCHMARK.md # 15-website reproducible benchmark scorecard
+│   ├── PHASE_3_VALIDATION.md # Real-world responsive & confidence validation
+│   └── evidence/             # Viewport screenshots and benchmark datasets
 ├── src/
 │   ├── analyzer.ts       # Color clustering, modern color spaces (OKLCH, P3) & contrast
 │   ├── cli.ts            # CLI command options & terminal UX

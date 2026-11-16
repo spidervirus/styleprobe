@@ -1,0 +1,240 @@
+{
+  "url": "https://news.ycombinator.com/",
+  "title": "https://news.ycombinator.com/",
+  "crawledPages": [
+    "https://news.ycombinator.com/",
+    "https://news.ycombinator.com/news",
+    "https://news.ycombinator.com/newest",
+    "https://news.ycombinator.com/front",
+    "https://news.ycombinator.com/newcomments",
+    "https://news.ycombinator.com/ask"
+  ],
+  "crawledDetails": [
+    {
+      "url": "https://news.ycombinator.com/",
+      "depth": 0
+    },
+    {
+      "url": "https://news.ycombinator.com/news",
+      "depth": 1
+    },
+    {
+      "url": "https://news.ycombinator.com/newest",
+      "depth": 1
+    },
+    {
+      "url": "https://news.ycombinator.com/front",
+      "depth": 1
+    },
+    {
+      "url": "https://news.ycombinator.com/newcomments",
+      "depth": 1
+    },
+    {
+      "url": "https://news.ycombinator.com/ask",
+      "depth": 1
+    }
+  ],
+  "extractedAt": "2026-11-14T11:24:49.499Z",
+  "themeMode": "light",
+  "timing": {
+    "crawlingMs": 9977,
+    "themeExtractionMs": 2636,
+    "formattingMs": 0,
+    "totalMs": 12613
+  },
+  "colors": {
+    "background": "#f6f6ef",
+    "surface": "#f4f4f5",
+    "primary": "#4f46e5",
+    "textPrimary": "#828282",
+    "textSecondary": "#71717a",
+    "border": "#828282",
+    "palette": [
+      {
+        "hex": "#f6f6ef",
+        "count": 10,
+        "luminance": 0
+      },
+      {
+        "hex": "#f4f4f5",
+        "count": 8,
+        "luminance": 0
+      },
+      {
+        "hex": "#4f46e5",
+        "count": 6,
+        "luminance": 0
+      },
+      {
+        "hex": "#828282",
+        "count": 5,
+        "luminance": 0
+      }
+    ]
+  },
+  "themes": {
+    "light": {
+      "mode": "light",
+      "background": "#f6f6ef",
+      "surface": "#f4f4f5",
+      "primary": "#4f46e5",
+      "textPrimary": "#828282",
+      "textSecondary": "#71717a",
+      "border": "#828282",
+      "palette": [
+        {
+          "hex": "#f6f6ef",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#f4f4f5",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#4f46e5",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#828282",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    },
+    "dark": {
+      "mode": "dark",
+      "background": "#f6f6ef",
+      "surface": "#18181b",
+      "primary": "#6366f1",
+      "textPrimary": "#828282",
+      "textSecondary": "#a1a1aa",
+      "border": "#828282",
+      "palette": [
+        {
+          "hex": "#f6f6ef",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#18181b",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#6366f1",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#828282",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      "Verdana",
+      "monospace"
+    ],
+    "headings": [],
+    "body": [
+      {
+        "tag": "a",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "13.3333px",
+        "fontWeight": "400",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "",
+        "count": 6
+      },
+      {
+        "tag": "a",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "13.3333px",
+        "fontWeight": "400",
+        "lineHeight": "12px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "new",
+        "count": 6
+      },
+      {
+        "tag": "a",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "13.3333px",
+        "fontWeight": "700",
+        "lineHeight": "12px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Hacker News",
+        "count": 6
+      },
+      {
+        "tag": "a",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "9.33333px",
+        "fontWeight": "400",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "color": "rgb(130, 130, 130)",
+        "sampleText": "casi",
+        "count": 5
+      },
+      {
+        "tag": "a",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "10.6667px",
+        "fontWeight": "400",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "color": "rgb(130, 130, 130)",
+        "sampleText": "thanks.fish",
+        "count": 5
+      },
+      {
+        "tag": "p",
+        "fontFamily": "Verdana, Geneva, sans-serif",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "A few examples:\n1) The teams interface takes upwards of 60 s",
+        "count": 1
+      }
+    ]
+  },
+  "spacingAndRadii": {
+    "borderRadii": [],
+    "shadows": []
+  },
+  "components": [
+    {
+      "type": "input",
+      "sampleHtml": "<input type=\"text\" name=\"q\" size=\"17\" autocorrect=\"off\" spellcheck=\"false\" autocapitalize=\"off\" autocomplete=\"off\">",
+      "styles": {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "2px inset rgb(118, 118, 118) 2px inset rgb(118, 118, 118) 2px inset rgb(118, 118, 118) 2px inset rgb(118, 118, 118)",
+        "borderColor": "rgb(118, 118, 118)",
+        "boxShadow": "none",
+        "padding": "1px 2px",
+        "fontSize": "13.3333px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "assets": [],
+  "cssVariables": {}
+}

@@ -1,0 +1,1235 @@
+{
+  "url": "https://gumroad.com/",
+  "title": "https://gumroad.com/",
+  "crawledPages": [
+    "https://gumroad.com/",
+    "https://gumroad.com/design?tags=textures",
+    "https://gumroad.com/pricing",
+    "https://gumroad.com/features",
+    "https://gumroad.com/about",
+    "https://gumroad.com/discover"
+  ],
+  "crawledDetails": [
+    {
+      "url": "https://gumroad.com/",
+      "depth": 0
+    },
+    {
+      "url": "https://gumroad.com/design?tags=textures",
+      "depth": 1
+    },
+    {
+      "url": "https://gumroad.com/pricing",
+      "depth": 1
+    },
+    {
+      "url": "https://gumroad.com/features",
+      "depth": 1
+    },
+    {
+      "url": "https://gumroad.com/about",
+      "depth": 1
+    },
+    {
+      "url": "https://gumroad.com/discover",
+      "depth": 1
+    }
+  ],
+  "extractedAt": "2026-11-14T11:21:43.217Z",
+  "themeMode": "light",
+  "timing": {
+    "crawlingMs": 8024,
+    "themeExtractionMs": 2272,
+    "formattingMs": 1,
+    "totalMs": 10297
+  },
+  "colors": {
+    "background": "#f4f4f0",
+    "surface": "#f4f4f5",
+    "primary": "#ff90e8",
+    "textPrimary": "#000000",
+    "textSecondary": "#242424",
+    "border": "#d1d5dc",
+    "palette": [
+      {
+        "hex": "#f4f4f0",
+        "count": 10,
+        "luminance": 0
+      },
+      {
+        "hex": "#f4f4f5",
+        "count": 8,
+        "luminance": 0
+      },
+      {
+        "hex": "#ff90e8",
+        "count": 6,
+        "luminance": 0
+      },
+      {
+        "hex": "#000000",
+        "count": 5,
+        "luminance": 0
+      }
+    ]
+  },
+  "themes": {
+    "light": {
+      "mode": "light",
+      "background": "#f4f4f0",
+      "surface": "#f4f4f5",
+      "primary": "#ff90e8",
+      "textPrimary": "#000000",
+      "textSecondary": "#242424",
+      "border": "#d1d5dc",
+      "palette": [
+        {
+          "hex": "#f4f4f0",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#f4f4f5",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#ff90e8",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#000000",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    },
+    "dark": {
+      "mode": "dark",
+      "background": "#242423",
+      "surface": "#18181b",
+      "primary": "#ff90e8",
+      "textPrimary": "#ffffff",
+      "textSecondary": "#ffffff",
+      "border": "#ffffff",
+      "palette": [
+        {
+          "hex": "#242423",
+          "count": 10,
+          "luminance": 0
+        },
+        {
+          "hex": "#18181b",
+          "count": 8,
+          "luminance": 0
+        },
+        {
+          "hex": "#ff90e8",
+          "count": 6,
+          "luminance": 0
+        },
+        {
+          "hex": "#ffffff",
+          "count": 5,
+          "luminance": 0
+        }
+      ]
+    }
+  },
+  "typography": {
+    "fontFamilies": [
+      "ABC Favorit",
+      "Arial"
+    ],
+    "headings": [
+      {
+        "tag": "h3",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "18px",
+        "fontWeight": "700",
+        "lineHeight": "28px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Max Ulichney",
+        "count": 2
+      },
+      {
+        "tag": "h1",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "96px",
+        "fontWeight": "400",
+        "lineHeight": "96px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Go from 0 to $1",
+        "count": 2
+      },
+      {
+        "tag": "h2",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "48px",
+        "fontWeight": "400",
+        "lineHeight": "60px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "We want you to try them, lots of them, and find out what wor",
+        "count": 2
+      },
+      {
+        "tag": "h1",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "192px",
+        "fontWeight": "500",
+        "lineHeight": "172.8px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "$2,004,370",
+        "count": 2
+      },
+      {
+        "tag": "h2",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "72px",
+        "fontWeight": "400",
+        "lineHeight": "72px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Unlimited possibilities",
+        "count": 2
+      },
+      {
+        "tag": "h4",
+        "fontFamily": "\"ABC Favorit\", Avenir, Montserrat, Corbel, \"URW Gothic\", source-sans-pro, sans-serif",
+        "fontSize": "20px",
+        "fontWeight": "400",
+        "lineHeight": "28px",
+        "letterSpacing": "normal",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "All Textures Bundle Kit V.02",
+        "count": 2
+      }
+    ],
+    "body": [
+      {
+        "tag": "a",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "18px",
+        "fontWeight": "400",
+        "lineHeight": "28px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Discover",
+        "count": 4
+      },
+      {
+        "tag": "p",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "36px",
+        "fontWeight": "400",
+        "lineHeight": "40px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "Sell anything",
+        "count": 3
+      },
+      {
+        "tag": "a",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "20px",
+        "fontWeight": "400",
+        "lineHeight": "28px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(255, 255, 255)",
+        "sampleText": "Start selling",
+        "count": 3
+      },
+      {
+        "tag": "a",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "lineHeight": "26px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "",
+        "count": 3
+      },
+      {
+        "tag": "a",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "24px",
+        "fontWeight": "500",
+        "lineHeight": "32px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "blender",
+        "count": 2
+      },
+      {
+        "tag": "p",
+        "fontFamily": "\"ABC Favorit\"",
+        "fontSize": "20px",
+        "fontWeight": "500",
+        "lineHeight": "32.5px",
+        "letterSpacing": "-0.4px",
+        "color": "rgb(0, 0, 0)",
+        "sampleText": "I launched MaxPacks as an experimental side gig; but within ",
+        "count": 2
+      }
+    ]
+  },
+  "spacingAndRadii": {
+    "borderRadii": [
+      "4px",
+      "6px",
+      "8px",
+      "3.35544e+07px"
+    ],
+    "shadows": [
+      "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    ]
+  },
+  "components": [
+    {
+      "type": "button",
+      "sampleHtml": "<button name=\"button\" type=\"submit\" class=\"relative inline-flex rounded-sm no-underline items-center justify-center border border-black transition-all duration-150 group-hover:-translate-x-2 group-hover:-translate-y-2 z-3 w-full lg:w-auto cursor-pointer h-12 px-3 text-base lg:h-12 lg:px-6 lg:text-ba",
+      "styles": {
+        "backgroundColor": "rgb(255, 144, 232)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "4px",
+        "border": "1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "0px 24px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<button type=\"submit\" aria-label=\"Search\" class=\"bg-white dark:bg-dark-gray p-2 rounded-md absolute mr-3 right-0 top-1/2 -translate-y-[50%]\" style=\"border: 1px solid #242423 !important;\">\n              <svg class=\"w-6 h-6 text-dark-gray dark:text-white/70\" fill=\"none\" stroke=\"currentColor\" viewBox=\"",
+      "styles": {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "6px",
+        "border": "1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35)",
+        "borderColor": "rgb(36, 36, 35)",
+        "boxShadow": "none",
+        "padding": "8px",
+        "fontSize": "13.3333px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "input",
+      "sampleHtml": "<input id=\"marketplace-search\" type=\"text\" name=\"query\" placeholder=\"Search marketplace ...\" class=\"!bg-gray mr-8 rounded focus:outline-hidden focus:ring-2 focus:ring-accent focus:border-accent w-full",
+      "styles": {
+        "backgroundColor": "rgb(244, 244, 240)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "4px",
+        "border": "1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35) 1px solid rgb(36, 36, 35)",
+        "borderColor": "rgb(36, 36, 35)",
+        "boxShadow": "none",
+        "padding": "0px 80px 0px 32px",
+        "fontSize": "20px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "nav",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "rgb(244, 244, 240)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<a href=\"https://gumroad.com/signup\" class=\"inline-flex items-center justify-center gap-2 cursor-pointer border border-border rounded font-[inherit] no-underline transition-transform hover:-translate-(--button-hover-offset) hover:shadow-[var(--button-hover-offset)_var(--button-hover-offset)_0_var(--",
+      "styles": {
+        "backgroundColor": "rgb(0, 0, 0)",
+        "color": "rgb(255, 255, 255)",
+        "borderRadius": "4px",
+        "border": "1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "12px 16px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(255, 255, 255) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "button",
+      "sampleHtml": "<button class=\"inline-flex items-center justify-center gap-2 cursor-pointer border border-border rounded text-current font-[inherit] no-underline transition-transform hover:-translate-(--button-hover-offset) hover:shadow-[var(--button-hover-offset)_var(--button-hover-offset)_0_var(--color-black)] ac",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "4px",
+        "border": "1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "12px 16px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "input",
+      "sampleHtml": "<input class=\"font-[inherit] py-3 px-4 text-base leading-snug text-foreground border border-border rounded block w-full placeholder:text-muted focus:outline-2 focus:outline-indicator focus:outline-off",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "4px",
+        "border": "0px none rgb(0, 0, 0) 0px none rgb(0, 0, 0) 0px none rgb(0, 0, 0) 0px none rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+        "padding": "12px 16px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "card",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "4px",
+        "border": "1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "12px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "nav",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "rgb(255, 201, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "32px 64px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "badge",
+      "sampleHtml": "<svg width=\"16\" height=\"16\" viewBox=\"3.5 5 17 17\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"top-creator-badge shrink-0\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M12.6895 14.4967C12.25",
+      "styles": {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "0px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    },
+    {
+      "type": "nav",
+      "sampleHtml": "",
+      "styles": {
+        "backgroundColor": "rgb(241, 243, 51)",
+        "color": "rgb(0, 0, 0)",
+        "borderRadius": "0px",
+        "border": "0px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0) 1px solid rgb(0, 0, 0) 0px solid rgb(0, 0, 0)",
+        "borderColor": "rgb(0, 0, 0)",
+        "boxShadow": "none",
+        "padding": "112px 32px 144px",
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "outline": "rgb(0, 0, 0) none 3px",
+        "backdropFilter": "none"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "type": "logo",
+      "name": "fill-current",
+      "svgContent": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 98 96\" xmlns=\"http://www.w3.org/2000/svg\" class=\"fill-current\">\n        <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z\" fill=\"currentColor\"></path>\n      </svg>"
+    },
+    {
+      "type": "svg",
+      "name": "asset-2",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"m6.87 14.33-1.83 6.4c-.12.4.03.84.37 1.08.34.25.8.26 1.14.02L12 18.2l5.45 3.63a.988.988 0 0 0 1.14-.02c.34-.25.49-.68.37-1.08l-1.83-6.4 4.54-4.08c.3-.27.41-.69.28-1.06-.13-.38-.47-.64-.87-.68l-5.7-.45-2.47-5.46a.998.998 0 0 0-1.82 0L8.62 8.06l-5.7.45c-.4.03-.74.3-.87.68s-.02.8.28 1.06z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "w-6_h-6_text-dark-gray_dark_te",
+      "svgContent": "<svg class=\"w-6 h-6 text-dark-gray dark:text-white/70\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "w-4_h-4",
+      "svgContent": "<svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"currentColor\">\n                <path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z\"></path>\n              </svg>"
+    },
+    {
+      "type": "svg",
+      "name": "Check",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" fill=\"none\" class=\"s-5\" aria-label=\"Check\"><path fill=\"#FF90E8\" d=\"M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0\"></path><path stroke=\"#000\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m9 12 2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "w-5_h-3",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"currentColor\" class=\"w-5 h-3\" aria-hidden=\"true\"><path d=\"m21.01,10h-2.85c.27-1.02,1.01-2.51,3.09-3.03l.76-.19v-2.78h-1c-2.78,0-4.91.77-6.31,2.29-1.89,2.05-1.7,4.68-1.69,4.71v7c0,1.1.9,2,2,2h6c1.1,0,2-.9,2-2v-6c0-1.1-.9-2-2-2Z\"></path><path d=\"m9.01,10h-2.85c.27-1.02,1.01-2.51,3.09-3.03l.76-.19v-2.78h-1c-2.78,0-4.91.77-6.31,2.29-1.89,2.05-1.7,4.68-1.69,4.71v7c0,1.1.9,2,2,2h6c1.1,0,2-.9,2-2v-6c0-1.1-.9-2-2-2Z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "asset-7",
+      "svgContent": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 1200 1227\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z\" fill=\"currentColor\"></path>\n        </svg>"
+    },
+    {
+      "type": "svg",
+      "name": "asset-8",
+      "svgContent": "<svg width=\"33\" height=\"25\" viewBox=\"0 0 33 25\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <path d=\"M32.2197 5.58439C32.2197 2.77196 30.1507 0.509525 27.5941 0.509525C24.1312 0.347654 20.5995 0.285156 16.9903 0.285156H15.8651C12.2647 0.285156 8.72672 0.347654 5.26378 0.51015C2.71346 0.51015 0.644451 2.78509 0.644451 5.59751C0.488181 7.82183 0.421923 10.0468 0.425673 12.2717C0.419422 14.4966 0.490265 16.7237 0.6382 18.9528C0.6382 21.7652 2.70721 24.0464 5.25753 24.0464C8.89549 24.2151 12.6272 24.2901 16.4214 24.2839C20.2219 24.2964 23.9432 24.2172 27.5853 24.0464C30.1419 24.0464 32.2109 21.7652 32.2109 18.9528C32.361 16.7216 32.4297 14.4966 32.4235 12.2655C32.4376 10.0405 32.3697 7.81349 32.2197 5.58439ZM13.3648 18.4028V6.12187L22.4284 12.2592L13.3648 18.4028Z\" fill=\"currentColor\"></path>\n        </svg>"
+    },
+    {
+      "type": "logo",
+      "name": "size-4",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"currentColor\" class=\"size-4\"><path d=\"m7.76 14.83-2.83 2.83 1.41 1.41 2.83-2.83 2.12-2.12.71-.71.71.71 1.41 1.42 3.54 3.53 1.41-1.41-3.53-3.54-1.42-1.41-.71-.71 5.66-5.66-1.41-1.41L12 10.59 6.34 4.93 4.93 6.34 10.59 12l-.71.71z\"></path></svg>"
+    },
+    {
+      "type": "svg",
+      "name": "size-5",
+      "svgContent": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"currentColor\" class=\"size-5\"><path d=\"m18,10c0-4.41-3.59-8-8-8S2,5.59,2,10s3.59,8,8,8c1.85,0,3.54-.63,4.9-1.69l5.1,5.1,1.41-1.41-5.1-5.1c1.05-1.36,1.69-3.05,1.69-4.9Zm-14,0c0-3.31,2.69-6,6-6s6,2.69,6,6-2.69,6-6,6-6-2.69-6-6Z\"></path></svg>"
+    }
+  ],
+  "cssVariables": {
+    "--tw-prose-body": {
+      "light": "oklch(37.3% .034 259.733)",
+      "dark": "oklch(37.3% .034 259.733)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-headings": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-lead": {
+      "light": "oklch(44.6% .03 256.802)",
+      "dark": "oklch(44.6% .03 256.802)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-links": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-bold": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-counters": {
+      "light": "oklch(55.1% .027 264.364)",
+      "dark": "oklch(55.1% .027 264.364)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-bullets": {
+      "light": "oklch(87.2% .01 258.338)",
+      "dark": "oklch(87.2% .01 258.338)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-hr": {
+      "light": "oklch(92.8% .006 264.531)",
+      "dark": "oklch(92.8% .006 264.531)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-quotes": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-quote-borders": {
+      "light": "oklch(92.8% .006 264.531)",
+      "dark": "oklch(92.8% .006 264.531)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-captions": {
+      "light": "oklch(55.1% .027 264.364)",
+      "dark": "oklch(55.1% .027 264.364)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-kbd": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-kbd-shadows": {
+      "light": "oklab(21% -.00316127 -.0338527/.1)",
+      "dark": "oklab(21% -.00316127 -.0338527/.1)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-code": {
+      "light": "oklch(21% .034 264.665)",
+      "dark": "oklch(21% .034 264.665)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-pre-code": {
+      "light": "oklch(92.8% .006 264.531)",
+      "dark": "oklch(92.8% .006 264.531)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-pre-bg": {
+      "light": "oklch(27.8% .033 256.848)",
+      "dark": "oklch(27.8% .033 256.848)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-th-borders": {
+      "light": "oklch(87.2% .01 258.338)",
+      "dark": "oklch(87.2% .01 258.338)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-td-borders": {
+      "light": "oklch(92.8% .006 264.531)",
+      "dark": "oklch(92.8% .006 264.531)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-body": {
+      "light": "oklch(87.2% .01 258.338)",
+      "dark": "oklch(87.2% .01 258.338)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-headings": {
+      "light": "#fff",
+      "dark": "#fff",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-lead": {
+      "light": "oklch(70.7% .022 261.325)",
+      "dark": "oklch(70.7% .022 261.325)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-links": {
+      "light": "#fff",
+      "dark": "#fff",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-bold": {
+      "light": "#fff",
+      "dark": "#fff",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-counters": {
+      "light": "oklch(70.7% .022 261.325)",
+      "dark": "oklch(70.7% .022 261.325)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-bullets": {
+      "light": "oklch(44.6% .03 256.802)",
+      "dark": "oklch(44.6% .03 256.802)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-hr": {
+      "light": "oklch(37.3% .034 259.733)",
+      "dark": "oklch(37.3% .034 259.733)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-quotes": {
+      "light": "oklch(96.7% .003 264.542)",
+      "dark": "oklch(96.7% .003 264.542)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-quote-borders": {
+      "light": "oklch(37.3% .034 259.733)",
+      "dark": "oklch(37.3% .034 259.733)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-captions": {
+      "light": "oklch(70.7% .022 261.325)",
+      "dark": "oklch(70.7% .022 261.325)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-kbd": {
+      "light": "#fff",
+      "dark": "#fff",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-kbd-shadows": {
+      "light": "#ffffff1a",
+      "dark": "#ffffff1a",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-code": {
+      "light": "#fff",
+      "dark": "#fff",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-pre-code": {
+      "light": "oklch(87.2% .01 258.338)",
+      "dark": "oklch(87.2% .01 258.338)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-pre-bg": {
+      "light": "#00000080",
+      "dark": "#00000080",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-th-borders": {
+      "light": "oklch(44.6% .03 256.802)",
+      "dark": "oklch(44.6% .03 256.802)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-prose-invert-td-borders": {
+      "light": "oklch(37.3% .034 259.733)",
+      "dark": "oklch(37.3% .034 259.733)",
+      "selectors": [
+        ".prose"
+      ],
+      "usedIn": []
+    },
+    "--tw-border-spacing-x": {
+      "light": "calc(var(--spacing)*0)",
+      "dark": "calc(var(--spacing)*0)",
+      "selectors": [
+        ".border-spacing-0"
+      ],
+      "usedIn": []
+    },
+    "--tw-border-spacing-y": {
+      "light": "calc(var(--spacing)*0)",
+      "dark": "calc(var(--spacing)*0)",
+      "selectors": [
+        ".border-spacing-0"
+      ],
+      "usedIn": []
+    },
+    "--tw-translate-x": {
+      "light": "calc(var(--spacing)*-1)",
+      "dark": "calc(var(--spacing)*-1)",
+      "selectors": [
+        ".-translate-1",
+        ".-translate-1\\/2",
+        ".translate-\\[-50\\%\\]",
+        ".-translate-x-1\\/2",
+        ".-translate-x-1\\/2\\!",
+        ".-translate-x-2",
+        ".-translate-x-3",
+        ".-translate-x-\\[29\\.289\\%\\]",
+        ".translate-x-1\\/2",
+        ".translate-x-2",
+        ".translate-x-3",
+        ".translate-x-6",
+        ".translate-x-full",
+        ".group-hover\\:-translate-x-2:is(:where(.group):hover *)",
+        ".group-hover\\:-translate-x-px:is(:where(.group):hover *)",
+        ".group-hover\\:translate-x-2:is(:where(.group):hover *)",
+        ".group-hover\\/card\\:-translate-x-1:is(:where(.group\\/card):hover *)",
+        ".hover\\:-translate-\\(--button-hover-offset\\):hover",
+        ".hover\\:-translate-1:hover",
+        ".hover\\:translate-0:hover",
+        ".hover\\:-translate-x-1:hover",
+        ".hover\\:-translate-x-\\[2px\\]:hover",
+        ".not-active\\:hover\\:-translate-1:not(:active):hover",
+        ".not-active\\:hover\\:translate-0:not(:active):hover",
+        ".active\\:translate-0:active",
+        ".disabled\\:hover\\:translate-0:disabled:hover",
+        ".data-\\[state\\=open\\]\\:translate-0\\![data-state=\"open\"]"
+      ],
+      "usedIn": []
+    },
+    "--tw-translate-y": {
+      "light": "calc(var(--spacing)*-1)",
+      "dark": "calc(var(--spacing)*-1)",
+      "selectors": [
+        ".-translate-1",
+        ".-translate-1\\/2",
+        ".translate-\\[-50\\%\\]",
+        ".-translate-y-1\\.5",
+        ".-translate-y-1\\/2",
+        ".-translate-y-1\\/2\\!",
+        ".-translate-y-2",
+        ".-translate-y-\\[5px\\]",
+        ".-translate-y-\\[50\\%\\]",
+        ".-translate-y-full",
+        ".-translate-y-px",
+        ".translate-y-\\(--toast-offset\\)",
+        ".translate-y-0",
+        ".translate-y-1\\.5",
+        ".translate-y-2",
+        ".translate-y-6",
+        ".translate-y-\\[5px\\]",
+        ".translate-y-px",
+        ".group-hover\\:-translate-y-2:is(:where(.group):hover *)",
+        ".group-hover\\:-translate-y-px:is(:where(.group):hover *)",
+        ".group-hover\\:translate-y-2:is(:where(.group):hover *)",
+        ".group-hover\\/card\\:-translate-y-1:is(:where(.group\\/card):hover *)",
+        ".after\\:-translate-y-1\\/2::after",
+        ".hover\\:-translate-\\(--button-hover-offset\\):hover",
+        ".hover\\:-translate-1:hover",
+        ".hover\\:translate-0:hover",
+        ".hover\\:-translate-y-1:hover",
+        ".hover\\:-translate-y-\\[2px\\]:hover",
+        ".not-active\\:hover\\:-translate-1:not(:active):hover",
+        ".not-active\\:hover\\:translate-0:not(:active):hover",
+        ".active\\:translate-0:active",
+        ".disabled\\:hover\\:translate-0:disabled:hover",
+        ".data-\\[state\\=open\\]\\:translate-0\\![data-state=\"open\"]"
+      ],
+      "usedIn": []
+    },
+    "--tw-scroll-snap-strictness": {
+      "light": "mandatory",
+      "dark": "mandatory",
+      "selectors": [
+        ".snap-mandatory"
+      ],
+      "usedIn": []
+    },
+    "--tw-space-y-reverse": {
+      "light": "0",
+      "dark": "0",
+      "selectors": [
+        ":where(.space-y-1 > :not(:last-child))",
+        ":where(.space-y-2 > :not(:last-child))",
+        ":where(.space-y-3 > :not(:last-child))",
+        ":where(.space-y-4 > :not(:last-child))",
+        ":where(.space-y-5 > :not(:last-child))",
+        ":where(.space-y-6 > :not(:last-child))",
+        ":where(.space-y-8 > :not(:last-child))",
+        ":where(.space-y-12 > :not(:last-child))",
+        ":where(.space-y-16 > :not(:last-child))"
+      ],
+      "usedIn": []
+    },
+    "--tw-space-x-reverse": {
+      "light": "0",
+      "dark": "0",
+      "selectors": [
+        ":where(.space-x-3 > :not(:last-child))",
+        ":where(.space-x-4 > :not(:last-child))"
+      ],
+      "usedIn": []
+    },
+    "--tw-divide-x-reverse": {
+      "light": "0",
+      "dark": "0",
+      "selectors": [
+        ":where(.divide-x > :not(:last-child))"
+      ],
+      "usedIn": []
+    },
+    "--tw-divide-y-reverse": {
+      "light": "0",
+      "dark": "0",
+      "selectors": [
+        ":where(.divide-y > :not(:last-child))"
+      ],
+      "usedIn": []
+    },
+    "--tw-border-style": {
+      "light": "solid",
+      "dark": "solid",
+      "selectors": [
+        ":where(.divide-solid > :not(:last-child))",
+        ".border-dashed",
+        ".border-none",
+        ".border-none\\!",
+        ".border-solid",
+        ".\\[\\&\\>\\*\\]\\:border-none > *"
+      ],
+      "usedIn": []
+    },
+    "--tw-gradient-position": {
+      "light": "to top in oklab",
+      "dark": "to top in oklab",
+      "selectors": [
+        ".bg-gradient-to-t"
+      ],
+      "usedIn": []
+    },
+    "--tw-gradient-from": {
+      "light": "var(--color-black)",
+      "dark": "var(--color-black)",
+      "selectors": [
+        ".from-black",
+        ".from-red-500"
+      ],
+      "usedIn": []
+    },
+    "--tw-gradient-stops": {
+      "light": "var(--tw-gradient-via-stops,var(--tw-gradient-position),var(--tw-gradient-from)var(--tw-gradient-from-position),var(--tw-gradient-to)var(--tw-gradient-to-position))",
+      "dark": "var(--tw-gradient-via-stops,var(--tw-gradient-position),var(--tw-gradient-from)var(--tw-gradient-from-position),var(--tw-gradient-to)var(--tw-gradient-to-position))",
+      "selectors": [
+        ".from-black",
+        ".from-red-500"
+      ],
+      "usedIn": []
+    },
+    "--tw-leading": {
+      "light": "calc(var(--spacing)*6)",
+      "dark": "calc(var(--spacing)*6)",
+      "selectors": [
+        ".leading-6",
+        ".leading-7",
+        ".leading-\\[0\\.9\\]",
+        ".leading-\\[0\\.95\\]",
+        ".leading-\\[1\\.2\\]",
+        ".leading-\\[1\\.3\\]",
+        ".leading-\\[1\\.05\\]",
+        ".leading-\\[inherit\\]",
+        ".leading-none",
+        ".leading-relaxed",
+        ".leading-snug",
+        ".leading-tight",
+        ".\\[\\&\\>li\\]\\:leading-8 > li"
+      ],
+      "usedIn": []
+    },
+    "--tw-font-weight": {
+      "light": "var(--font-weight-bold)",
+      "dark": "var(--font-weight-bold)",
+      "selectors": [
+        ".font-bold",
+        ".font-medium",
+        ".font-normal",
+        ".font-semibold",
+        ".\\[\\&_a\\]\\:font-normal a"
+      ],
+      "usedIn": []
+    },
+    "--tw-tracking": {
+      "light": ".5em",
+      "dark": ".5em",
+      "selectors": [
+        ".tracking-\\[0\\.5em\\]",
+        ".tracking-tight",
+        ".tracking-wide",
+        ".tracking-wider",
+        ".tracking-widest"
+      ],
+      "usedIn": []
+    },
+    "--tw-numeric-spacing": {
+      "light": "tabular-nums",
+      "dark": "tabular-nums",
+      "selectors": [
+        ".tabular-nums"
+      ],
+      "usedIn": []
+    },
+    "--tw-shadow": {
+      "light": ".25rem .25rem 0 var(--tw-shadow-color,currentColor)",
+      "dark": ".25rem .25rem 0 var(--tw-shadow-color,currentColor)",
+      "selectors": [
+        ".shadow",
+        ".shadow-\\[0\\.25rem_0\\.25rem_0_var\\(--color-black\\)\\]",
+        ".shadow-\\[4px_4px_0_\\#000\\]",
+        ".shadow-\\[4px_4px_0_0_\\#000\\]",
+        ".shadow-lg",
+        ".shadow-none",
+        ".shadow-none\\!",
+        ".group-hover\\:shadow-\\[2px_2px_0_0_\\#000\\]:is(:where(.group):hover *)",
+        ".group-hover\\/card\\:shadow-\\[3px_3px_\\#000\\]:is(:where(.group\\/card):hover *)",
+        ".hover\\:shadow:hover",
+        ".hover\\:shadow\\!:hover",
+        ".hover\\:shadow-\\[2px_2px_0_0_rgba\\(0\\,0\\,0\\,1\\)\\]:hover",
+        ".hover\\:shadow-\\[3px_3px_\\#000\\]:hover",
+        ".hover\\:shadow-\\[4px_4px_\\#000\\]:hover",
+        ".hover\\:shadow-\\[4px_4px_0_0_\\#000000\\]:hover",
+        ".hover\\:shadow-\\[4px_4px_black\\]:hover",
+        ".hover\\:shadow-\\[var\\(--button-hover-offset\\)_var\\(--button-hover-offset\\)_0_var\\(--color-black\\)\\]:hover",
+        ".hover\\:shadow-none:hover",
+        ".not-active\\:hover\\:shadow:not(:active):hover",
+        ".not-active\\:hover\\:shadow-none:not(:active):hover",
+        ".active\\:shadow-none:active",
+        ".disabled\\:hover\\:shadow-none:disabled:hover",
+        ".aria-\\[current\\=true\\]\\:hover\\:shadow\\![aria-current=\"true\"]:hover",
+        ".data-\\[state\\=open\\]\\:shadow-none\\![data-state=\"open\"]",
+        ".\\[\\&\\.sortable-chosen\\]\\:shadow.sortable-chosen"
+      ],
+      "usedIn": []
+    },
+    "--tw-ring-shadow": {
+      "light": "var(--tw-ring-inset,)0 0 0 calc(1px + var(--tw-ring-offset-width))var(--tw-ring-color,currentcolor)",
+      "dark": "var(--tw-ring-inset,)0 0 0 calc(1px + var(--tw-ring-offset-width))var(--tw-ring-color,currentcolor)",
+      "selectors": [
+        ".ring, .ring-1",
+        ".focus-within\\:ring-1:focus-within",
+        ".focus\\:ring-1:focus",
+        ".focus\\:ring-2:focus"
+      ],
+      "usedIn": []
+    },
+    "--tw-ring-color": {
+      "light": "var(--color-accent)",
+      "dark": "var(--color-accent)",
+      "selectors": [
+        ".ring-accent",
+        ".ring-indicator",
+        ".focus-within\\:ring-accent:focus-within",
+        ".focus\\:ring-accent:focus"
+      ],
+      "usedIn": []
+    },
+    "--tw-outline-style": {
+      "light": "none",
+      "dark": "none",
+      "selectors": [
+        ".outline-hidden",
+        ".outline-none",
+        ".outline-solid",
+        ".focus-within\\:outline-none:focus-within",
+        ".focus-within\\:outline-solid:focus-within",
+        ".focus\\:outline-hidden:focus",
+        ".focus\\:outline-none:focus",
+        ".focus-visible\\:outline-none:focus-visible",
+        ".\\[\\&\\.sortable-ghost\\]\\:outline-dashed.sortable-ghost"
+      ],
+      "usedIn": []
+    },
+    "--tw-blur": {
+      "light": "blur(8px)",
+      "dark": "blur(8px)",
+      "selectors": [
+        ".blur"
+      ],
+      "usedIn": []
+    },
+    "--tw-drop-shadow-size": {
+      "light": "drop-shadow(0 1px 2px var(--tw-drop-shadow-color,#0000001a))drop-shadow(0 1px 1px var(--tw-drop-shadow-color,#0000000f))",
+      "dark": "drop-shadow(0 1px 2px var(--tw-drop-shadow-color,#0000001a))drop-shadow(0 1px 1px var(--tw-drop-shadow-color,#0000000f))",
+      "selectors": [
+        ".drop-shadow"
+      ],
+      "usedIn": []
+    },
+    "--tw-drop-shadow": {
+      "light": "drop-shadow(0 1px 2px #0000001a)drop-shadow(0 1px 1px #0000000f)",
+      "dark": "drop-shadow(0 1px 2px #0000001a)drop-shadow(0 1px 1px #0000000f)",
+      "selectors": [
+        ".drop-shadow"
+      ],
+      "usedIn": []
+    },
+    "--tw-sepia": {
+      "light": "sepia(100%)",
+      "dark": "sepia(100%)",
+      "selectors": [
+        ".sepia"
+      ],
+      "usedIn": []
+    },
+    "--tw-duration": {
+      "light": "30ms",
+      "dark": "30ms",
+      "selectors": [
+        ".duration-30",
+        ".duration-100",
+        ".duration-150",
+        ".duration-200",
+        ".duration-300",
+        ".after\\:duration-150::after"
+      ],
+      "usedIn": []
+    },
+    "--tw-ease": {
+      "light": "var(--ease-in-out)",
+      "dark": "var(--ease-in-out)",
+      "selectors": [
+        ".ease-in-out",
+        ".ease-out"
+      ],
+      "usedIn": []
+    },
+    "--color": {
+      "light": "var(--contrast-filled)",
+      "dark": "var(--contrast-filled)",
+      "selectors": [
+        ".\\[--color\\:var\\(--contrast-filled\\)\\]",
+        ".rich-text .embed"
+      ],
+      "usedIn": []
+    },
+    "--lift-halo-offset": {
+      "light": "2px",
+      "dark": "2px",
+      "selectors": [
+        ".\\[--lift-halo-offset\\:2px\\]",
+        ".\\[--lift-halo-offset\\:var\\(--button-hover-offset\\)\\]",
+        ".not-active\\:hover\\:\\[--lift-halo-offset\\:var\\(--spacing\\)\\]:not(:active):hover"
+      ],
+      "usedIn": []
+    },
+    "--toast-offset": {
+      "light": "calc(-100% - var(--spacer-4))",
+      "dark": "calc(-100% - var(--spacer-4))",
+      "selectors": [
+        ".\\[--toast-offset\\:calc\\(-100\\%-var\\(--spacer-4\\)\\)\\]",
+        ".\\[--toast-offset\\:calc\\(100\\%\\+var\\(--spacer-4\\)\\+env\\(safe-area-inset-bottom\\)\\)\\]"
+      ],
+      "usedIn": []
+    },
+    "--tw-content": {
+      "light": "\"\"",
+      "dark": "\"\"",
+      "selectors": [
+        ".before\\:content-\\[\\'\\'\\]::before",
+        ".after\\:content-\\[\\\"\\\"\\]::after, .after\\:content-\\[\\'\\'\\]::after",
+        ".after\\:content-\\[\\'\\'\\]\\!::after",
+        ".\\[\\&\\>dt\\]\\:after\\:content-\\[\\'\\:\\'\\] > dt::after",
+        ".\\[\\&\\>li\\:not\\(\\:last-child\\)\\]\\:after\\:content-\\[\\'_·_\\'\\] > li:not(:last-child)::after"
+      ],
+      "usedIn": []
+    },
+    "--parent-color": {
+      "light": "var(--color)",
+      "dark": "var(--color)",
+      "selectors": [
+        "*",
+        ".rich-text .embed"
+      ],
+      "usedIn": []
+    },
+    "--active-bg": {
+      "light": "rgb(var(--color)/.1)",
+      "dark": "rgb(var(--color)/.1)",
+      "selectors": [
+        ".rich-text .embed"
+      ],
+      "usedIn": []
+    }
+  }
+}

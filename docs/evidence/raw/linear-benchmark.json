@@ -1,0 +1,128 @@
+{
+  "target": {
+    "slug": "linear",
+    "name": "Linear",
+    "url": "https://linear.app",
+    "category": "SaaS",
+    "expectedTheme": "dark"
+  },
+  "success": true,
+  "executionTimeSec": 13.9,
+  "timing": {
+    "crawlingMs": 10578,
+    "themeExtractionMs": 3133,
+    "formattingMs": 4,
+    "totalMs": 13715
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://linear.app/",
+      "https://linear.app/docs",
+      "https://linear.app/pricing",
+      "https://linear.app/about",
+      "https://linear.app/homepage",
+      "https://linear.app/customers"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#08090a",
+      "surface": "#0f1011",
+      "primary": "#2e2e32",
+      "textPrimary": "#f7f8f8",
+      "textSecondary": "#f7f8f8",
+      "border": "#ffffff"
+    },
+    "groundTruth": {
+      "background": "#08090a",
+      "surface": "#0f1011",
+      "primary": null,
+      "textPrimary": "#f7f8f8",
+      "textSecondary": "#f7f8f8",
+      "border": "#8a8f98",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 100,
+      "primary": 0,
+      "textPrimary": 100,
+      "textSecondary": 100,
+      "border": 0,
+      "overallColorAccuracy": 67
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "Inter Variable",
+      "Berkeley Mono"
+    ],
+    "groundTruthFonts": [
+      "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+      "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 100,
+    "bodyScaleMatch": 100,
+    "overallTypographyAccuracy": 100,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+      "fontSize": "64px",
+      "fontWeight": "510",
+      "lineHeight": "64px",
+      "letterSpacing": "-1.408px",
+      "color": "rgb(247, 248, 248)",
+      "sampleText": "The product development system for teams and agentsThe produ",
+      "count": 3
+    },
+    "h1GroundTruth": {
+      "fontFamily": "\"Inter Variable\", \"SF Pro Display\", -apple-system, \"system-ui\", \"Segoe UI\", Roboto, Oxygen, Ubuntu, Cantarell, \"Open Sans\", \"Helvetica Neue\", sans-serif",
+      "fontSize": "64px",
+      "fontWeight": "510",
+      "lineHeight": "64px",
+      "color": "#f7f8f8",
+      "text": "The product development system for teams and agentsThe produ"
+    }
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "card",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 80,
+    "detailMatches": {
+      "button": true,
+      "card": false,
+      "input": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "dark",
+    "groundTruthMode": "dark",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": true,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 88
+}

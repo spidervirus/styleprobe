@@ -1,0 +1,120 @@
+{
+  "target": {
+    "slug": "wikipedia",
+    "name": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Main_Page",
+    "category": "Multi-Page App",
+    "expectedTheme": "light"
+  },
+  "success": true,
+  "executionTimeSec": 10.7,
+  "timing": {
+    "crawlingMs": 8348,
+    "themeExtractionMs": 2213,
+    "formattingMs": 1,
+    "totalMs": 10562
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://en.wikipedia.org/wiki/Main_Page",
+      "https://en.wikipedia.org/wiki/Wikipedia:Contents",
+      "https://en.wikipedia.org/wiki/Portal:Current_events",
+      "https://en.wikipedia.org/wiki/Wikipedia:About",
+      "https://en.wikipedia.org/wiki/Wikipedia:Contact_us",
+      "https://en.wikipedia.org/wiki/Help:Contents"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#f8f9fa",
+      "surface": "#f9f9f9",
+      "primary": "#eaecf0",
+      "textPrimary": "#101418",
+      "textSecondary": "#202122",
+      "border": "#202122"
+    },
+    "groundTruth": {
+      "background": "#f8f9fa",
+      "surface": "#f9f9f9",
+      "textPrimary": "#202122",
+      "textSecondary": "#3366cc",
+      "border": "#000000",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 100,
+      "primary": 100,
+      "textPrimary": 75,
+      "textSecondary": 0,
+      "border": 40,
+      "overallColorAccuracy": 69
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "sans-serif",
+      "Arial",
+      "Linux Libertine"
+    ],
+    "groundTruthFonts": [
+      "sans-serif"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 85,
+    "bodyScaleMatch": 100,
+    "overallTypographyAccuracy": 94,
+    "h1Extracted": {
+      "tag": "h1",
+      "fontFamily": "\"Linux Libertine\", Georgia, Times, \"Source Serif 4\", serif",
+      "fontSize": "28.8px",
+      "fontWeight": "400",
+      "lineHeight": "39.6px",
+      "letterSpacing": "normal",
+      "color": "rgb(16, 20, 24)",
+      "sampleText": "Wikipedia:Contents",
+      "count": 5
+    },
+    "h1GroundTruth": null
+  },
+  "components": {
+    "extractedTypes": [
+      "button",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "groundTruthPresent": [
+      "button",
+      "card",
+      "input",
+      "nav",
+      "badge"
+    ],
+    "coverageScore": 80,
+    "detailMatches": {
+      "button": true,
+      "card": false,
+      "input": true,
+      "nav": true,
+      "badge": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": true,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 60,
+    "overallThemeAccuracy": 84
+  },
+  "overallScore": 84
+}

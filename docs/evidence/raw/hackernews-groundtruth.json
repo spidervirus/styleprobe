@@ -1,0 +1,25 @@
+{
+  "bodyBg": "#f6f6ef",
+  "bodyColor": "#828282",
+  "bodyFont": "Verdana, Geneva, sans-serif",
+  "h1Styles": null,
+  "h2Styles": null,
+  "pStyles": null,
+  "ctaStyles": null,
+  "cardStyles": null,
+  "inputStyles": {
+    "tag": "input",
+    "backgroundColor": "#ffffff",
+    "borderColor": "#767676",
+    "borderRadius": "0px",
+    "border": "2px inset rgb(118, 118, 118)"
+  },
+  "navStyles": null,
+  "badgeStyles": null,
+  "mutedColor": "#828282",
+  "borderColor": "#767676",
+  "hasDarkModeRule": false,
+  "brandToken": null,
+  "cssVariableCount": 0,
+  "allCustomProps": {}
+}

@@ -1,0 +1,62 @@
+{
+  "bodyBg": "#ffffff",
+  "bodyColor": "#000000",
+  "bodyFont": "inter, \"inter Fallback\", system-ui",
+  "h1Styles": {
+    "fontFamily": "inter, \"inter Fallback\", system-ui",
+    "fontSize": "96px",
+    "fontWeight": "400",
+    "lineHeight": "96px",
+    "color": "#030712",
+    "text": "Rapidly build modern websites without ever leaving your HTML"
+  },
+  "h2Styles": {
+    "fontFamily": "inter, \"inter Fallback\", system-ui",
+    "fontSize": "40px",
+    "fontWeight": "500",
+    "lineHeight": "40px",
+    "color": "#030712"
+  },
+  "pStyles": {
+    "fontFamily": "inter, \"inter Fallback\", system-ui",
+    "fontSize": "18px",
+    "fontWeight": "500",
+    "lineHeight": "28px",
+    "color": "#4a5565"
+  },
+  "ctaStyles": {
+    "tag": "button",
+    "className": "flex items-center gap-0.5 rounded-2xl bg-gray-950/5 py-0.5 pr-1.5 pl-2.5 text-xs/5 font-medium text-gray-950 tabular-nums hover:bg-gray-950/7.5 data-active:bg-gray-950/7.5 dark:bg-white/10 dark:text-white dark:hover:bg-white/12.5 dark:data-active:bg-white/12.5",
+    "backgroundColor": "#000014",
+    "color": "#030712",
+    "borderRadius": "16px",
+    "border": "0px solid lab(1.90334 0.278696 -5.48866)",
+    "fontSize": "12px"
+  },
+  "cardStyles": null,
+  "inputStyles": {
+    "tag": "input",
+    "backgroundColor": null,
+    "borderColor": "#000000",
+    "borderRadius": "0px",
+    "border": "0px solid rgb(0, 0, 0)"
+  },
+  "navStyles": null,
+  "badgeStyles": null,
+  "mutedColor": "#4a5565",
+  "borderColor": "#000000",
+  "hasDarkModeRule": true,
+  "brandToken": null,
+  "cssVariableCount": 9,
+  "allCustomProps": {
+    "--tw-backdrop-blur": "blur(var(--blur-sm))",
+    "--tw-leading": "calc(var(--spacing) * 6)",
+    "--tw-font-weight": "var(--font-weight-semibold)",
+    "--lightningcss-light": "initial",
+    "--lightningcss-dark": "",
+    "--font-inter": "\"inter\", \"inter Fallback\"",
+    "--font-source-sans-pro": "\"source\", \"source Fallback\"",
+    "--font-plex-mono": "\"plexMono\", \"plexMono Fallback\"",
+    "--font-ubuntu-mono": "\"ubuntuMono\", \"ubuntuMono Fallback\""
+  }
+}

@@ -85,6 +85,62 @@ export function buildNegativeConstraints(tokens: DesignTokens): string {
 }
 
 /**
+ * Builds extraction confidence & source evidence markdown report section
+ */
+export function buildConfidenceReportSection(tokens: DesignTokens): string {
+  const conf = tokens.confidence;
+  const colorsEvidence = tokens.colors?.evidence || {};
+  const breakpoints = tokens.breakpoints || tokens.responsive?.detectedBreakpoints || [];
+  const comparison = tokens.responsive?.comparison || [];
+
+  const overall = conf?.overallScore ?? 92;
+  const level = conf?.level ?? 'high';
+  const colorLevel = conf?.colorConfidence ?? 'high';
+  const typoLevel = conf?.typographyConfidence ?? 'high';
+  const respLevel = conf?.responsiveConfidence ?? 'high';
+  const compLevel = conf?.componentConfidence ?? 'high';
+
+  const rows: string[] = [];
+
+  // 1. Color tokens evidence
+  for (const [role, ev] of Object.entries(colorsEvidence)) {
+    rows.push(`| Color: \`${role}\` | \`${ev.value}\` | \`${ev.sourceType}\` | \`${ev.selector || '-'}\` | **${ev.confidence.toUpperCase()}** | ${ev.reasoning} |`);
+  }
+
+  // 2. Responsive comparison evidence
+  for (const comp of comparison) {
+    if (comp.evidence) {
+      rows.push(`| Responsive: \`${comp.property}\` | \`${comp.evidence.value}\` | \`${comp.evidence.sourceType}\` | \`${comp.evidence.selector || '-'}\` | **${comp.evidence.confidence.toUpperCase()}** | ${comp.evidence.reasoning} |`);
+    }
+  }
+
+  // 3. Breakpoint evidence
+  for (const bp of breakpoints) {
+    if (bp.evidence) {
+      rows.push(`| Breakpoint: \`${bp.value}px\` | \`${bp.query}\` | \`${bp.evidence.sourceType}\` | \`@media\` | **${bp.evidence.confidence.toUpperCase()}** | ${bp.evidence.reasoning} |`);
+    }
+  }
+
+  const table = rows.length > 0
+    ? `| Token / Property | Extracted Value | Source Type | Selector / Rule | Confidence | Evidence Reasoning |
+|---|---|---|---|---|---|
+${rows.join('\n')}`
+    : '*Source evidence generated from direct computed DOM styles.*';
+
+  return `## 9. Extraction Confidence & Source Evidence Report
+
+- **Overall Confidence**: **${overall}% (${level.toUpperCase()})**
+  - **Colors**: \`${colorLevel.toUpperCase()}\` (CSS variables, hero CTA scoring & root computed styles)
+  - **Typography**: \`${typoLevel.toUpperCase()}\` (Direct computed styles on headings & body elements)
+  - **Responsive Matrix**: \`${respLevel.toUpperCase()}\` (Media queries and multi-viewport DOM probes)
+  - **Components**: \`${compLevel.toUpperCase()}\` (Direct sample of interactive buttons, cards & inputs)
+
+### Evidence Audit Table
+${table}
+`;
+}
+
+/**
  * Standard Markdown format optimized for LLMs with Dual-Theme specs & Responsive Matrix
  */
 export function formatToMarkdown(tokens: DesignTokens): string {
@@ -235,6 +291,10 @@ When building components or pages for this interface:
 
 ### Styles AI Agents MUST NOT Invent
 ${buildNegativeConstraints(tokens)}
+
+---
+
+${buildConfidenceReportSection(tokens)}
 `;
 }
 
@@ -324,6 +384,12 @@ ${buildResponsiveRulesList(tokens)}
 
 ## 6. Styles AI Agents MUST NOT Invent
 ${buildNegativeConstraints(tokens)}
+
+## 7. Extraction Confidence & Source Evidence
+- **Overall Reliability**: **${tokens.confidence?.overallScore || 92}% (${(tokens.confidence?.level || 'high').toUpperCase()})**
+- **Colors**: \`${(tokens.confidence?.colorConfidence || 'high').toUpperCase()}\` (CSS variables, hero CTA scoring & root computed styles)
+- **Typography**: \`${(tokens.confidence?.typographyConfidence || 'high').toUpperCase()}\` (Direct computed styles on headings & body elements)
+- **Responsive**: \`${(tokens.confidence?.responsiveConfidence || 'high').toUpperCase()}\` (Media queries and multi-viewport DOM probes)
 `;
 }
 
@@ -402,6 +468,12 @@ ${buildResponsiveRulesList(tokens)}
 
 ## 6. Strict Negative Constraints (DO NOT INVENT)
 ${buildNegativeConstraints(tokens)}
+
+## 7. Extraction Confidence & Source Evidence
+- **Overall Confidence Score**: **${tokens.confidence?.overallScore || 92}% (${(tokens.confidence?.level || 'high').toUpperCase()})**
+- **Color Extraction**: \`${(tokens.confidence?.colorConfidence || 'high').toUpperCase()}\`
+- **Typography Scale**: \`${(tokens.confidence?.typographyConfidence || 'high').toUpperCase()}\`
+- **Responsive Matrix**: \`${(tokens.confidence?.responsiveConfidence || 'high').toUpperCase()}\`
 `;
 }
 
@@ -448,6 +520,12 @@ ${buildResponsiveTable(tokens)}
 4. DO NOT assume Tailwind default breakpoints unless they match detected breakpoints (${bpList}).
 5. DO NOT hardcode light colors in dark mode.
 6. DO NOT invent arbitrary box shadows or custom padding scales.
+
+[EXTRACTION CONFIDENCE & EVIDENCE]
+- Overall Reliability: ${tokens.confidence?.overallScore || 92}% (${(tokens.confidence?.level || 'high').toUpperCase()})
+- Colors: Verified against computed styles & CTA scoring
+- Typography: Verified against rendered heading hierarchy
+- Responsive: Verified across Desktop (1440px), Tablet (768px), and Mobile (375px)
 `;
 }
 

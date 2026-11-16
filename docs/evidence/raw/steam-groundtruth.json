@@ -1,0 +1,68 @@
+{
+  "bodyBg": "#0f1924",
+  "bodyColor": "#c6d4df",
+  "bodyFont": "\"Motiva Sans\", sans-serif",
+  "h1Styles": null,
+  "h2Styles": null,
+  "pStyles": {
+    "fontFamily": "\"Motiva Sans\", Twemoji, \"Noto Sans\", Helvetica, sans-serif",
+    "fontSize": "11px",
+    "fontWeight": "400",
+    "lineHeight": "14px",
+    "color": "#acb2b8"
+  },
+  "ctaStyles": {
+    "tag": "button",
+    "className": "A42lZ-U1dhI-",
+    "backgroundColor": "#1a9fff",
+    "color": "#ffffff",
+    "borderRadius": "0px 1px 1px 0px",
+    "border": "0px none rgb(255, 255, 255)",
+    "fontSize": "13.3333px"
+  },
+  "cardStyles": null,
+  "inputStyles": {
+    "tag": "input",
+    "backgroundColor": null,
+    "borderColor": "#ffffff",
+    "borderRadius": "2px 0px 0px 2px",
+    "border": "1px solid rgba(255, 255, 255, 0.14)"
+  },
+  "navStyles": {
+    "tag": "div",
+    "backgroundColor": null,
+    "borderBottom": "0px none rgb(198, 212, 223)",
+    "borderColor": "#c6d4df"
+  },
+  "badgeStyles": {
+    "className": "discount_aria_label",
+    "backgroundColor": null,
+    "color": "#ffffff",
+    "borderRadius": "0px"
+  },
+  "mutedColor": "#ffffff",
+  "borderColor": "#ffffff",
+  "hasDarkModeRule": false,
+  "brandToken": null,
+  "cssVariableCount": 18,
+  "allCustomProps": {
+    "--font-size": "var(--text-size-9)",
+    "--line-height": "var(--heading-line-height-9)",
+    "--letter-spacing": "var(--heading-letter-spacing-9)",
+    "--GradientColor1": "#0094a2",
+    "--GradientColor2": "#81399a",
+    "--basebuttons-green-label-background": "linear-gradient(to right, #8ed629 5%, #6aa621 95%)",
+    "--basebuttons-blue-label-background-position": "0%",
+    "--basebuttons-grey-label-background": "linear-gradient(to right, #464d58 5%, #464d58 95%)",
+    "--basebuttons-grey-label-shadow": "2px 2px 15px #00000080",
+    "--pill-pips-background-gap": "12px",
+    "--carousel-navbutton-icon-opacity": "1",
+    "--auto-advance-bar-width": "120px",
+    "--sale-section-background-inset-bottom": "48px",
+    "--pill-fade-start": "10px",
+    "--pill-fade-end": "10px",
+    "--scroll-edge-fade-start": "0",
+    "--scroll-edge-fade-end": "0",
+    "--pill-scroll-row-background": "var(--multi-color-bg-gradient-2,linear-gradient(0deg, #1f314a73 5%, #21364da6 20%, #1c324680 65%, #28466273 95%, #2b53768c 100%), radial-gradient(circle at 10% 0%, #5eaeff33 0%, #22354d0d 50%, #5eaeff00 90%), radial-gradient(circle at 80% 100%, #5eaeff1a 0%, #5eaeff0d 50%, #5eaeff00 90%))"
+  }
+}

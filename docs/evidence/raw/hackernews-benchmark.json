@@ -1,0 +1,98 @@
+{
+  "target": {
+    "slug": "hackernews",
+    "name": "Hacker News",
+    "url": "https://news.ycombinator.com",
+    "category": "Multi-Page App",
+    "expectedTheme": "light"
+  },
+  "success": true,
+  "executionTimeSec": 12.8,
+  "timing": {
+    "crawlingMs": 9977,
+    "themeExtractionMs": 2636,
+    "formattingMs": 0,
+    "totalMs": 12613
+  },
+  "crawler": {
+    "pagesCrawled": 6,
+    "depthDistribution": {
+      "0": 1,
+      "1": 5
+    },
+    "duplicatesFound": 0,
+    "crawledUrls": [
+      "https://news.ycombinator.com/",
+      "https://news.ycombinator.com/news",
+      "https://news.ycombinator.com/newest",
+      "https://news.ycombinator.com/front",
+      "https://news.ycombinator.com/newcomments",
+      "https://news.ycombinator.com/ask"
+    ],
+    "crawlSuccessRate": 100
+  },
+  "colors": {
+    "extracted": {
+      "background": "#f6f6ef",
+      "surface": "#f4f4f5",
+      "primary": "#4f46e5",
+      "textPrimary": "#828282",
+      "textSecondary": "#71717a",
+      "border": "#828282"
+    },
+    "groundTruth": {
+      "background": "#f6f6ef",
+      "surface": null,
+      "primary": null,
+      "textPrimary": "#828282",
+      "textSecondary": "#828282",
+      "border": "#767676",
+      "brandToken": null
+    },
+    "scores": {
+      "background": 100,
+      "surface": 85,
+      "primary": 0,
+      "textPrimary": 100,
+      "textSecondary": 75,
+      "border": 75,
+      "overallColorAccuracy": 73
+    }
+  },
+  "typography": {
+    "extractedFonts": [
+      "Verdana",
+      "monospace"
+    ],
+    "groundTruthFonts": [
+      "Verdana, Geneva, sans-serif"
+    ],
+    "fontMatchScore": 100,
+    "headingScaleMatch": 85,
+    "bodyScaleMatch": 85,
+    "overallTypographyAccuracy": 91,
+    "h1GroundTruth": null
+  },
+  "components": {
+    "extractedTypes": [
+      "input"
+    ],
+    "groundTruthPresent": [
+      "input"
+    ],
+    "coverageScore": 100,
+    "detailMatches": {
+      "input": true
+    }
+  },
+  "themes": {
+    "extractedMode": "light",
+    "groundTruthMode": "light",
+    "hasDualThemeSupport": false,
+    "extractedHasDualVars": false,
+    "modeAccuracy": 100,
+    "themeSeparationScore": 100,
+    "overallThemeAccuracy": 100
+  },
+  "overallScore": 91
+}
