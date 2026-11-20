@@ -29,6 +29,7 @@ flowchart TD
     ResponsiveEngine --> EvidenceAudit
     
     EvidenceAudit --> FormatterPipeline[9. Multi-Format Exporter Pipeline]
+    EvidenceAudit --> MCPServer[10. Model Context Protocol MCP Server]
     
     subgraph Exporters [Compilation & Exporters]
         FormatterPipeline --> ClaudeMD[CLAUDE.md]
@@ -37,6 +38,12 @@ flowchart TD
         FormatterPipeline --> TailwindV4[Tailwind v4 @theme]
         FormatterPipeline --> ShadcnUI[shadcn/ui globals.css]
         FormatterPipeline --> FigmaTokens[DTCG tokens.json]
+    end
+
+    subgraph MCPAgents [MCP Protocol Clients]
+        MCPServer --> ClaudeDesktop[Claude Desktop]
+        MCPServer --> CursorIDE[Cursor IDE]
+        MCPServer --> Antigravity[Antigravity / Windsurf / Zed]
     end
 ```
 
@@ -92,6 +99,19 @@ Compiles unified `DesignTokens` into production-ready formats:
 - **AI Coding Agent Contexts**: `CLAUDE.md`, `AGENTS.md`, and `.cursorrules` with **strict negative constraints** forbidding style hallucination.
 - **Styling Frameworks**: Modern Tailwind v4 `@theme`, Tailwind v3 CommonJS, `shadcn/ui` globals.css, DTCG / Figma JSON, and CSS custom properties.
 - **Full Markdown Report**: Includes dual-theme color tables, typography scale, responsive matrix, component specs, and Section 9 (Confidence & Source Evidence Report).
+
+### 2.8 Model Context Protocol (MCP) Server Layer (`src/mcp.ts`)
+Exposes live extraction primitives directly over standard I/O (stdio) via the JSON-RPC 2.0 Model Context Protocol:
+- **Interactive Tools**:
+  - `probe_design_system`: Comprehensive design extraction with format selection and crawl depth.
+  - `extract_colors`: Dual-theme palette, primary CTA resolution, and contrast ratios.
+  - `extract_typography`: Heading hierarchy, body scales, and fluid `clamp()` detection.
+  - `extract_responsive_matrix`: Cross-viewport property comparison (1440px / 768px / 375px) and custom media queries.
+  - `generate_agent_rules`: Production-ready instructions (`CLAUDE.md`, `.cursorrules`, `AGENTS.md`) with negative constraints.
+  - `audit_design_system`: Consistency scoring, extraction confidence ($0–100$), and evidence audit.
+- **MCP Prompts**: `recreate-component` template instructing coding agents to build pixel-accurate React components matching target sites.
+- **MCP Resources**: `styleprobe://formats` cataloging supported output formats and configurations.
+- **Security Boundary**: Enforces SSRF and network validation prior to tool execution, returning structured error messages (`isError: true`) on policy rejection.
 
 ---
 

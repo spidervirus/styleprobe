@@ -20,18 +20,30 @@ import {
   formatToCssVariables
 } from './formatter.js';
 
-const program = new Command();
+// Fast-path for MCP server mode
+if (process.argv[2] === 'mcp') {
+  const { startMcpServer } = await import('./mcp.js');
+  startMcpServer().catch((err) => {
+    console.error('Fatal MCP Server Error:', err);
+    process.exit(1);
+  });
+} else {
+  const program = new Command();
 
-program
-  .name('styleprobe')
-  .description('Probe and extract design systems from any URL into AI-ready specifications, Tailwind configs, and design tokens')
-  .version('1.0.0')
-  .argument('<url>', 'Target website URL (e.g., https://github.com or stripe.com)')
-  .option('-o, --output <path>', 'Output file path (default adjusts based on format)')
-  .option('-f, --format <format>', 'Output format: markdown, claude, agents, cursorrules, all-agents, tailwind, tailwind-v4, shadcn, figma-tokens, css-variables, or json', 'markdown')
-  .option('-d, --depth <number>', 'Number of internal pages to crawl (1 to 5)', '1')
-  .option('--sitemap', 'Discover pages from /sitemap.xml and /sitemap_index.xml', false)
-  .option('--assets [dir]', 'Harvest SVGs & brand logos into a local directory', false)
+  program
+    .name('styleprobe')
+    .description('Probe and extract design systems from any URL into AI-ready specifications, Tailwind configs, and design tokens')
+    .version('1.0.0')
+    .argument('<url>', 'Target website URL (e.g., https://github.com or stripe.com)')
+    .option('-o, --output <path>', 'Output file path (default adjusts based on format)')
+    .option('-f, --format <format>', 'Output format: markdown, claude, agents, cursorrules, all-agents, tailwind, tailwind-v4, shadcn, figma-tokens, css-variables, or json', 'markdown')
+    .option('-d, --depth <number>', 'Number of internal pages to crawl (1 to 5)', '1')
+    .option('--sitemap', 'Discover pages from /sitemap.xml and /sitemap_index.xml', false)
+    .option('--assets [dir]', 'Harvest SVGs & brand logos into a local directory', false)
+    .addHelpText('after', `
+Commands:
+  styleprobe mcp               Start the Model Context Protocol (MCP) server for Claude Desktop, Cursor, Antigravity, and AI agents
+`)
   .action(async (targetUrl: string, options: { output?: string; format: string; depth: string; sitemap: boolean; assets: boolean | string }) => {
     // 1. Input validation & SSRF pre-check
     const precheck = await validateAndResolveUrl(targetUrl);
@@ -182,4 +194,5 @@ program
     }
   });
 
-program.parse(process.argv);
+  program.parse(process.argv);
+}

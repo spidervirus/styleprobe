@@ -824,6 +824,7 @@ const MAX_RESOURCE_BYTES = 10 * 1024 * 1024;
 
 export interface ExtractOptions {
   depth?: number;
+  maxPages?: number;
   sitemap?: boolean;
   responsive?: boolean;
 }

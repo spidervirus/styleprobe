@@ -8,14 +8,17 @@ Extracts colors, typography scales, SVG brand assets, multi-page design tokens, 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-6366f1.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/spidervirus/styleprobe/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/spidervirus/styleprobe/actions)
+[![MCP Server](https://img.shields.io/badge/MCP-Server-7c3aed.svg?style=flat-square)](https://modelcontextprotocol.io/)
 [![Node Version](https://img.shields.io/badge/Node-%3E%3D18.0.0-10b981.svg?style=flat-square)](https://nodejs.org/)
 [![Playwright](https://img.shields.io/badge/Engine-Playwright-f97316.svg?style=flat-square)](https://playwright.dev/)
 
 ```bash
 npx styleprobe https://example.com -f claude
+# Or launch the native MCP server for Claude Desktop / Cursor
+npx styleprobe mcp
 ```
 
-[Live Web Playground](web/) · [Quick Start](#-quick-start) · [Usage Examples](docs/USAGE_EXAMPLES.md) · [Architecture](docs/ARCHITECTURE.md) · [Benchmark Report](docs/REAL_WORLD_BENCHMARK.md) · [Phase 3 Validation](docs/PHASE_3_VALIDATION.md) · [Export Formats](#-supported-export-formats)
+[MCP Server Setup](#-model-context-protocol-mcp-server) · [Live Web Playground](web/) · [Quick Start](#-quick-start) · [Usage Examples](docs/USAGE_EXAMPLES.md) · [Architecture](docs/ARCHITECTURE.md) · [Benchmark Report](docs/REAL_WORLD_BENCHMARK.md) · [Phase 3 Validation](docs/PHASE_3_VALIDATION.md) · [Export Formats](#-supported-export-formats)
 
 </div>
 
@@ -94,6 +97,60 @@ Supports modern color spaces (**OKLCH, OKLAB, Display-P3, LAB, LCH**) with canva
 
 ### 8. Interactive Web Playground
 A Next.js companion app located in [`web/`](web/) that provides an interactive canvas with pre-built components (Navbar, Hero, Pricing Card, and Forms) that dynamically restyle in real time when you probe a URL.
+
+### 9. Native Model Context Protocol (MCP) Server
+Run `styleprobe` as a native MCP server for Claude Desktop, Cursor, Antigravity, and Zed:
+```bash
+npx styleprobe mcp
+```
+Enables AI coding agents to interactively probe live websites, extract palettes and typography, inspect responsive breakpoints, and synthesize accurate components directly in your AI chat.
+
+---
+
+## 🔌 Model Context Protocol (MCP) Server
+
+Connect `styleprobe` directly to **Claude Desktop**, **Cursor IDE**, **Antigravity**, **Windsurf**, or **Zed**.
+
+### Claude Desktop Setup
+Add this to your `claude_desktop_config.json`:
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "styleprobe": {
+      "command": "npx",
+      "args": ["-y", "styleprobe", "mcp"]
+    }
+  }
+}
+```
+
+### Cursor IDE Setup
+Add to `.cursor/mcp.json` in your project or global Cursor settings:
+
+```json
+{
+  "mcpServers": {
+    "styleprobe": {
+      "command": "npx",
+      "args": ["-y", "styleprobe", "mcp"]
+    }
+  }
+}
+```
+
+### Available MCP Tools
+
+| Tool | Parameters | Description |
+|---|---|---|
+| `probe_design_system` | `url`, `format`, `depth`, `maxPages` | Full design system extraction with dual themes, typography, layout rules, and negative constraints |
+| `extract_colors` | `url`, `theme` (`light`/`dark`/`both`) | Extracts canvas background, surface, primary CTA, borders, and dominant color tokens |
+| `extract_typography` | `url` | Extracts heading scale (H1–H6), body typography, and fluid `clamp()` formulas |
+| `extract_responsive_matrix` | `url` | Cross-viewport property comparison (1440px / 768px / 375px) and media query thresholds |
+| `generate_agent_rules` | `url`, `agentType` (`claude`/`cursor`/`agents`/`all`) | Generates `CLAUDE.md`, `.cursorrules`, or `AGENTS.md` with strict negative constraints |
+| `audit_design_system` | `url` | Evaluates token consistency, extraction confidence (0–100), and evidence audit |
 
 ---
 

@@ -22,6 +22,7 @@
 5. [Brand Asset & SVG Harvester](#5-brand-asset--svg-harvester)
 6. [Programmatic TypeScript / Node.js API](#6-programmatic-typescript--nodejs-api)
 7. [Extraction Confidence & Verification](#7-extraction-confidence--verification)
+8. [Model Context Protocol (MCP) Server Integration](#8-model-context-protocol-mcp-server-integration)
 
 ---
 
@@ -275,3 +276,56 @@ interface DesignSystemConfidenceReport {
 ```
 
 This ensures coding agents and developers have transparent visibility into where every token originated and whether it is backed by an explicit CSS custom property or computed DOM sampling.
+
+---
+
+## 8. Model Context Protocol (MCP) Server Integration
+
+`styleprobe` acts as a native MCP server, enabling AI coding assistants to probe live websites in real time.
+
+### Launching the MCP Server
+```bash
+# Direct execution via npx
+npx styleprobe mcp
+
+# Or via dedicated binary
+styleprobe-mcp
+```
+
+### Claude Desktop Configuration
+Add the server entry to `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "styleprobe": {
+      "command": "npx",
+      "args": ["-y", "styleprobe", "mcp"]
+    }
+  }
+}
+```
+
+### Cursor IDE Configuration
+Add to `.cursor/mcp.json`:
+```json
+{
+  "mcpServers": {
+    "styleprobe": {
+      "command": "npx",
+      "args": ["-y", "styleprobe", "mcp"]
+    }
+  }
+}
+```
+
+### Example AI Prompt Workflows
+
+**1. Clone a site's aesthetic:**
+> *"Use styleprobe's `probe_design_system` on https://linear.app to get its color variables and typography scale, then build a modern Hero section matching its style."*
+
+**2. Audit accessibility and design consistency:**
+> *"Run `audit_design_system` on https://example.com and check if the primary button meets WCAG contrast requirements."*
+
+**3. Inspect responsive breakpoints:**
+> *"Call `extract_responsive_matrix` on https://stripe.com and explain how its navigation and grid layout adapt between desktop and mobile."*
+
